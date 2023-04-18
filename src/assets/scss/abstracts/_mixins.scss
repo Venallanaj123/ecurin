@@ -1,0 +1,28 @@
+@mixin left {
+  position: absolute;
+  left: 28%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: $black-light;
+}
+
+@mixin button {
+  background-color: $danger;
+  border: none;
+  color: $white;
+  font-weight: bold;
+  line-height: 30px;
+  position: relative;
+  font-size: 1rem;
+  text-transform: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

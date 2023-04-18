@@ -1,30 +1,42 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <AppHeader />
+    <IntroSection />
+    <SkinBanner />
+    <MedicineBanner />
+    <DiscoverMeasure />
+    <!-- <AppTest /> -->
+    <AppFooter />
+
+    <router-view />
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// @ is an alias to /src
+import AppHeader from './components/layout/AppHeader.vue';
+import AppTest from './components/AppTest.vue'
+import IntroSection from './components/IntroSection.vue'
+import SkinBanner from './components/SkinBanner.vue'
 
-nav {
-  padding: 30px;
+import MedicineBanner from './components/MedicineBanner.vue';
+import DiscoverMeasure from './components/DiscoverMeasure.vue'
+// import AppTest from './components/AppTest.vue'
+import AppFooter from './components/layout/AppFooter.vue';
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+    name: 'App',
+    components: {
+        AppHeader,
+        AppTest,
+        IntroSection,
+        SkinBanner,
+        MedicineBanner,
+        DiscoverMeasure,
+        /*IntroSection,
+        SkinBanner,
+        AppTest,*/
+        AppFooter
     }
-  }
 }
-</style>
+</script>
+<style lang="scss"></style>
