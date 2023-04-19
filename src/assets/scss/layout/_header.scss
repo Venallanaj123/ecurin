@@ -125,3 +125,17 @@
     transform: translateY(-8px) rotate(-45deg);
   }
 }
+
+// $breakpoint-m: 1024px;
+// $breakpoint-l: 1366px;
+// $breakpoint-w: 1920px;
+@import "../grid/breakpoint";
+
+@media screen and (min-width: $breakpoint-w) {
+  .header {
+    & .navbar {
+      padding-left: 270px;
+      padding-right: 270px;
+    }
+  }
+}

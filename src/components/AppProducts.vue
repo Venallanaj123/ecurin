@@ -106,13 +106,7 @@ export default {
     }
 
     .product__card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
-        width: 100%;
-        padding: 20px 5px;
-        margin: 10px;
-        height: 100%;
-        cursor: pointer;
+       @include card;
 
         & img {
             width: 100%;

@@ -1,11 +1,14 @@
 <template>
     <AppHeader />
     <IntroSection />
-    <AppProducts subheading="Discover our sun protection products
-        " />
+    <AppProducts subheading="Discover our sun protection products" />
+
     <SkinBanner />
-    <MedicineBanner />
-    <DiscoverMeasure />
+    <AppEucerin subheading="Discover Eucerin
+                            " />
+    <MedicineBanner subheading="Discover our measures" />
+
+    <AppMeasure />
 
     <AppFooter />
 
@@ -19,9 +22,10 @@ import AppHeader from './components/layout/AppHeader.vue';
 import IntroSection from './components/IntroSection.vue'
 import AppProducts from './components/AppProducts.vue'
 import SkinBanner from './components/SkinBanner.vue'
+import AppEucerin from './components/AppEucerin.vue';
 
 import MedicineBanner from './components/MedicineBanner.vue';
-import DiscoverMeasure from './components/DiscoverMeasure.vue'
+import AppMeasure from './components/AppMeasure.vue'
 
 import AppFooter from './components/layout/AppFooter.vue';
 
@@ -34,8 +38,9 @@ export default {
         IntroSection,
         AppProducts,
         SkinBanner,
+        AppEucerin,
         MedicineBanner,
-        DiscoverMeasure,
+        AppMeasure,
         /*IntroSection,
         SkinBanner,
        ,*/
