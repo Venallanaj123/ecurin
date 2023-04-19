@@ -1,20 +1,22 @@
 <template>
-    <AppHeader />
-    <IntroSection />
-    <AppProducts subheading="Discover our sun protection products" />
+    <div id="app">
+        <AppHeader />
+        <IntroSection />
+        <AppProducts subheading="Discover our sun protection products" />
 
-    <SkinBanner />
-    <AppEucerin subheading="Discover Eucerin
-                                                    " />
-    <MedicineBanner subheading="Discover our measures" />
+        <SkinBanner />
+        <AppEucerin subheading="Discover Eucerin
+                                                            " />
+        <MedicineBanner subheading="Discover our measures" />
 
 
-    <AppMeasure />
-    <AppNewsLetter />
+        <AppMeasure />
+        <AppNewsLetter />
 
-    <AppFooter />
+        <AppFooter />
 
-    <router-view />
+        <router-view />
+    </div>
 </template>
 
 <script>
@@ -52,4 +54,6 @@ export default {
     }
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+@import "../src/assets/scss/base/global"
+</style>
