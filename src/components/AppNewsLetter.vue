@@ -45,26 +45,27 @@ export default {
 <style scoped lang="scss">
 @import "../assets/scss/grid/grid";
 
-$bg: #eedfcc;
-$text: #777;
-$black: #121212;
-$white: #fff;
-$red: #e04f62;
-$border: #ebebeb;
-$shadow: rgba(0, 0, 0, 0.2);
+
 
 .card {
     display: flex;
     flex-direction: row;
     background: $white;
-    box-shadow: 0 0.1875rem 1.5rem $shadow;
+    box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
+    ;
     border-radius: 0.375rem;
     overflow: hidden;
+    border: 1px solid $border-color;
+}
+
+.card-body {
+    padding: 20px;
 }
 
 .card-image {
-    height: auto;
     max-width: 100%;
+    height: auto;
+
 }
 
 
@@ -93,46 +94,23 @@ $shadow: rgba(0, 0, 0, 0.2);
 
 }
 
-@media (max-width: 40rem) {
-    #root {
-        width: 18rem;
-        height: 27.25rem;
-    }
 
+
+
+
+@media (max-width: $breakpoint-xsm) {
     .card {
+        grid-template-columns: auto;
+        grid-template-rows: 12rem 1fr;
         flex-wrap: wrap;
-    }
-}
-
-@supports (display: grid) {
-    body {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 0.625rem;
-        grid-template-areas: ". main main ." ". main main .";
-    }
-
-    #root {
-        grid-area: main;
-        align-self: center;
-        justify-self: center;
     }
 
     .card-image {
-        height: 100%;
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+
     }
 
-    .card {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-    }
-
-    @media (max-width: 40rem) {
-        .card {
-            grid-template-columns: auto;
-            grid-template-rows: 12rem 1fr;
-        }
-    }
 }
 </style>
