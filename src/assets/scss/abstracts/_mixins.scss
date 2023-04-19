@@ -26,3 +26,26 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin subheading {
+  font-size: 36px;
+  line-height: 40px;
+  color: $black-light;
+  text-align: center;
+  margin: 25px 0;
+}
+
+@mixin btngrey {
+  background-color: #e8eaeb;
+  font-size: 18px;
+  line-height: 36px;
+  cursor: pointer;
+  min-width: 308px;
+  font-weight: bold;
+  padding: 7px;
+  border: none;
+  text-align: center;
+  color: $black-light;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}

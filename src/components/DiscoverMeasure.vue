@@ -142,7 +142,7 @@ export default {
     align-items: center;
 
     & h2 {
-        font-size: 36px;
+         font-size: 36px;
         line-height: 40px;
         color: $black-light;
     }
@@ -163,13 +163,9 @@ export default {
         padding: 10px;
 
         & .card-title {
-            margin-bottom: 4px;
-            max-height: 18px;
-            overflow: hidden;
+
             text-transform: uppercase;
-            position: relative;
-            z-index: 9;
-            line-height: 20px;
+
             font-weight: 400;
             color: $grey-light;
             font-size: 12px;
@@ -177,7 +173,7 @@ export default {
 
         & a {
             margin-bottom: 3px;
-            margin-top: 22px;
+
             color: $grey-light;
             font-size: 16px;
 
