@@ -75,7 +75,8 @@ export default {
 }
 
 .news-letter-element p {
-    margin: 5px 0;
+    margin: 2px 0;
+    font-size: 1.3rem
 }
 
 .btn-secondory {
