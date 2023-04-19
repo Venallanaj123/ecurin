@@ -12,6 +12,7 @@
                     </div>
 
 
+
                 </div>
 
             </div>
@@ -47,7 +48,11 @@
 export default {
     name: 'AppProducts',
     props: {
-        subheading: String
+        subheading: {
+            type: String,
+            required: true,
+        },
+
     },
     components: {
 
@@ -80,8 +85,8 @@ export default {
 
             ]
         }
-    }
-}
+    },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -106,7 +111,7 @@ export default {
     }
 
     .product__card {
-       @include card;
+        @include card;
 
         & img {
             width: 100%;

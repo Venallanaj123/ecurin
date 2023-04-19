@@ -5,10 +5,12 @@
 
     <SkinBanner />
     <AppEucerin subheading="Discover Eucerin
-                            " />
+                                                    " />
     <MedicineBanner subheading="Discover our measures" />
 
+
     <AppMeasure />
+    <AppNewsLetter />
 
     <AppFooter />
 
@@ -26,6 +28,7 @@ import AppEucerin from './components/AppEucerin.vue';
 
 import MedicineBanner from './components/MedicineBanner.vue';
 import AppMeasure from './components/AppMeasure.vue'
+import AppNewsLetter from './components/AppNewsLetter.vue'
 
 import AppFooter from './components/layout/AppFooter.vue';
 
@@ -41,6 +44,7 @@ export default {
         AppEucerin,
         MedicineBanner,
         AppMeasure,
+        AppNewsLetter,
         /*IntroSection,
         SkinBanner,
        ,*/

@@ -7,7 +7,7 @@
             <div class="measur__row row">
                 <div class=" measur__col-subheading col-12">
                     <div class="measur__subheading ">
-                        <h2 class=" measur__subheading subheading">{{ subheading1 }}</h2>
+                        <h2 class=" measur__subheading subheading">{{ subheading }}</h2>
 
                     </div>
 
