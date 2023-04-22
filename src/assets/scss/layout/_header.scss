@@ -1,5 +1,6 @@
-@import "../base/global";
-.header {
+@import "../grid/breakpoint";
+
+header {
   background-color: #fff;
   height: 80px;
   width: 100%;
@@ -8,38 +9,70 @@
   left: 0;
   z-index: 100;
 
-  & .navbar {
+  & .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    height: 100%;
-    /* width: 100%; */
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-top: 10px;
 
     & .nav-logo {
-      font-size: 2.1rem;
-      font-weight: 500;
-      color: #333;
+      width: 7rem;
+      height: 7rem;
     }
 
-    & .nav-menu {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    & nav {
+      & ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-      & .nav-item {
-        margin-left: 30px;
-        list-style: none;
+        & li {
+          list-style: none;
 
-        & .nav-link {
-          font-size: 1.3rem;
-          font-weight: 400;
-          color: #475569;
-          text-decoration: none;
+          padding: 0 1.5rem;
+
+          & a {
+            color: #767676;
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 1.3rem;
+          }
         }
       }
+    }
+    .right-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & span {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      & .pta--deparatment {
+        & a {
+          text-decoration: none;
+          font-size: 1.2rem;
+          line-height: 1.8rem;
+          color: $grey-light;
+          font-family: "Roboto-Regular";
+        }
+      }
+      & .pta-language {
+        color: #7a858d;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+    }
+
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      background-color: #101010;
     }
   }
 }
@@ -47,42 +80,6 @@
 .hamburger {
   display: none;
 }
-
-.bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  background-color: #101010;
-}
-
-.right-block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  & span {
-    padding-left: 7px;
-    padding-right: 7px;
-  }
-  & .pta--deparatment {
-    & > a {
-      text-decoration: none;
-      font-size: 1.2rem;
-      line-height: 1.8rem;
-      color: $grey-light;
-      font-family: "Roboto-Regular";
-    }
-  }
-  & .pta-language {
-    color: #7a858d;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .nav-menu {
     position: fixed;
@@ -101,7 +98,7 @@
     left: 0;
   }
 
-  .nav-item {
+  ul li {
     margin: 2.5rem 0;
   }
   .right-block {
@@ -123,19 +120,5 @@
 
   .hamburger.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
-  }
-}
-
-// $breakpoint-m: 1024px;
-// $breakpoint-l: 1366px;
-// $breakpoint-w: 1920px;
-@import "../grid/breakpoint";
-
-@media screen and (min-width: $breakpoint-w) {
-  .header {
-    & .navbar {
-      padding-left: 270px;
-      padding-right: 270px;
-    }
   }
 }

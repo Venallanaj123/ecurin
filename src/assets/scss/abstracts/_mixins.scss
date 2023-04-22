@@ -8,13 +8,12 @@
 
 @mixin button {
   background-color: $danger;
+  padding: 12px 50px;
   border: none;
   color: $white;
   font-weight: bold;
-  line-height: 30px;
-  position: relative;
-  font-size: 1rem;
-  text-transform: none;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
   cursor: pointer;
   text-align: center;
   transition: all 0.3s ease;
@@ -27,6 +26,21 @@
   transform: translate(-50%, -50%);
 }
 
+/*Style Heading*/
+
+@mixin heading {
+  font-size: 2.8rem;
+  line-height: 3.3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: $headingcolor;
+}
+
+@mixin text {
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  margin-bottom: 1.5rem;
+}
 @mixin subheading {
   font-size: 36px;
   line-height: 40px;

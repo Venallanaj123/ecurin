@@ -1,96 +1,84 @@
 <template>
-    <section class="map">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="map__subheading ">
-                        <div class="grouping-element">
-                            <h2 class=" map__subheading subheading">{{ subheading }}</h2>
-                            <input type="text" id="myInput" placeholder="Search for location.." title="Type in a name">
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
+  <div class="map">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="map__title">{{ title }}</h2>
         </div>
-
-    </section>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="map__search">
+            <input type="text" class="map__input" placeholder="Search..." />
+            <span class="map__input--icon fas fa-search"> </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "AppMap",
-    props: {
-        subheading: {
-            type: String,
-            required: true,
-        },
-
+  name: "AppMap",
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
+  },
+  mounted() {
+    // Initialize map here
+  },
 };
 </script>
 
-<style scoped lang="scss">
-@import "../assets/scss/abstracts/mixins";
+<style lang="scss" scoped>
 @import "../assets/scss/grid/grid";
 
-
-
 .map {
-    background-image: url("../assets/images/maps/maps.jpg");
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("../assets/images/maps/maps.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
 
-    &__subheading {
-        & h2 {
-            @include subheading;
+  &__title {
+    @include heading;
+    padding-top: 10rem;
+    font-size: 2.4rem;
+    line-height: 2.9rem;
+    text-align: center;
+  }
 
-        }
+  &__search {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  &__input {
+    font-size: 16px;
+    padding: 13px 45px 13px 14px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    margin-right: 10px;
+
+    &--icon {
+      background-image: url("../assets/images/search-svg.svg");
+      background-repeat: no-repeat;
+      background-position: left;
+      cursor: pointer;
+      position: absolute;
+
+      right: 340px;
+      fill: #7a858d;
+      height: 20px;
+      width: 20px;
+      padding: 16px;
     }
-
-}
-
-#myInput {
-    background-image: url('../assets/images/search-svg.svg');
-    background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 50%;
-    font-size: 1rem;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-}
-
-
-.grouping-element {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    padding: 100px 0;
-
-}
-
-
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .skin-banner {
-
-
-        background-size: cover;
-        height: 100%;
-        width: 100%;
-        max-height: 100%;
-
-    }
+  }
 }
 </style>
