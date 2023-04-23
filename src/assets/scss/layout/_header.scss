@@ -20,8 +20,12 @@ header {
       height: 7rem;
     }
 
-    & nav {
-      & ul {
+    & .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & .nav-menu {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -85,16 +89,19 @@ header {
     position: fixed;
     left: -100%;
     top: 7rem;
-    flex-direction: column;
-    // background-color: #fff;
+    flex-direction: column !important ;
+    background-color: #fafafa;
     width: 100%;
-    border-radius: 10px;
-    text-align: center;
+
+    text-align: left;
     transition: 0.3s;
-    // box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+  .right-block {
+    display: none !important;
   }
 
-  .nav-menu.active {
+  .active {
     left: 0;
   }
 

@@ -3,8 +3,8 @@
     <div class="container">
       <div class="header">
         <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
-        <nav class="nav-menu">
-          <ul>
+        <nav class="navbar">
+          <ul class="nav-menu">
             <li><a href="#">Products</a></li>
             <li><a href="#">Advice</a></li>
             <li><a href="#">Research</a></li>
@@ -45,7 +45,7 @@
             </svg>
           </span>
         </div>
-        <div class="hamburger" on:click="mobileMenu()">
+        <div class="hamburger" @click="showMenuMobile()">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -60,17 +60,16 @@ export default {
   name: "AppHeader",
 
   methods: {
-    mobileMenu() {
-      debugger;
-      let mobileMenu;
-
+    showMenuMobile() {
+      // debugger;
+      let showMenuMobile;
       let hamburger = document.querySelector(".hamburger");
       let navMenu = document.querySelector(".nav-menu");
 
-      // hamburger.addEventListener("click", mobileMenu);
+      hamburger.addEventListener("click", showMenuMobile);
 
-      // hamburger.classList.toggle("active");
-      // navMenu.classList.toggle("active");
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
     },
   },
 };

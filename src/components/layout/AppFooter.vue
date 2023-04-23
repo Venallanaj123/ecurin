@@ -92,14 +92,27 @@
             </nav>
           </div>
         </div>
+        <hr class="hr" />
         <div class="footer__bottom">
           <div class="row">
-            <div class="col-6">
-              <div class="footer__bottom">
+            <div class="col-4">
+              <div class="footer__bottom--left">
                 <img src="../../assets/images/Beiersdorf-Logo.png" alt="" />
               </div>
             </div>
-            <div class="col-6">tes</div>
+            <div class="col-8">
+              <div class="footer__bottom--right">
+                <nav class="footer__nav">
+                  <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">About Us</a></li>
+                  </ul>
+                </nav>
+                <p class="footer__nav--copyright">
+                  COPYRIGHT © BEIERSDORF 2023
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -116,8 +129,8 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/scss/grid/grid";
 footer {
-  padding-top: 2rem;
-  padding-bottom: 7rem;
+  // padding-top: 2rem;
+  padding-bottom: 5rem;
   position: relative;
   & .footer {
     width: 80%;
@@ -144,6 +157,9 @@ footer {
       & a {
         padding: 0 1rem;
       }
+    }
+    & .hr {
+      @include hr;
     }
 
     &__nav {
@@ -176,11 +192,24 @@ footer {
     }
 
     &__bottom {
-      margin-top: 2rem;
+      margin-top: 3rem;
+      // width: 100rem;
 
-      //   display: flex;
-      //   justify-content: space-between;
-      //   align-items: center;
+      &--left {
+        & img {
+          width: 100%;
+          max-width: 10rem;
+          height: auto;
+        }
+      }
+      &--right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        & nav {
+          margin-top: 0;
+        }
+      }
     }
   }
 }

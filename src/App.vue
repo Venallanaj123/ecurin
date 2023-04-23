@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <AppHeader />
-    <!-- <AppTest /> -->
+
     <IntroSection />
+    <AppProducts subheading="Discover our sun protection products" />
 
     <SkinBanner />
     <MedicineBanner />
 
     <!-- <AppHeader />
     <IntroSection />
-  <AppProducts subheading="Discover our sun protection products" />
 
     <SkinBanner />
     <AppEucerin
@@ -36,7 +36,7 @@ import AppHeader from "./components/layout/AppHeader.vue";
 import IntroSection from "./components/IntroSection.vue";
 
 // import IntroSection from './components/IntroSection.vue'
-// import AppProducts from './components/AppProducts.vue'
+import AppProducts from "./components/AppProducts.vue";
 import SkinBanner from "./components/SkinBanner.vue";
 // import AppEucerin from './components/AppEucerin.vue';
 
@@ -51,6 +51,7 @@ export default {
   components: {
     AppHeader,
     IntroSection,
+    AppProducts,
     SkinBanner,
     MedicineBanner,
     AppMap,
