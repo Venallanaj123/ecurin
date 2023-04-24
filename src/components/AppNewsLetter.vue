@@ -1,41 +1,62 @@
 <template>
-    <section class="news-letter">
+    <section class="newsletter">
         <div class="container">
             <div class="row">
-                <div class="card">
-                    <img class="card-image" :src="image" />
-                    <div class="card-body">
-                        <h4 class="post-category news-letter--title">{{ title }}</h4>
-                        <div class="news-letter-element">
-                            <p>• Neue Produkte testen und bewerten</p><br>
-                            <p> • An attraktiven Gewinnspielen teilnehmen</p><br>
-                            <p> • Aktuelle Informationen und Beratung erhalten</p>
+                <div class="col-12" v-for="card in cards" :key="card.id">
+                    <div class="newsletter__card card">
+                        <div class="card__image">
+
+                            <img :src="card.img" alt="card-image" />
                         </div>
-                        <a href="#" class="btn btn-secondory">Newsletter abonnieren</a>
+
+                        <div class="card__body">
+                            <p class="card__title">{{ card.title }}</p>
+                            <p class="card__list">{{ card.list1 }}</p>
+                            <p class="card__list">{{ card.list2 }}</p>
+                            <p class="card__list">{{ card.list3 }}</p>
+
+                            <div class="card__button btn">
+                                <a href="https://www.eucerin.de/meta-pages/eucerin-newsletter-anmeldung">Subscribe to
+                                    Newsletter</a>
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
-
             </div>
         </div>
     </section>
 </template>
 
 <script>
-import image from "../assets/images/newsletter/newsletter.jpg";
+
 export default {
     name: 'AppNewsLetter',
     props: {
-        msg: String
+        title: {
+            type: String,
+            required: true
+        },
     },
-    data: () => ({
-        title: 'Eucerin Neuigkeiten abonnieren und Vorteile sichern',
-        category: 'Travel',
-        image: 'https://i.postimg.cc/7PnYtcHP/newsletter.jpg',
-        author: 'Already Programmer',
-        desc: `Indonesia with many culture`
-    })
+    data: function () {
+        return {
+            cards: [
+                {
+                    id: 1,
+
+                    img: require("../assets/images/newsletter/newsletter.jpg"),
+                    title: "Eucerin Neuigkeiten abonnieren und Vorteile sichern  ",
+                    list1: "• Neue Produkte testen und bewerten",
+                    list2: "• Neue Produkte testen und bewerten",
+                    list3: "• Neue Produkte testen und bewerten",
+
+                },
+
+            ],
+        };
+    },
 
 };
 
@@ -45,73 +66,61 @@ export default {
 <style scoped lang="scss">
 @import "../assets/scss/grid/grid";
 
+.newsletter {
 
 
-.card {
-    display: flex;
-    flex-direction: row;
-    background: $white;
-    box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
-    ;
-    border-radius: 0.375rem;
-    overflow: hidden;
-    border: 1px solid $border-color;
-}
+    &__card {
+        @include card;
+        display: flex;
 
-.card-body {
-    padding: 20px;
-}
+        &__image {
 
-.card-image {
-    max-width: 100%;
-    height: auto;
+            & img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+        }
 
-}
+        & .card__body {
+            padding: 1rem;
 
+            & .card__title {
+                font-size: 3.6rem;
+                line-height: 4.4rem;
+                color: $headingcolor;
+                margin-bottom: 1rem;
+            }
 
-.news-letter--title {
-    @include subheading;
-    text-align: left;
-}
+            & .card__list {
+                margin: 1rem 0;
+                font-size: 1.6rem;
+                line-height: 1.9rem
+            }
 
-.news-letter-element p {
-    margin: 2px 0;
-    font-size: 1.3rem
-}
-
-.btn-secondory {
-    @include button;
-
-    text-decoration: none;
-    display: block;
-    width: 90%;
-    border: none;
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    text-align: center;
+            & .card__button {
+                @include button;
 
 
-}
+                & a {
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 1.6rem;
+                    line-height: 1.9rem;
 
-
-
-
-
-@media (max-width: $breakpoint-xsm) {
-    .card {
-        grid-template-columns: auto;
-        grid-template-rows: 12rem 1fr;
-        flex-wrap: wrap;
+                }
+            }
+        }
     }
 
-    .card-image {
-        width: 100%;
-        max-width: 400px;
-        height: 300px;
+}
 
+@media only screen and (max-width: 768px) {
+    .newsletter {
+
+        &__card {
+            flex-direction: column;
+        }
     }
-
 }
 </style>
