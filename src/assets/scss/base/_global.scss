@@ -16,7 +16,7 @@ body {
 p {
   font-size: 1.2rem;
   line-height: 1.4rem;
-  color: $textcolor;
+  color: #767676;
   font-weight: 400;
 }
 
@@ -28,5 +28,6 @@ section {
   width: 100%;
   padding: 0 2.5rem;
   margin: 0 auto;
-  max-width: 98rem;
+  //max-width: 98rem;
+  max-width: 120rem;
 }

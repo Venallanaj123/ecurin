@@ -1,93 +1,87 @@
 <template>
-    <section class="measur">
+  <section class="measur measur">
+    <div class="measur__container container">
+      <AppTitle
+        title="Discover our sun protection measur
+  "
+      />
 
+      <hr class="hr" />
+      <div class="row">
+        <div class="col-3" v-for="card in cards" :key="card.id">
+          <a :href="card.href">
+            <div class="product__card card">
+              <div class="card__image">
+                <img :src="card.img" alt="card-image" />
+              </div>
 
-        <div class="measur__container container">
-
-            <div class="measur__row row">
-                <div class=" measur__col-subheading col-12">
-                    <div class="measur__subheading ">
-                        <h2 class=" measur__subheading subheading">{{ subheading }}</h2>
-
-                    </div>
-
-
-
-                </div>
-
+              <div class="card__body">
+                <p class="card__title">{{ card.title }}</p>
+                <p class="card__subtile">{{ card.subtitle }}</p>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="measur__hr--bottom"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="measur__card card" v-for=" card in cards" :key="card.id">
-                    <img src="../assets/images/measures/euc-teaser.jpg" alt=" hydro-protect" class="card__img">
-                    <div class="card__body">
-                        <p class="card__title">{{ card.title }}</p>
-                        <p class="card__subtile"> {{ card.subtitle }}</p>
-                        <p class="card__time">{{ card.time }}</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="measur__button">
-                        <a href="https://www.eucerin.de/produkte/sonnenschutz" class="measur__button--btn-grey">Find sun
-                            protection measur</a>
-                    </div>
-                </div>
-
-            </div>
+          </a>
         </div>
-    </section>
+      </div>
+      <AppButton
+        link="https://www.eucerin.de/produkte/sonnenschutz"
+        buttonText="Find sun protection product"
+      />
+    </div>
+  </section>
 </template>
 
 <script>
+import AppTitle from "./AppTitle.vue";
+import AppButton from "./AppButton.vue";
+
 export default {
-    name: 'AppMeasure',
-    props: {
-        subheading: String
+  name: "Appmeasur",
+  props: {
+    link: {
+      type: String,
+      required: true,
     },
-    components: {
-
-    },
-    data: function () {
-        return {
-            cards: [
-                {
-                    id: 1,
-
-
-                    title: "Sustainable production and sourcing",
-                    subtitle: "Building a sustainable supply chain   ",
-                    time: "4 min reading time"
-                },
-                {
-                    id: 2,
-                    title: "Sustainable production and sourcing",
-                    subtitle: "Building a sustainable supply chain   ",
-                    time: "4 min reading time"
-                },
-                {
-                    id: 3,
-                    title: "Sustainable production and sourcing",
-                    subtitle: "Building a sustainable supply chain   ",
-                    time: "3 min reading time"
-                },
-                {
-                    id: 3,
-                    title: "Sustainable production and sourcing",
-                    subtitle: "Building a sustainable supply chain   ",
-                    time: "6 min reading time"
-                },
-
-            ]
-        }
-    }
-}
+  },
+  components: {
+    AppTitle,
+    AppButton,
+  },
+  data: function () {
+    return {
+      cards: [
+        {
+          id: 1,
+          href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-produktion",
+          img: require("../assets/images/measures/euc-teaser.png"),
+          title: "sun protection",
+          subtitle: "Hydro Protect Ultra Light Face Sun Fluid   ",
+        },
+        {
+          id: 2,
+          href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/klimaschutz",
+          img: require("../assets/images/measures/ecurin-envairment.png"),
+          title: "sun protection",
+          subtitle: "Hydro Protect Ultra Light Face Sun Fluid   ",
+        },
+        {
+          id: 3,
+          href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-verpackung",
+          img: require("../assets/images/measures/bottles.png"),
+          title: "sun protection",
+          subtitle: "Hydro Protect Ultra Light Face Sun Fluid  ",
+        },
+        {
+          id: 4,
+          href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe/nachhaltiger-palmoel-anbau",
+          img: require("../assets/images/measures/palmoil-teaser.png"),
+          title: "sun protection",
+          subtitle: "Hydro Protect Ultra Light Face Sun Fluid  ",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -95,96 +89,61 @@ export default {
 @import "../assets/scss/grid/grid";
 
 .measur {
+  & .hr {
+    @include hr;
+  }
+  a {
+    text-decoration: none;
 
-    &__subheading {
-        & h2 {
-            @include subheading;
-        }
-
-    }
-
-    .measur {
-        &__hr--bottom {
-            border-bottom: 1px solid $border-color;
-            margin-bottom: 18px;
-            padding-bottom: 6px;
-        }
-    }
-
-    .measur__card {
-        @include card;
-
+    & .product__card {
+      @include card;
+      & .card__image {
         & img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+
+      & .card__body {
+        padding: 2.5rem 1.5rem;
+
+        & .card__title {
+          text-transform: uppercase;
+          color: $grey-light;
+          margin: 0.5rem 0;
         }
 
-        .card__body {
-            padding: 20px;
-
-            & .card__title {
-                text-transform: uppercase;
-                color: $grey-light;
-                font-size: 12px;
-                margin: 5px 0;
-            }
-
-            & .card__subtile {
-                color: $grey-light;
-                font-size: 16px;
-                margin: 5px 0;
-            }
+        & .card__subtile {
+          color: $grey-light;
+          margin: 0.5rem 0;
         }
+      }
 
+      &:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
     }
-
-    &__button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 0;
-
-
-        &--btn-grey {
-            @include btngrey;
-        }
-
-        &--btn-grey:hover {
-            background-color: $grey-btnhover;
-        }
-
-
-    }
-}
-
-
-.measur__card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 }
 
 @media only screen and (max-width: $breakpoint-xsm) {
-    .row {
-        flex-direction: column;
+  .row {
+    flex-direction: column;
+  }
+
+  .measur {
+    &__subheading {
+      & h2 {
+        font-size: 20px;
+        margin: 15px 0;
+      }
     }
 
-    .measur {
-
-        &__subheading {
-            & h2 {
-
-                font-size: 20px;
-                margin: 15px 0;
-            }
-
-        }
-
-        .measur__card {
-            padding: 0 !important;
-            margin: 10px 0 !important;
-        }
-
-
+    .product__card {
+      padding: 0 !important;
+      margin: 10px 0 !important;
     }
+  }
 }
 </style>

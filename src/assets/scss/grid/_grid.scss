@@ -32,8 +32,8 @@ $direction: 1;
 
 @mixin gutter($direction: 1) {
   @media screen and (min-width: $breakpoint-l) {
-    margin-left: 16px * ($direction);
-    margin-right: 16px * ($direction);
+    margin-left: 5px * ($direction); // Made change from 16px to 5px
+    margin-right: 5px * ($direction);
   }
 
   @media screen and (min-width: $breakpoint-sm) and (max-width: ($breakpoint-l - 0.02)) {

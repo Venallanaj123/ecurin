@@ -61,24 +61,24 @@
 
 @mixin btngrey {
   background-color: #e8eaeb;
-  font-size: 18px;
-  line-height: 36px;
-  cursor: pointer;
-  min-width: 308px;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
   font-weight: bold;
-  padding: 7px;
+  padding: 1.2rem 2rem;
+  cursor: pointer;
   border: none;
   text-align: center;
   color: $black-light;
   text-decoration: none;
   transition: all 0.3s ease;
+  display: inline-block;
 }
 
 @mixin card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
-  margin: 10px;
+
   height: 100%;
   cursor: pointer;
 }
