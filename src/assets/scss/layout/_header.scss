@@ -1,7 +1,6 @@
-@import "../grid/breakpoint";
-
 header {
   background-color: #fff;
+  border-bottom: 1px solid #eee;
   height: 80px;
   width: 100%;
   position: fixed;
@@ -14,37 +13,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding-top: 10px;
+    height: 80px;
 
     & .nav-logo {
       width: 7rem;
       height: 7rem;
     }
 
-    & .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      & .nav-menu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        & li {
-          list-style: none;
-
-          padding: 0 1.5rem;
-
-          & a {
-            color: #767676;
-            text-decoration: none;
-            font-weight: 300;
-            font-size: 1.6rem;
-            line-height: 1.9rem;
-          }
-        }
-      }
-    }
     .right-block {
       display: flex;
       align-items: center;
@@ -81,6 +56,88 @@ header {
       background-color: #101010;
     }
   }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+}
+
+.navbar {
+  display: flex;
+  margin-right: -20px;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: static;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+}
+
+.nav-menu li {
+  position: relative;
+  margin-right: 25px;
+}
+
+.nav-menu li.has-mega-menu .mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  z-index: 10;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-menu li.has-mega-menu:hover .mega-menu {
+  display: block;
+}
+
+.mega-menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.submenu {
+  margin-right: 50px;
+}
+
+.submenu h3 {
+  margin-bottom: 10px;
+}
+
+.submenu ul li {
+  margin-bottom: 10px;
+}
+
+.submenu ul li a:hover {
+  color: #0077c2;
+}
+
+/* Transition */
+.mega-menu {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-menu li.has-mega-menu:hover .mega-menu {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hamburger {

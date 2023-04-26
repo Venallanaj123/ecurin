@@ -46,9 +46,7 @@ export default {
     position: relative;
     background-size: cover;
 
-    &__container {
-     
-    }
+    &__container {}
 
     &__title {
         @include heading;
@@ -80,7 +78,7 @@ export default {
             cursor: pointer;
             position: absolute;
 
-            right: 450px;
+            right: 550px;
             fill: #7a858d;
             height: 20px;
             width: 20px;
