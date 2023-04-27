@@ -58,105 +58,42 @@ header {
   }
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: #000;
-  font-size: 1.6rem;
-  line-height: 1.9rem;
-}
-
-.navbar {
-  display: flex;
-  margin-right: -20px;
-  -webkit-box-flex: 1;
-  flex-grow: 1;
-  -webkit-box-pack: center;
-  justify-content: center;
-  position: static;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.nav-menu {
-  display: flex;
-}
-
-.nav-menu li {
-  position: relative;
-  margin-right: 25px;
-}
-
-.nav-menu li.has-mega-menu .mega-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-
-  z-index: 10;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.nav-menu li.has-mega-menu:hover .mega-menu {
-  display: block;
-}
-
-.mega-menu {
-  display: flex;
-  justify-content: space-between;
-  padding: 25px;
-}
-
-.submenu {
-  margin-right: 50px;
-}
-
-.submenu h3 {
-  margin-bottom: 10px;
-}
-
-.submenu ul li {
-  margin-bottom: 10px;
-}
-
-.submenu ul li a:hover {
-  color: #0077c2;
-}
-
-/* Transition */
-.mega-menu {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.3s ease-in-out;
-}
-
-.nav-menu li.has-mega-menu:hover .mega-menu {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hamburger {
+.hamburger,
+.header-logo-center,
+.navbar-mobile {
   display: none;
 }
 @media only screen and (max-width: 768px) {
   .nav-menu {
     position: fixed;
     left: -100%;
-    top: 7rem;
+    top: 8rem;
     flex-direction: column !important ;
     background-color: #fafafa;
-    width: 100%;
-
+    /*width: 100%;*/
+    padding: 0 30px 30px;
+    width: 320px;
     text-align: left;
     transition: 0.3s;
     box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    overflow-y: visible;
+    transition: all .4s;
   }
-  .right-block {
+  .header-logo-center {
+    display: block;
+    margin: 0 auto;
+    & img {
+      width: 100% !important;
+      max-width: 400px !important;
+      height: auto !important;
+    }
+  }
+  .navbar-mobile {
+    display: block;
+  }
+  .right-block,
+  .visible-desktop,
+  .header-logo {
     display: none !important;
   }
 
