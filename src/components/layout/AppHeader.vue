@@ -17,44 +17,34 @@
                 </div>
                 <nav class="navbar-mobile">
                     <ul class="nav-menu">
-                        <li><a href="@">test</a></li>
+                        <!-- <li><a href="@">test</a></li> -->
                     </ul>
                 </nav>
 
                 <nav class="nvabar-visible-desktop">
                     <ul class="navbar-first-level">
-
-                        <li class="navbar-first-level__item">
-                            <a href="#">Products</a>
-                            <div class="navbar-first-level__flyout">
-                                <ul>
-                                    <li class="navbar-secondary-level__item">
-                                        <a href="#" class="arrow-right">Product Line</a>
-                                    </li>
-                                    <li class="navbar-secondary-level__item">
-                                        <a href="#" class="arrow-right">skin condition</a>
-                                    </li>
-                                </ul>
-
-                            </div>
-
-                        </li>
-
-                        <li class="navbar-first-level__item">
-                            <a href="#">Advice</a>
-                              <div class="navbar-first-level__flyout">
-
-                                  <ul class="navbar-first-level__flyout">
-                                      <li>
-                                          <a href="#" class="arrow-right">Skin condition</a>
-                                          
-                                        </li>
-                                        <li>
-                                            <a href="#" class="arrow-right">useful information</a>
-                                            
-                                        </li>
-                                    </ul>
-                                </div>
+                        <li v-for="(item, index) in menuItems" :key="index" class="navbar-first-level__item"
+                            @mouseover="showSubmenu('submenu-1')" @mouseout="hideSubmenu('submenu-1')">
+                            <a href="#">{{ item.label }}</a>
+                            <ul id="submenu-1" class="navbar-first-level__flyout submenu" v-if="item.children">
+                                <li v-for="(childItem, childIndex) in item.children" :key="childIndex"
+                                    class="navbar-secondary-level__item">
+                                    <a href="#">{{ childItem.label }}</a>
+                                    <!-- <ul
+                    class="nested-submenu"
+                    :id="'nested-submenu-' + index + '-' + childIndex"
+                  >
+                    <li
+                      v-for="(
+                        nestedChildItem, nestedChildIndex
+                      ) in childItem.children"
+                      :key="nestedChildIndex"
+                    >
+                      <a href="#">{{ nestedChildItem.label }}</a>
+                    </li>
+                  </ul> -->
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -82,11 +72,50 @@
 </template>
 
 <script>
-// import AppHeaderMobile from './AppHeaderMobile.vue';
 export default {
     name: "AppHeader",
     components: {},
-
+    data() {
+        return {
+            menuItems: [
+                {
+                    label: "Menu Item 1",
+                    children: [
+                        {
+                            label: "Subemenu 10",
+                        },
+                    ],
+                },
+                {
+                    label: "Menu Item 2",
+                    children: [
+                        {
+                            label: "Submenu Item 2",
+                            children: [
+                                {
+                                    label: "Nested Submenu Item 4",
+                                },
+                                {
+                                    label: "Nested Submenu Item 2",
+                                },
+                            ],
+                        },
+                        {
+                            label: "Submenu Item 2",
+                            children: [
+                                {
+                                    label: "Nested Submenu Item 1",
+                                },
+                                {
+                                    label: "Nested Submenu Item 2",
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        };
+    },
     methods: {
         showMenuMobile() {
             let showMenuMobile;
@@ -98,6 +127,16 @@ export default {
             hamburger.classList.toggle("active");
             navMenu.classList.toggle("active");
         },
+
+        showSubmenu(submenuId) {
+            document.getElementById(submenuId).style.display = "block";
+            document.getElementById(submenuId).style.height = "770px";
+            /*document.getElementById(submenuId).style.transition.height = "0.3s ease";*/
+        },
+
+        hideSubmenu(submenuId) {
+            document.getElementById(submenuId).style.display = "none";
+        },
     },
 };
 </script>
@@ -107,62 +146,43 @@ export default {
 
 /* Strat to style na-menu for mobile */
 
-nav ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav li {
-    /*display: inline-block;*/
-
-    position: relative;
-}
-
-nav a {
-    color: $textcolor;
-    display: block;
-    padding: 10px 5px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    background-color: white !important;
-}
-
-.submenu {
+.navbar-first-level__flyout {
     display: none;
-    position: absolute;
-    top: 100%;
+}
+
+.navbar-first-level__flyout {
+    background-color: #e8eaeb;
+    width: 100%;
+    height: 500px;
     left: 0;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-
-}
-
-.nested-submenu {
-    display: none;
     position: absolute;
-    top: 0;
-    left: 100%;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-li:hover>.submenu {
     display: block;
+
+    & li {
+        display: flex;
+        list-style: none;
+    }
 }
 
-li:hover>.nested-submenu {
-    display: block;
-}
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.arrow {
-    display: inline-block;
-    margin-left: 5px;
+    & li {
+        list-style: none;
+    }
+
+    & a {
+        color: $textcolor;
+        display: block;
+        padding: 10px 5px;
+        text-decoration: none;
+        text-decoration: none;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        margin: 0 13px;
+    }
 }
 
 ul .submenu li .arrow-right::after {
@@ -173,71 +193,5 @@ ul .submenu li .arrow-right::after {
     content: "";
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-}
-
-/*Start to style Mega Menu*/
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: #000;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    padding: 30px 0;
-    margin: 0 13px;
-}
-
-.nav-menu {
-    display: flex;
-}
-
-.nav-mega-submenu ul li {
-    margin: 1.6rem 0;
-}
-
-.nav-menu li.nav-mega-menu .nav-mega-submenu {
-    display: none;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    z-index: 10;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    width: 100vw;
-}
-
-.nav-menu li.nav-mega-menu:hover .nav-mega-submenu {
-    display: block;
-}
-
-.nav-mega-submenu {
-    padding: 25px;
-    width: 100%;
-    padding: 4rem 30rem;
-}
-
-.nav-item li {
-    margin: 1.6rem 0;
-}
-
-.nav-item li a:hover {
-    color: $danger !important;
-}
-
-.nav-mega-submenu {
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.3s ease-in-out;
-}
-
-.nav-menu li.nav-mega-menu:hover .nav-mega-submenu {
-    opacity: 1;
-    transform: translateY(0);
 }
 </style>

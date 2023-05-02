@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <AppHeader />
+        <!-- <AppHeaderMobile /> -->
 
         <IntroSection />
         <AppProducts subheading="Discover our sun protection products" />
@@ -22,6 +23,7 @@
 // @ is an alias to /src
 import AppHeader from "./components/layout/AppHeader.vue";
 
+// import AppHeaderMobile from "./components/layout/AppHeaderMobile.vue";
 import IntroSection from "./components/IntroSection.vue";
 import AppProducts from "./components/AppProducts.vue";
 import SkinBanner from "./components/SkinBanner.vue";
