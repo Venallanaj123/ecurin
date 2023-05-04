@@ -45,6 +45,9 @@ export default {
 
     &--heading {
       @include heading;
+      font-size: 4.4rem;
+      font-weight: inherit;
+      line-height: 4.8rem;
     }
 
     &--text {

@@ -1,183 +1,304 @@
 <template>
-    <header>
-        <div class="container">
-            <div class="header">
-                <div class="header-logo">
-                    <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
-                </div>
-                <div class="header-left-mobile">
-                    <div class="hamburger" @click="showMenuMobile()">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </div>
-                </div>
-                <div class="header-logo-center">
-                    <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
-                </div>
-                <nav class="navbar-mobile">
-                    <ul class="nav-menu">
-                        <!-- <li><a href="@">test</a></li> -->
-                    </ul>
-                </nav>
-
-                <nav class="navbar-visible-desktop">
-                    <ul class="menu">
-                        <li v-for="(item, index) in menuItems" :key="index">
-                            <a href="#">{{ item.title }}</a>
-
-                            <ul v-if="item.submenu">
-                                <li v-for="(subitem, index) in item.submenu" :key="index">
-                                    <a href="@"> {{ subitem.title }}</a>
-
-                                    <ul v-if="subitem.submenu">
-                                        <li v-for="(subsubitem, index) in subitem.submenu" :key="index">
-                                            {{ subsubitem.title }}
-                                        </li>
-
-                                    </ul>
-                                </li>
-                            </ul>
-
-                        </li>
-                    </ul>
-
-                </nav>
-
-                <div class="right-block">
-                    <span class="pta--deparatment">
-                        <a href="https://www.side-by-side.de/"> PTA department</a></span>
-
-                    <span class="pta--flag"><img src="../../assets/images/selector-de.png" alt="block__item--flag"
-                            width="20px" height="20px" />
-                    </span>
-                    <span class="pta-language">EN</span>
-
-                    <span class="pta--search">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
-                            <path
-                                d="M13.455 2.182c6.226 0 11.273 5.047 11.273 11.273 0 2.851-1.058 5.454-2.803 7.439l7.483 7.485-1.029 1.029-7.485-7.483c-1.985 1.745-4.588 2.803-7.439 2.803-6.226 0-11.273-5.047-11.273-11.273s5.047-11.273 11.273-11.273zM13.455 3.636c-5.422 0-9.818 4.396-9.818 9.818s4.396 9.818 9.818 9.818c5.422 0 9.818-4.396 9.818-9.818s-4.396-9.818-9.818-9.818z">
-                            </path>
-                        </svg>
-                    </span>
-                </div>
-            </div>
+  <header>
+    <div class="container">
+      <div class="header">
+        <div class="header-logo">
+          <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
         </div>
-    </header>
+        <div class="header-left-mobile">
+          <div class="hamburger" @click="showMenuMobile()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </div>
+        <div class="header-logo-center">
+          <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
+        </div>
+        <nav class="navbar-mobile">
+          <ul class="nav-menu"></ul>
+        </nav>
+
+        <nav class="navbar-visible-desktop">
+          <ul class="menu-first-level">
+            <li
+              class="menu-first-level__item"
+              v-for="(item, index) in menuItems"
+              :key="index"
+              @mouseover="(e) => showSubmenuFirstLevel(e, item)"
+              @mouseleave="(e) => hideSubmenu(e)"
+            >
+              <a :href="item.href">{{ item.title }}</a>
+              <!-- v-if="item === selectedItem" -->
+              <ul class="menu-first-level__flyout">
+                <li
+                  class="menu-secondary-level__item"
+                  v-for="(subitem, subindex) in item.submenu"
+                  :key="subindex"
+                >
+                  <a :href="subitem.href">{{ subitem.title }}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="right-block">
+          <span class="pta--deparatment">
+            <a href="https://www.side-by-side.de/"> PTA department</a></span
+          >
+
+          <span class="pta--flag"
+            ><img
+              src="../../assets/images/selector-de.png"
+              alt="block__item--flag"
+              width="20px"
+              height="20px"
+            />
+          </span>
+          <span class="pta-language">EN</span>
+
+          <span class="pta--search">
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              viewBox="0 0 32 32"
+            >
+              <path
+                d="M13.455 2.182c6.226 0 11.273 5.047 11.273 11.273 0 2.851-1.058 5.454-2.803 7.439l7.483 7.485-1.029 1.029-7.485-7.483c-1.985 1.745-4.588 2.803-7.439 2.803-6.226 0-11.273-5.047-11.273-11.273s5.047-11.273 11.273-11.273zM13.455 3.636c-5.422 0-9.818 4.396-9.818 9.818s4.396 9.818 9.818 9.818c5.422 0 9.818-4.396 9.818-9.818s-4.396-9.818-9.818-9.818z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>
 export default {
-    name: "AppHeader",
-    components: {},
-    data() {
-        return {
-            menuItems: [
-                {
-                    title: 'Item1',
-                    submenu: [
-
-                        {
-                            title: "Subitem 1",
-                        }
-                    ]
-                }
-            ],
-        };
-    },
-
-    methods: {
-        showMenuMobile() {
-            let showMenuMobile;
-            let hamburger = document.querySelector(".hamburger");
-            let navMenu = document.querySelector(".nav-menu");
-
-            hamburger.addEventListener("click", showMenuMobile);
-
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
+  name: "AppHeader",
+  components: {},
+  data() {
+    return {
+      menuItems: [
+        {
+          title: "Products",
+          href: "https://www.eucerin.de/produkte",
+          submenu: [
+            {
+              title: "product line ",
+              href: "https://www.eucerin.de/produkte",
+            },
+            {
+              title: "skin condition ",
+              href: "https://www.eucerin.de/produkte",
+            },
+          ],
         },
+        {
+          title: "Advice",
+          href: "https://www.eucerin.de/hautzustand",
+          submenu: [
+            {
+              title: "skin condition",
+              href: "https://www.eucerin.de/produkte",
+            },
+            {
+              title: "useful information",
+              href: "https://www.eucerin.de/produkte",
+            },
+          ],
+        },
+        {
+          title: "Research",
+          href: "https://www.eucerin.de/unsere-forschung/aus-der-forschung",
+          submenu: [
+            {
+              title: "Science behind the product lines",
+              href: "https://www.eucerin.de/unsere-forschung/aus-der-forschung",
+            },
+            {
+              title: "About our research",
+              href: "https://www.eucerin.de/unsere-forschung/forschungshintergrund",
+            },
+            {
+              title: "Our ingredients",
+              href: "https://www.eucerin.de/unsere-forschung/datenbank-fuer-inhaltsstoffe",
+            },
+          ],
+        },
+        {
+          title: "Brand & More",
+          href: "https://www.eucerin.de/ueber-eucerin/purpose",
+          submenu: [
+            {
+              title: "Eucerin's purpose",
+              href: "#1",
+            },
+            {
+              title: "Anti-aging refill capsules",
+              href: "#2",
+            },
+            {
+              title: "Body care for dry skin",
+              href: "#3",
+            },
+            {
+              title: "mothers day promo",
+              href: "#4",
+            },
+            {
+              title: "#1 against pigment spots",
+              href: "#5",
+            },
+            {
+              title: "#MYSKINNOFILTER",
+              href: "#6",
+            },
+            {
+              title: "HYALURON-FILLER + ELASTICITY with a new formula",
+              href: "#7",
+            },
+            {
+              title: "Aquaphor Protect &amp; Repair",
+              href: "#8",
+            },
+            {
+              title: "skin cancer prevention",
+              href: "#9",
+            },
+            {
+              title: "UreaRepair skin trust",
+              href: "#10",
+            },
+            {
+              title: "Atopic dermatitis care",
+              href: "#11",
+            },
+            {
+              title: "social mission",
+              href: "#12",
+            },
+            {
+              title: "#generationEucerin",
+              href: "#13",
+            },
+            {
+              title: "women study",
+              href: "#14",
+            },
+            {
+              title: "Dermanostic",
+              href: "#15",
+            },
+            {
+              title: "loyalty program",
+              href: "#16",
+            },
+            {
+              title: "Anton",
+              href: "#17",
+            },
+          ],
+        },
+        {
+          title: "sustainability",
+          href: "https://www.eucerin.de/nachhaltigkeit",
 
+          submenu: [
+            {
+              title: "CO2 reduction ",
+              href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung",
+            },
+            {
+              title: "High quality ingredients ",
+              href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe",
+            },
+            {
+              title: "Social responsibility",
+              href: "https://www.eucerin.de/nachhaltigkeit/soziale-eingliederung",
+            },
+          ],
+        },
+      ],
+      selectedItem: null,
+    };
+  },
 
-
+  //   computed: {
+  //     filteredSubmenu() {
+  //       return this.selectedItem ? this.selectedItem.submenu : [];
+  //     },
+  //   },
+  methods: {
+    showSubmenuFirstLevel(e, item) {
+      let target = e.target.parentElement;
+      console.log("item", e.target.parentElement);
+      target.classList.add("active");
+      this.selectedItem = item;
     },
+
+    hideSubmenu(e) {
+      console.log("remove", e.target.parentElement);
+      let target = e.target.parentElement;
+      target.classList.remove("active");
+
+      //   this.selectedItem = null;
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../assets/scss/layout/header";
 
+.menu-first-level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.navbar-first-level {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &__item {
+    list-style: none;
 
-    &__item {
-        list-style: none;
-
-        & a {
-            color: $textcolor;
-            padding: 10px;
-            text-decoration: none;
-            font-size: 1.6rem;
-            line-height: 1.9rem;
-        }
+    &.active .menu-first-level__flyout {
+      height: 700px;
+      opacity: 1;
+      visibility: visible;
     }
 
-    &__flyout {
-        background-color: #e8eaeb;
-        width: 100%;
-        left: 0;
-        position: absolute;
-        transition: height 0.5s;
-        height: 500px;
+    & a {
+      color: $textcolor;
+      padding: 10px;
+      text-decoration: none;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
     }
+  }
 
-    & .navbar-secondary-level__item {
-        display: flex;
-        padding: 0 25rem;
+  &__flyout {
+    background-color: #e8eaeb;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    transition: height 0.5s;
+    height: 0px;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    padding: 5rem 27rem;
+    list-style: none;
 
-        & a {}
-
-        & .nested-submenu {
-
-            & li {
-                flex-direction: column;
-                margin: 16px;
-                list-style-type: none;
-            }
-
-        }
-
+    & li {
+      padding: 5px 0;
+      cursor: pointer;
+      & a {
+        font-weight: 500;
+        cursor: pointer;
+      }
     }
-
-}
-
-
-
-
-
-
-
-/* Add this CSS rule to hide the submenus by default */
-.navbar-first-level__flyout.submenu {
-    display: none;
-}
-
-
-
-/* Use the :hover pseudo-class to show the submenu when hovering over the main menu item */
-ul .navbar-first-level__item:hover .navbar-first-level__flyout.submenu {
-    display: block;
-}
-
-
-.nested-submenu {
-    display: none;
-}
-
-.navbar-secondary-level__item:hover .nested-submenu {
-    display: block;
+  }
 }
 </style>
