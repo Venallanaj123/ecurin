@@ -1,27 +1,28 @@
 <template>
-    <div id="app">
-        <!-- <AppHeader /> -->
-        <AppHeaderMobile />
+  <div id="app">
+    <!-- <AppHeader /> -->
 
-        <IntroSection />
-        <AppProducts subheading="Discover our sun protection products" />
+    <AppHeaderMobile />
 
-        <SkinBanner />
-        <AppEucerin />
-        <MedicineBanner />
+    <IntroSection />
+    <AppProducts subheading="Discover our sun protection products" />
 
-        <AppMeasure />
-        <AppNewsLetter />
+    <SkinBanner />
+    <AppEucerin />
+    <MedicineBanner />
 
-        <AppMap title="The Eucerin pharmacy near you" />
-        <AppFooter />
-        <router-view />
-    </div>
+    <AppMeasure />
+    <AppNewsLetter />
+
+    <AppMap title="The Eucerin pharmacy near you" />
+    <AppFooter />
+    <router-view />
+  </div>
 </template>
 
 <script>
 // // @ is an alias to /src
-// import AppHeader from "./components/layout/AppHeader.vue";
+import AppHeader from "./components/layout/AppHeader.vue";
 
 import AppHeaderMobile from "./components/layout/AppHeaderMobile.vue";
 import IntroSection from "./components/IntroSection.vue";
@@ -30,25 +31,26 @@ import SkinBanner from "./components/SkinBanner.vue";
 import AppEucerin from "./components/AppEucerin.vue";
 import MedicineBanner from "./components/MedicineBanner.vue";
 import AppMeasure from "./components/AppMeasure.vue";
-import AppNewsLetter from './components/AppNewsLetter.vue'
+import AppNewsLetter from "./components/AppNewsLetter.vue";
 import AppMap from "./components/AppMap.vue";
 import AppFooter from "./components/layout/AppFooter.vue";
 
 export default {
-    name: "App",
-    components: {
-        AppHeaderMobile,
-        // AppHeader,
-        IntroSection,
-        AppProducts,
-        SkinBanner,
-        AppEucerin,
-        MedicineBanner,
-        AppMeasure,
-        AppNewsLetter,
-        AppMap,
-        AppFooter,
-    },
+  name: "App",
+  components: {
+    //AppHeader,
+    AppHeaderMobile,
+
+    IntroSection,
+    AppProducts,
+    SkinBanner,
+    AppEucerin,
+    MedicineBanner,
+    AppMeasure,
+    AppNewsLetter,
+    AppMap,
+    AppFooter,
+  },
 };
 </script>
 <style lang="scss">
