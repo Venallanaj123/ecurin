@@ -16,7 +16,9 @@
           <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
         </div>
         <nav class="navbar-mobile">
-          <ul class="nav-menu"></ul>
+          <ul class="nav-menu">
+             <vue-nested-menu :source="menu"></vue-nested-menu>
+          </ul>
         </nav>
 
         <nav class="navbar-visible-desktop">
@@ -31,16 +33,15 @@
               <a :href="item.href">{{ item.title }}</a>
               <!-- v-if="item === selectedItem" -->
               <div class="wrap-subemenu">
-                <ul id="submenu" class="menu-first-level__flyout">
+                <ul class="menu-first-level__flyout">
                   <li
-                    id="li"
                     class="menu-secondary-level__item center"
                     v-for="(subitem, subindex) in item.submenu"
                     :key="subindex"
-                    @mouseover="(e) => showSubmenuSecondLevel(e, subitem)"
-                    @mouseleave="(e) => hideSubmenu(e)"
                   >
-                    <a :href="subitem.href">{{ subitem.title }}</a>
+                    <a :href="subitem.href" class="arrow right"
+                      >{{ subitem.title }}
+                    </a>
 
                     <ul class="menu-secondary-level__flyout submenu">
                       <li
@@ -93,9 +94,14 @@
 </template>
 
 <script>
+import VueNestedMenu from 'vue-nested-menu';
+
+Vue.use(VueNestedMenu)
+
+
 export default {
   name: "AppHeader",
-  components: {},
+  components: { VueNestedMenu },
   data() {
     return {
       menuItems: [
@@ -189,60 +195,60 @@ export default {
                 },
               ],
             },
-            // {
-            //   title: "skin condition ",
-            //   href: "https://www.eucerin.de/produkte",
-            //   nestedItems: [
-            //     {
-            //       title: "anti age",
-            //       href: "https://www.eucerin.de/produkte/anti-age",
-            //     },
-            //     {
-            //       title: "Dry skin",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "itchy skin",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "Blemished skin",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "reddening of the face",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "Sensitive skin",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "scalp and hair",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "sun protection",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "Pigment spots &amp; hyperpigmentation",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "Sweat",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "diabetic skin",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //     {
-            //       title: "all products",
-            //       href: "https://www.eucerin.de/produkte/trockene-haut",
-            //     },
-            //   ],
-            // },
+            {
+              title: "skin condition ",
+              href: "https://www.eucerin.de/produkte",
+              nestedItems: [
+                {
+                  title: "anti age",
+                  href: "https://www.eucerin.de/produkte/anti-age",
+                },
+                {
+                  title: "Dry skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "itchy skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Blemished skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "reddening of the face",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Sensitive skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "scalp and hair",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "sun protection",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Pigment spots &amp; hyperpigmentation",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Sweat",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "diabetic skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "all products",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+              ],
+            },
           ],
         },
         {
@@ -252,10 +258,76 @@ export default {
             {
               title: "skin condition",
               href: "https://www.eucerin.de/produkte",
+
+              nestedItems: [
+                {
+                  title: "anti age",
+                  href: "https://www.eucerin.de/hautzustand/anti-age",
+                },
+                {
+                  title: "Dry skin",
+                  href: "https://www.eucerin.de/hautzustand/trockene-haut",
+                },
+                {
+                  title: "neurodermatitis",
+                  href: "https://www.eucerin.de/hautzustand/neurodermitis",
+                },
+                {
+                  title: "Blemished skin",
+                  href: "https://www.eucerin.de/hautzustand/unreine-haut",
+                },
+                {
+                  title: "reddening of the face",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "Sensitive skin",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "sun protection",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "Pigment spots &amp; hyperpigmentation",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "Sweating &amp; deodorant intolerance",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "diabetic skin",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "all articles",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+              ],
             },
             {
               title: "useful information",
               href: "https://www.eucerin.de/produkte",
+
+              //   nestedItems: [
+              //     {
+              //       title: "skin knowledge",
+              //       href: "https://www.eucerin.de/beratung/die-haut-grundlagen",
+              //     },
+              //     {
+              //       title: "skin care",
+              //       href: "https://www.eucerin.de/beratung/hautbehandlung",
+              //     },
+              //     {
+              //       title: "skin indications",
+              //       href: "https://www.eucerin.de/beratung/hautprobleme",
+              //     },
+              //     {
+              //       title: "all articles",
+              //       href: "https://www.eucerin.de/hautzustand",
+              //     },
+              //   ],
             },
           ],
         },
@@ -359,10 +431,38 @@ export default {
             {
               title: "CO2 reduction ",
               href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung",
+              //   nestedItems: [
+              //     {
+              //       title: "Sustainable packaging",
+              //       href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-verpackung",
+              //     },
+              //     {
+              //       title: "climate protection",
+              //       href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/klimaschutz",
+              //     },
+              //     {
+              //       title: "sustainable production",
+              //       href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-produktion",
+              //     },
+              //   ],
             },
             {
               title: "High quality ingredients ",
               href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe",
+              nestedItems: [
+                {
+                  title: "Sustainable palm oil cultivation",
+                  href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe/nachhaltiger-palmoel-anbau",
+                },
+                {
+                  title: "Cosmetics without animal testing",
+                  href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe/kosmetik-ohne-tierversuche",
+                },
+                {
+                  title: "Cosmetics without microplastics",
+                  href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe/kosmetik-ohne-mikroplastik",
+                },
+              ],
             },
             {
               title: "Social responsibility",
@@ -371,6 +471,31 @@ export default {
           ],
         },
       ],
+      menu: {
+        title: "首頁",
+        children: [
+          {
+            title: `Today's Deals`,
+            link: `/today`,
+            children: [],
+          },
+          {
+            title: `Shop By Department`,
+            children: [
+              {
+                title: `Amazon Music`,
+                link: `/music`,
+                children: [],
+              },
+              {
+                title: `CDs and Vinyl`,
+                link: `/cds`,
+                children: [],
+              },
+            ],
+          },
+        ],
+      },
       selectedItem: null,
     };
   },
@@ -383,20 +508,13 @@ export default {
       this.selectedItem = item;
 
       let submenu = document.getElementById("submenu");
-      let itemHeight = document.getElementById("li").offsetHeight;
+      // let itemHeight = document.getElementById("li").offsetHeight;
 
       //   const itemHeight = submenu.querySelector("li").offsetHeight;
 
       //   const numItems = submenu.querySelectorAll("li").length;
 
       //   const submenuHeight = numItems * itemHeight;
-    },
-
-    showSubmenuSecondLevel(e, subitem) {
-      let target = e.target.parentElement;
-      console.log("subitem", e.target.parentElement);
-      target.classList.add("active");
-      this.selectedItem = subitem;
     },
 
     hideSubmenu(e) {
@@ -408,6 +526,16 @@ export default {
         child.classList.remove("active");
       });
     },
+
+    showMenuMobile() {
+      let showMenuMobile;
+      let hamburger = document.querySelector(".hamburger");
+      let navMenu = document.querySelector(".nav-menu");
+
+      hamburger.addEventListener("click", showMenuMobile);
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    },
   },
 };
 </script>
@@ -415,8 +543,26 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/scss/layout/header";
 
-ul .menu-first-level__item:hover .menu-first-level__flyout.submenu {
-  display: block;
+.menu-secondary-level__item {
+  flex-shrink: 0;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-basis: calc(25% - 20px);
+  max-width: calc(25% - 20px);
+  margin-right: 10px;
+  margin-left: 0;
+}
+.menu-secondary-level__flyout {
+  position: absolute;
+  margin-left: 10px;
+  right: 0px;
+  margin-right: 0px;
+  min-height: 100%;
+  max-width: 100%;
+  width: calc(75% - 25px);
+  padding-bottom: 40px;
+  top: 0px;
+  list-style-type: none;
 }
 
 .menu-first-level {
@@ -454,15 +600,24 @@ ul .menu-first-level__item:hover .menu-first-level__flyout.submenu {
     visibility: hidden;
     cursor: pointer;
     list-style: none;
-    padding: 2rem 0;
 
     & li {
       padding: 0.5rem 0;
       cursor: pointer;
-      & a {
-        font-weight: 500;
-        cursor: pointer;
-      }
+      list-style-type: none;
+    }
+    & a {
+      font-weight: 500;
+      cursor: pointer;
+    }
+    & .arrow::after {
+      /* transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      border: solid $danger;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      content: "";*/
     }
   }
 }
@@ -474,19 +629,58 @@ ul .menu-first-level__item:hover .menu-first-level__flyout.submenu {
   max-width: 140rem;
 }
 
-.menu-secondary-level__item {
-  position: relative;
-  list-style-type: none;
-  & .menu-secondary-level__flyout {
-    position: absolute;
-    top: 0;
-    left: 150px;
-    list-style-type: none;
+.Menu__header {
+  display: flex;
+  align-items: center;
+  padding-left: 35px;
+  height: 50px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #232f3e;
+  cursor: pointer;
+
+  .arrow {
+    padding-top: 2px;
+    fill: #fff;
+    margin-right: 10px;
+    width: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
-  & .menu-thirdy-level__item {
-    /*position: absolute;
-    top: 10px;*/
-    left: 150px;
+}
+
+.Menu__list {
+  list-style: none;
+  padding-bottom: 2px;
+
+  .separator {
+    border-bottom: 1px solid #d5dbdb;
+    padding: 2px 0 0 0;
+    margin: 0;
+  }
+}
+
+.Menu__item {
+  color: #4a4a4a;
+  padding-left: 35px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  a {
+    color: #4a4a4a;
+    text-decoration: none;
+  }
+
+  .arrow {
+    padding-top: 2px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    width: 10px;
+    height: 100%;
   }
 }
 </style>
