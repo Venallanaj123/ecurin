@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <!-- <AppHeader /> -->
+    <!-- <AppHeader /> 
+    <AppNested />-->
 
     <AppHeaderMobile />
 
@@ -22,7 +23,8 @@
 
 <script>
 // // @ is an alias to /src
-import AppHeader from "./components/layout/AppHeader.vue";
+//  import AppHeader from "./components/layout/AppHeader.vue";
+// import AppNestedVue from "./components/layout/AppNested.vue";
 
 import AppHeaderMobile from "./components/layout/AppHeaderMobile.vue";
 import IntroSection from "./components/IntroSection.vue";
@@ -38,9 +40,10 @@ import AppFooter from "./components/layout/AppFooter.vue";
 export default {
   name: "App",
   components: {
-    //AppHeader,
     AppHeaderMobile,
-
+    //AppHeader,
+    // AppHeaderMobile,
+    //AppNestedVue,
     IntroSection,
     AppProducts,
     SkinBanner,
