@@ -17,8 +17,8 @@
         </div>
         <nav class="navbar-mobile">
           <ul class="nav-menu">
-             <vue-nested-menu  v-for="menu in menus" :key="menu.id"></vue-nested-menu>
-
+         
+            <vue-nested-menu :source="menu"> </vue-nested-menu>
           </ul>
         </nav>
 
@@ -95,12 +95,11 @@
 </template>
 
 <script>
-import VueNestedMenu from 'vue-nested-menu';
-
+import VueNestedMenu from "vue-nested-menu";
 
 export default {
   name: "AppHeader",
-  components: { AppNested },
+  components: { VueNestedMenu },
   data() {
     return {
       menuItems: [
@@ -430,20 +429,20 @@ export default {
             {
               title: "CO2 reduction ",
               href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung",
-                nestedItems: [
-                  {
-                    title: "Sustainable packaging",
-                    href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-verpackung",
-                  },
-                  {
-                    title: "climate protection",
-                    href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/klimaschutz",
-                  },
-                  {
-                    title: "sustainable production",
-                    href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-produktion",
-                  },
-                ],
+              nestedItems: [
+                {
+                  title: "Sustainable packaging",
+                  href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-verpackung",
+                },
+                {
+                  title: "climate protection",
+                  href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/klimaschutz",
+                },
+                {
+                  title: "sustainable production",
+                  href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-produktion",
+                },
+              ],
             },
             {
               title: "High quality ingredients ",
@@ -470,9 +469,9 @@ export default {
           ],
         },
       ],
-      menus: {
+      menu: {
         title: "首頁",
-        menu: [
+        children: [
           {
             title: `Today's Deals`,
             link: `/today`,
