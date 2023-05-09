@@ -17,962 +17,41 @@
         </div>
         <nav class="navbar-mobile">
           <ul class="nav-menu">
-            <!-- <li><a href="@">test</a></li> -->
+            <vue-nested-menu :source="menu"> </vue-nested-menu>
           </ul>
         </nav>
 
-        <nav
-          class="uk-navbar-center cp-navigation desktop-nav nav-overlay desktop-visible"
-        >
-          <ul class="cp-first-level-nav uk-navbar-nav uk-visible@s">
-            <li class="">
-              <a href="/produkte" class=""
-                ><font style="vertical-align: inherit"
-                  ><font style="vertical-align: inherit">Products</font></font
-                ></a
-              >
+        <nav class="navbar-visible-desktop">
+          <ul class="menu-first-level">
+            <li
+              class="menu-first-level__item"
+              v-for="(item, index) in menuItems"
+              :key="index"
+              @mouseover="(e) => showSubmenuFirstLevel(e, item)"
+              @mouseleave="(e) => hideSubmenu(e)"
+            >
+              <a :href="item.href">{{ item.title }}</a>
+              <!-- v-if="item === selectedItem" -->
+              <div class="wrap-subemenu">
+                <ul class="menu-first-level__flyout">
+                  <li
+                    class="menu-secondary-level__item center"
+                    v-for="(subitem, subindex) in item.submenu"
+                    :key="subindex"
+                  >
+                    <a :href="subitem.href" class="arrow right"
+                      >{{ subitem.title }}
+                    </a>
 
-              <div
-                class="uk-navbar-dropdown cp-second-level-nav-wrapper uk-navbar-dropdown-dropbar uk-navbar-dropdown-stack uk-navbar-dropdown-bottom-left menu-aim--delaying"
-              >
-                <ul class="uk-nav uk-navbar-dropdown-nav cp-second-level-nav">
-                  <li class="menu-aim__item menu-aim__item--active">
-                    <a href="/produkte"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >product line</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    >
-                      <div class="cp-third-level-nav-content">
-                        <ul class="cp-third-level-nav">
-                          <li>
-                            <a href="/produkte/actinic-control" target="|Custom"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Actinic Control</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/anti-pigment"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >anti pigment</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/aquaphor"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Aquaphor Protect &amp; Repair</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/aquaporin-active"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Aquaporin Active</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/atopicontrol"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >AtopiControl</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/deodorants-und-anti-transpirants"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >deodorants and antiperspirants</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/dermato-clean"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >DermatoCLEAN</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/dermocapillaire"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >DermoCapillaire</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/dermo-pure"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >DermoPure</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/hyaluron-filler"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Hyaluron-Filler + 3x EFFECT</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/hyaluron-filler-elasticity"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Hyaluron-Filler + Elasticity</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/hyaluron-filler-urea"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Hyaluron filler + urea</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/hyaluron-filler-volume-lift"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Hyaluron filler + volume lift</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/lipo-balance"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Lipo balance</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/ph5"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >pH5</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/q10-active"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Q10 Active</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/sonnenschutz"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >sun protection</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/urea-repair"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >UreaRepair</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/sehr-empfindliche-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Ultra Sensitive</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >all products</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="menu-aim__item">
-                    <a href="/produkte"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >skin condition</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    >
-                      <div class="cp-third-level-nav-content">
-                        <ul class="cp-third-level-nav">
-                          <li>
-                            <a href="/produkte/anti-age"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >anti age</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/trockene-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Dry skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/neurodermitis"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >neurodermatitis</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/juckende-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >itchy skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/unreine-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Blemished skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/roetungen-im-gesicht"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >reddening of the face</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/empfindliche-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Sensitive skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/kopfhaut-und-haarprobleme"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >scalp and hair</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/sonnenschutz"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >sun protection</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/produkte/pigmentflecken-hyperpigmentierung"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Pigment spots &amp; hyperpigmentation</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/schwitzen"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Sweat</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte/diabetische-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >diabetic skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/produkte"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >all products</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="">
-              <a href="/hautzustand" class=""
-                ><font style="vertical-align: inherit"
-                  ><font style="vertical-align: inherit">Advice</font></font
-                ></a
-              >
-
-              <div
-                class="uk-navbar-dropdown cp-second-level-nav-wrapper uk-navbar-dropdown-dropbar uk-navbar-dropdown-stack uk-navbar-dropdown-bottom-left"
-              >
-                <ul class="uk-nav uk-navbar-dropdown-nav cp-second-level-nav">
-                  <li class="menu-aim__item">
-                    <a href="/hautzustand"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >skin condition</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    >
-                      <div class="cp-third-level-nav-content">
-                        <ul class="cp-third-level-nav">
-                          <li>
-                            <a href="/hautzustand/anti-age"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >anti age</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/trockene-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Dry skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/neurodermitis"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >neurodermatitis</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/unreine-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Blemished skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/roetungen-im-gesicht"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >reddening of the face</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/empfindliche-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Sensitive skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/sonnenschutz"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >sun protection</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/hautzustand/pigmentflecken-hyperpigmentierung"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Pigment spots &amp; hyperpigmentation</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/schwitzen"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Sweating &amp; deodorant intolerance</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand/diabetische-haut"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >diabetic skin</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >all articles</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="menu-aim__item">
-                    <a href="/beratung"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >useful information</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    >
-                      <div class="cp-third-level-nav-content">
-                        <ul class="cp-third-level-nav">
-                          <li>
-                            <a href="/beratung/die-haut-grundlagen"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >skin knowledge</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/beratung/hautbehandlung"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >skin care</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/beratung/hautprobleme"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >skin indications</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a href="/hautzustand"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >all articles</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a href="/unsere-forschung/aus-der-forschung"
-                ><font style="vertical-align: inherit"
-                  ><font style="vertical-align: inherit">Research</font></font
-                ></a
-              >
-
-              <div class="uk-navbar-dropdown cp-second-level-nav-wrapper">
-                <ul class="uk-nav uk-navbar-dropdown-nav cp-second-level-nav">
-                  <li class="menu-aim__item no-subnav">
-                    <a
-                      href="/unsere-forschung/aus-der-forschung"
-                      target="|Custom"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Science behind the product lines</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a
-                      href="/unsere-forschung/forschungshintergrund"
-                      target="|Custom"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >About our research</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/unsere-forschung/datenbank-fuer-inhaltsstoffe"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Our ingredients</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a href="/ueber-eucerin/purpose"
-                ><font style="vertical-align: inherit"
-                  ><font style="vertical-align: inherit"
-                    >Brand &amp; More</font
-                  ></font
-                ></a
-              >
-
-              <div class="uk-navbar-dropdown cp-second-level-nav-wrapper">
-                <ul class="uk-nav uk-navbar-dropdown-nav cp-second-level-nav">
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/ueber-eucerin/purpose"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Eucerin's purpose</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/anti-age-refill"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Anti-aging refill capsules</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/koerperpflege-bei-trockener-haut"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Body care for dry skin</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/muttertag"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >mothers day promo</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/uncover-antipigment"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >#1 against pigment spots</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/dermopure"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >#MYSKINNOFILTER</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/hyfi-gold-relaunch"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >HYALURON-FILLER + ELASTICITY with a new formula</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/aquaphor"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Aquaphor Protect &amp; Repair</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/hautkrebs-vorsorge-sonnenschutz"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >skin cancer prevention</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/urearepair-hautvertrauen"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >UreaRepair skin trust</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/neurodermitis-atopicontrol"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Atopic dermatitis care</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/socialmission"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >social mission</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/generationeucerin"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >#generationEucerin</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/frauenstudie"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >women study</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/digitale-hautarzt-diagnose"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Dermanostic</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a
-                      href="/meta-pages/eucerin-treuekarte"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >loyalty program</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/specials/anton"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Anton</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="">
-              <a href="/nachhaltigkeit" class=""
-                ><font style="vertical-align: inherit"
-                  ><font style="vertical-align: inherit"
-                    >sustainability</font
-                  ></font
-                ></a
-              >
-
-              <div
-                class="uk-navbar-dropdown cp-second-level-nav-wrapper uk-navbar-dropdown-dropbar uk-navbar-dropdown-stack uk-navbar-dropdown-bottom-left"
-              >
-                <ul class="uk-nav uk-navbar-dropdown-nav cp-second-level-nav">
-                  <li class="menu-aim__item">
-                    <a href="/nachhaltigkeit/co2-reduzierung"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >CO2 reduction</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    >
-                      <div class="cp-third-level-nav-content">
-                        <ul class="cp-third-level-nav">
-                          <li>
-                            <a
-                              href="/nachhaltigkeit/co2-reduzierung/nachhaltige-verpackung"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Sustainable packaging</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/nachhaltigkeit/co2-reduzierung/klimaschutz"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >climate protection</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/nachhaltigkeit/co2-reduzierung/nachhaltige-produktion"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >sustainable production</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="menu-aim__item">
-                    <a href="/nachhaltigkeit/hochwertige-inhaltsstoffe"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >High quality ingredients</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    >
-                      <div class="cp-third-level-nav-content">
-                        <ul class="cp-third-level-nav">
-                          <li>
-                            <a
-                              href="/nachhaltigkeit/hochwertige-inhaltsstoffe/nachhaltiger-palmoel-anbau"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Sustainable palm oil cultivation</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/nachhaltigkeit/hochwertige-inhaltsstoffe/kosmetik-ohne-tierversuche"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Cosmetics without animal testing</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/nachhaltigkeit/hochwertige-inhaltsstoffe/kosmetik-ohne-mikroplastik"
-                              ><font style="vertical-align: inherit"
-                                ><font style="vertical-align: inherit"
-                                  >Cosmetics without microplastics</font
-                                ></font
-                              ></a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="menu-aim__item no-subnav">
-                    <a href="/nachhaltigkeit/soziale-eingliederung"
-                      ><font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit"
-                          >Social responsibility</font
-                        ></font
-                      ></a
-                    >
-
-                    <div
-                      class="cp-third-level-nav-wrapper menu-aim__item-submenu"
-                    ></div>
+                    <ul class="menu-secondary-level__flyout submenu">
+                      <li
+                        class="menu-thirdy-level__item"
+                        v-for="(nestedItem, nestedIndex) in subitem.nestedItems"
+                        :key="nestedIndex"
+                      >
+                        <a :href="nestedItem.href">{{ nestedItem.title }}</a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </div>
@@ -1015,110 +94,444 @@
 </template>
 
 <script>
+import VueNestedMenu from "vue-nested-menu";
+
 export default {
   name: "AppHeader",
-  components: {},
+  components: { VueNestedMenu },
   data() {
     return {
       menuItems: [
         {
-          label: "Menu Item 1",
-          children: [
+          title: "Products",
+          href: "https://www.eucerin.de/produkte",
+          submenu: [
             {
-              label: "Submenu Item 1",
-              children: [
+              title: "product line ",
+              href: "https://www.eucerin.de/produkte",
+              nestedItems: [
                 {
-                  label: "Nested Submenu Item 1",
+                  title: "Actinic Control",
+                  href: "https://www.eucerin.de/produkte/actinic-control",
                 },
                 {
-                  label: "Nested Submenu Item 2",
+                  title: "anti pigment",
+                  href: "https://www.eucerin.de/produkte/anti-pigment",
                 },
                 {
-                  label: "Nested Submenu Item 3",
+                  title: "Aquaphor Protect &amp; Repair",
+                  href: "https://www.eucerin.de/produkte/actinic-control",
                 },
                 {
-                  label: "Nested Submenu Item 4",
+                  title: "Aquaporin Active",
+                  href: "https://www.eucerin.de/produkte/anti-pigment",
+                },
+                {
+                  title: "AtopiControl",
+                  href: "https://www.eucerin.de/produkte/anti-pigment",
+                },
+                {
+                  title: "deodorants and antiperspirants",
+                  href: "https://www.eucerin.de/produkte/anti-pigment",
+                },
+                {
+                  title: "DermatoCLEAN",
+                  href: "https://www.eucerin.de/produkte/anti-pigment",
+                },
+                {
+                  title: "DermoCapillaire",
+                  href: "https://www.eucerin.de/produkte/dermocapillaire",
+                },
+                {
+                  title: "DermoPure",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "Hyaluron-Filler + 3x EFFECT",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "Hyaluron-Filler + Elasticity",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "Hyaluron filler + urea",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "Hyaluron filler + volume lift",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "Lipo balance",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "pH5",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "Q10 Active",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "sun protection",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "UreaRepair",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "Ultra Sensitive",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
+                },
+                {
+                  title: "all products",
+                  href: "https://www.eucerin.de/produkte/dermo-pure",
                 },
               ],
             },
             {
-              label: "Submenu Item 2",
-              children: [
+              title: "skin condition ",
+              href: "https://www.eucerin.de/produkte",
+              nestedItems: [
                 {
-                  label: "Nested Submenu Item 3",
+                  title: "anti age",
+                  href: "https://www.eucerin.de/produkte/anti-age",
                 },
                 {
-                  label: "Nested Submenu Item 4",
+                  title: "Dry skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "itchy skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Blemished skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "reddening of the face",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Sensitive skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "scalp and hair",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "sun protection",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Pigment spots &amp; hyperpigmentation",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "Sweat",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "diabetic skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                {
+                  title: "all products",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
                 },
               ],
-            },
-            {
-              label: "test",
-            },
-            {
-              label: "test",
             },
           ],
         },
         {
-          label: "Menu Item 2",
-          children: [
+          title: "Advice",
+          href: "https://www.eucerin.de/hautzustand",
+          submenu: [
             {
-              label: "Submenu Item 2",
-              children: [
+              title: "skin condition",
+              href: "https://www.eucerin.de/produkte",
+
+              nestedItems: [
                 {
-                  label: "Nested Submenu Item 3",
+                  title: "anti age",
+                  href: "https://www.eucerin.de/hautzustand/anti-age",
                 },
                 {
-                  label: "Nested Submenu Item 4",
+                  title: "Dry skin",
+                  href: "https://www.eucerin.de/hautzustand/trockene-haut",
                 },
                 {
-                  label: "Nested Submenu Item 3",
+                  title: "neurodermatitis",
+                  href: "https://www.eucerin.de/hautzustand/neurodermitis",
                 },
                 {
-                  label: "Nested Submenu Item 4",
+                  title: "Blemished skin",
+                  href: "https://www.eucerin.de/hautzustand/unreine-haut",
+                },
+                {
+                  title: "reddening of the face",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "Sensitive skin",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "sun protection",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "Pigment spots &amp; hyperpigmentation",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "Sweating &amp; deodorant intolerance",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "diabetic skin",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
+                },
+                {
+                  title: "all articles",
+                  href: "https://www.eucerin.de/hautzustand/roetungen-im-gesicht",
                 },
               ],
+            },
+            {
+              title: "useful information",
+              href: "https://www.eucerin.de/produkte",
+
+              //   nestedItems: [
+              //     {
+              //       title: "skin knowledge",
+              //       href: "https://www.eucerin.de/beratung/die-haut-grundlagen",
+              //     },
+              //     {
+              //       title: "skin care",
+              //       href: "https://www.eucerin.de/beratung/hautbehandlung",
+              //     },
+              //     {
+              //       title: "skin indications",
+              //       href: "https://www.eucerin.de/beratung/hautprobleme",
+              //     },
+              //     {
+              //       title: "all articles",
+              //       href: "https://www.eucerin.de/hautzustand",
+              //     },
+              //   ],
+            },
+          ],
+        },
+        {
+          title: "Research",
+          href: "https://www.eucerin.de/unsere-forschung/aus-der-forschung",
+          submenu: [
+            {
+              title: "Science behind the product lines",
+              href: "https://www.eucerin.de/unsere-forschung/aus-der-forschung",
+            },
+            {
+              title: "About our research",
+              href: "https://www.eucerin.de/unsere-forschung/forschungshintergrund",
+            },
+            {
+              title: "Our ingredients",
+              href: "https://www.eucerin.de/unsere-forschung/datenbank-fuer-inhaltsstoffe",
+            },
+          ],
+        },
+        {
+          title: "Brand & More",
+          href: "https://www.eucerin.de/ueber-eucerin/purpose",
+          submenu: [
+            {
+              title: "Eucerin's purpose",
+              href: "#1",
+            },
+            {
+              title: "Anti-aging refill capsules",
+              href: "#2",
+            },
+            {
+              title: "Body care for dry skin",
+              href: "#3",
+            },
+            {
+              title: "mothers day promo",
+              href: "#4",
+            },
+            {
+              title: "#1 against pigment spots",
+              href: "#5",
+            },
+            {
+              title: "#MYSKINNOFILTER",
+              href: "#6",
+            },
+            {
+              title: "HYALURON-FILLER + ELASTICITY with a new formula",
+              href: "#7",
+            },
+            {
+              title: "Aquaphor Protect &amp; Repair",
+              href: "#8",
+            },
+            {
+              title: "skin cancer prevention",
+              href: "#9",
+            },
+            {
+              title: "UreaRepair skin trust",
+              href: "#10",
+            },
+            {
+              title: "Atopic dermatitis care",
+              href: "#11",
+            },
+            {
+              title: "social mission",
+              href: "#12",
+            },
+            {
+              title: "#generationEucerin",
+              href: "#13",
+            },
+            {
+              title: "women study",
+              href: "#14",
+            },
+            {
+              title: "Dermanostic",
+              href: "#15",
+            },
+            {
+              title: "loyalty program",
+              href: "#16",
+            },
+            {
+              title: "Anton",
+              href: "#17",
+            },
+          ],
+        },
+        {
+          title: "sustainability",
+          href: "https://www.eucerin.de/nachhaltigkeit",
+
+          submenu: [
+            {
+              title: "CO2 reduction ",
+              href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung",
+              nestedItems: [
+                {
+                  title: "Sustainable packaging",
+                  href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-verpackung",
+                },
+                {
+                  title: "climate protection",
+                  href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/klimaschutz",
+                },
+                {
+                  title: "sustainable production",
+                  href: "https://www.eucerin.de/nachhaltigkeit/co2-reduzierung/nachhaltige-produktion",
+                },
+              ],
+            },
+            {
+              title: "High quality ingredients ",
+              href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe",
+              nestedItems: [
+                {
+                  title: "Sustainable palm oil cultivation",
+                  href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe/nachhaltiger-palmoel-anbau",
+                },
+                {
+                  title: "Cosmetics without animal testing",
+                  href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe/kosmetik-ohne-tierversuche",
+                },
+                {
+                  title: "Cosmetics without microplastics",
+                  href: "https://www.eucerin.de/nachhaltigkeit/hochwertige-inhaltsstoffe/kosmetik-ohne-mikroplastik",
+                },
+              ],
+            },
+            {
+              title: "Social responsibility",
+              href: "https://www.eucerin.de/nachhaltigkeit/soziale-eingliederung",
             },
           ],
         },
       ],
+      menu: {
+        title: "首頁",
+        children: [
+          {
+            title: `Today's Deals`,
+            link: `/today`,
+            children: [],
+          },
+          {
+            title: `Shop By Department`,
+            children: [
+              {
+                title: `Amazon Music`,
+                link: `/music`,
+                children: [],
+              },
+              {
+                title: `CDs and Vinyl`,
+                link: `/cds`,
+                children: [],
+              },
+            ],
+          },
+        ],
+      },
+      selectedItem: null,
     };
   },
 
   methods: {
-    showSubmenu(submenuId) {
-      const submenu = document.getElementById(submenuId);
-      // Get the height of a single list item
-      const itemHeight = submenu.querySelector("li").offsetHeight;
-      // Get the number of list items in the submenu
-      const numItems = submenu.querySelectorAll("li").length;
-      // Calculate the height of the submenu
-      const submenuHeight = numItems * itemHeight;
-      // Set the height of the submenu
-      //submenu.style.height = `${submenuHeight}px`; //Hiqe komentin
-      // Display the submenu
-      //submenu.style.display = "block";
+    showSubmenuFirstLevel(e, item) {
+      let target = e.target.parentElement;
+      console.log("item", e.target.parentElement);
+      target.classList.add("active");
+      this.selectedItem = item;
+
+      let submenu = document.getElementById("submenu");
+      // let itemHeight = document.getElementById("li").offsetHeight;
+
+      //   const itemHeight = submenu.querySelector("li").offsetHeight;
+
+      //   const numItems = submenu.querySelectorAll("li").length;
+
+      //   const submenuHeight = numItems * itemHeight;
     },
 
-    hideSubmenu(submenuId) {
-      document.getElementById(submenuId).style.display = "none";
-    },
-    showSubSubmenu(submenuId, childIndex) {
-      const subsubmenu = document.getElementById(
-        `nested-submenu-${submenuId}-${childIndex}`
-      );
+    hideSubmenu(e) {
+      console.log("remove", e.target.parentElement);
+      let target = e.target.parentElement;
 
-      subsubmenu.style.display = "block";
+      let children = Array.from(target.children);
+      children.forEach((child) => {
+        child.classList.remove("active");
+      });
     },
 
-    hideSubSubmenu(submenuId, childIndex) {
-      // Get the sub-submenu element
-      const subsubmenu = document.getElementById(
-        `nested-submenu-${submenuId}-${childIndex}`
-      );
-      // Hide the sub-submenu
-      subsubmenu.style.display = "none";
+    showMenuMobile() {
+      let showMenuMobile;
+      let hamburger = document.querySelector(".hamburger");
+      let navMenu = document.querySelector(".nav-menu");
+
+      hamburger.addEventListener("click", showMenuMobile);
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
     },
   },
 };
@@ -1127,73 +540,144 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/scss/layout/header";
 
-/* Start to style na-menu for mobile */
-
-.navbar-first-level__flyout {
-  display: none;
+.menu-secondary-level__item {
+  flex-shrink: 0;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-basis: calc(25% - 20px);
+  max-width: calc(25% - 20px);
+  margin-right: 10px;
+  margin-left: 0;
 }
-
-.navbar-first-level__flyout {
-  background-color: #e8eaeb;
-  width: 100%;
-  /*display: flex;
-  flex-direction: column;
-  justify-content: space-between;*/
-  align-items: stretch;
-  left: 0;
+.menu-secondary-level__flyout {
   position: absolute;
-
-  & li {
-    /* display: flex;*/
-    list-style: none;
-  }
+  margin-left: 10px;
+  right: 0px;
+  margin-right: 0px;
+  min-height: 100%;
+  max-width: 100%;
+  width: calc(75% - 25px);
+  padding-bottom: 40px;
+  top: 0px;
+  list-style-type: none;
 }
 
-/* Add this CSS rule to hide the submenus by default */
-.navbar-first-level__flyout.submenu {
-  display: none;
-}
-
-ul {
+.menu-first-level {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  & li {
+  &__item {
     list-style: none;
+
+    &.active .menu-first-level__flyout {
+      height: 770px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    & a {
+      color: $textcolor;
+      padding: 10px;
+      text-decoration: none;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+    }
   }
 
-  & a {
-    color: $textcolor;
-    display: block;
-    padding: 10px 5px;
-    text-decoration: none;
-    text-decoration: none;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    margin: 0 13px;
+  &__flyout {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    left: 0;
+    position: absolute;
+    transition: height 0.5s;
+    height: 0px;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    list-style: none;
+
+    & li {
+      padding: 0.5rem 0;
+      cursor: pointer;
+      list-style-type: none;
+    }
+    & a {
+      font-weight: 500;
+      cursor: pointer;
+    }
+    & .arrow::after {
+      /* transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      border: solid $danger;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      content: "";*/
+    }
   }
 }
 
-/* Use the :hover pseudo-class to show the submenu when hovering over the main menu item */
-ul .navbar-first-level__item:hover .navbar-first-level__flyout.submenu {
-  display: block;
+.center {
+  width: 100%;
+  padding: 2.5rem 0;
+  margin: 0 auto;
+  max-width: 140rem;
 }
 
-ul .submenu li .arrow-right::after {
-  border: solid $danger;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 3px;
-  content: "";
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
+.Menu__header {
+  display: flex;
+  align-items: center;
+  padding-left: 35px;
+  height: 50px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #232f3e;
+  cursor: pointer;
+
+  .arrow {
+    padding-top: 2px;
+    fill: #fff;
+    margin-right: 10px;
+    width: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 }
 
-.nested-submenu {
-  display: none;
+.Menu__list {
+  list-style: none;
+  padding-bottom: 2px;
+
+  .separator {
+    border-bottom: 1px solid #d5dbdb;
+    padding: 2px 0 0 0;
+    margin: 0;
+  }
 }
-.navbar-secondary-level__item:hover .nested-submenu {
-  display: block;
+
+.Menu__item {
+  color: #4a4a4a;
+  padding-left: 35px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  a {
+    color: #4a4a4a;
+    text-decoration: none;
+  }
+
+  .arrow {
+    padding-top: 2px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    width: 10px;
+    height: 100%;
+  }
 }
 </style>

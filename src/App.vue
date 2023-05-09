@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <!-- <AppHeader /> -->
+    <AppHeader />
 
-    <AppHeaderMobile />
+    <!-- <AppHeaderTest /> -->
 
     <IntroSection />
     <AppProducts subheading="Discover our sun protection products" />
@@ -22,9 +22,9 @@
 
 <script>
 // // @ is an alias to /src
-//  import AppHeader from "./components/layout/AppHeader.vue";
+import AppHeader from "./components/layout/AppHeader.vue";
+//import AppHeaderTest from "./components/layout/AppHeaderTest.vue";
 
-import AppHeaderMobile from "./components/layout/AppHeaderMobile.vue";
 import IntroSection from "./components/IntroSection.vue";
 import AppProducts from "./components/AppProducts.vue";
 import SkinBanner from "./components/SkinBanner.vue";
@@ -38,10 +38,8 @@ import AppFooter from "./components/layout/AppFooter.vue";
 export default {
   name: "App",
   components: {
-    AppHeaderMobile,
-    //AppHeader,
-    // AppHeaderMobile,
-
+    AppHeader,
+    //AppHeaderTest,
     IntroSection,
     AppProducts,
     SkinBanner,
