@@ -509,15 +509,21 @@ export default {
       target.classList.add("active");
       this.selectedItem = item;
 
-      // I have tried to get height for each li in submenu and calculate it base on the li
-      //  let submenu = document.getElementById("submenu");
-      // let itemHeight = document.getElementById("li").offsetHeight;
+      console.log(this.selectedSubmenuItem, "test");
 
-      //   const itemHeight = submenu.querySelector("li").offsetHeight;
+      if (this.selectedSubmenuItem == null)
+        this.selectedSubmenuItem = item.submenu[0];
 
-      //   const numItems = submenu.querySelectorAll("li").length;
-
-      //   const submenuHeight = numItems * itemHeight;
+      // Calculate total height of submenu
+      let submenu = target.querySelector(".menu-first-level__flyout");
+      if (submenu != null) {
+        let submenuHeight = submenu.scrollHeight + "px";
+        console.log("display height ", submenu, submenuHeight);
+        return submenuHeight;
+      } else {
+        console.log("Submenu not found.");
+        return null;
+      }
     },
 
     hideSubmenu(e) {
@@ -528,6 +534,8 @@ export default {
       children.forEach((child) => {
         child.classList.remove("active");
       });
+
+      this.selectedSubmenuItem = null;
     },
 
     // hideSubmenuFirstLevel(e) {
@@ -581,7 +589,6 @@ export default {
   margin-left: 10px;
   right: 0px;
   margin-right: 0px;
-  min-height: 100%;
   max-width: 100%;
   width: calc(75% - 25px);
   padding-bottom: 40px;

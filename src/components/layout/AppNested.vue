@@ -11,6 +11,7 @@
         </span>
         {{ list.title }}
       </div>
+      
 
       <ul class="Menu__list">
         <li

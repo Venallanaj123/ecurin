@@ -5,6 +5,7 @@
     <!-- <AppHeaderTest /> -->
 
     <IntroSection />
+
     <AppProducts subheading="Discover our sun protection products" />
 
     <SkinBanner />
@@ -24,7 +25,7 @@
 // // @ is an alias to /src
 import AppHeader from "./components/layout/AppHeader.vue";
 //import AppHeaderTest from "./components/layout/AppHeaderTest.vue";
-
+// import AppNested from "./components/layout/AppNested.vue";
 import IntroSection from "./components/IntroSection.vue";
 import AppProducts from "./components/AppProducts.vue";
 import SkinBanner from "./components/SkinBanner.vue";
@@ -39,7 +40,6 @@ export default {
   name: "App",
   components: {
     AppHeader,
-    //AppHeaderTest,
     IntroSection,
     AppProducts,
     SkinBanner,
