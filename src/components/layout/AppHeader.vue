@@ -28,7 +28,7 @@
               v-for="(item, index) in menuItems"
               :key="index"
               @mouseover="(e) => showSubmenuFirstLevel(e, item)"
-              @mouseleave="(e) => hideSubmenu(e)"
+              @mouseleave="(e) => hideSubmenuFirstLevel(e)"
             >
               <a :href="item.href">{{ item.title }}</a>
 
@@ -196,6 +196,7 @@ export default {
                 },
               ],
             },
+
             {
               title: "skin condition ",
               href: "https://www.eucerin.de/produkte",
@@ -472,31 +473,31 @@ export default {
           ],
         },
       ],
-      menu: {
-        title: "首頁",
-        children: [
-          {
-            title: `Today's Deals`,
-            link: `/today`,
-            children: [],
-          },
-          {
-            title: `Shop By Department`,
-            children: [
-              {
-                title: `Amazon Music`,
-                link: `/music`,
-                children: [],
-              },
-              {
-                title: `CDs and Vinyl`,
-                link: `/cds`,
-                children: [],
-              },
-            ],
-          },
-        ],
-      },
+      //   menu: {
+      //     title: "首頁",
+      //     children: [
+      //       {
+      //         title: `Today's Deals`,
+      //         link: `/today`,
+      //         children: [],
+      //       },
+      //       {
+      //         title: `Shop By Department`,
+      //         children: [
+      //           {
+      //             title: `Amazon Music`,
+      //             link: `/music`,
+      //             children: [],
+      //           },
+      //           {
+      //             title: `CDs and Vinyl`,
+      //             link: `/cds`,
+      //             children: [],
+      //           },
+      //         ],
+      //       },
+      //     ],
+      //   },
       selectedItem: null,
       selectedSubmenuItem: null,
     };
@@ -505,29 +506,27 @@ export default {
   methods: {
     showSubmenuFirstLevel(e, item) {
       let target = e.target.parentElement;
-      console.log("item", target, "selected item", item);
+      //   console.log(e, "just a href");
+      //   console.log(target, "just a target");
+      //   console.log("item", target, "selected item", item);
       target.classList.add("active");
       this.selectedItem = item;
 
-      console.log(this.selectedSubmenuItem, "test");
-
       if (this.selectedSubmenuItem == null)
         this.selectedSubmenuItem = item.submenu[0];
+      // Remove active class from sibling submenus
+      //   let siblings = Array.from(target.parentElement.children);
+      //   siblings.forEach((sibling) => {
+      //     if (sibling !== target) {
+      //       sibling.classList.remove("active");
+      //     }
+      //   });
 
-      // Calculate total height of submenu
-      let submenu = target.querySelector(".menu-first-level__flyout");
-      if (submenu != null) {
-        let submenuHeight = submenu.scrollHeight + "px";
-        console.log("display height ", submenu, submenuHeight);
-        return submenuHeight;
-      } else {
-        console.log("Submenu not found.");
-        return null;
-      }
+      //   this.selectedSubmenuItem = item.submenu[0];
     },
 
-    hideSubmenu(e) {
-      console.log("remove", e.target.parentElement);
+    hideSubmenuFirstLevel(e) {
+      //   console.log("remove", e.target.parentElement);
       let target = e.target.parentElement;
 
       let children = Array.from(target.children);
@@ -538,19 +537,36 @@ export default {
       this.selectedSubmenuItem = null;
     },
 
-    // hideSubmenuFirstLevel(e) {
-    //   let target = e.target.parentElement;
-    //   target.classList.remove("active");
-    //   this.selectedItem = null;
-    //   this.selectedSubmenuItem = null;
-    // },
+    showSubmenuSecondLevel(e, subitem, index, subindex) {
+      const activeClasses = document.querySelectorAll(
+        ".menu-secondary-level__item.active"
+      );
+      activeClasses.forEach((element) => {
+        element.classList.remove("active");
+      });
 
-    showSubmenuSecondLevel(e, subitem) {
       let target = e.target.parentElement;
       target.classList.add("active");
       this.selectedSubmenuItem = subitem;
-      console.log("subitem", subitem, target, subitem);
+      //   console.log("subitem", subitem, target, subitem, subindex);
+
+      let showHeight;
+
+      let setHeight = target.closest(
+        ".menu-secondary-level__flyout"
+      ).offsetHeight;
+      console.log(setHeight, "setHeight22");
+
+      // showHeight = document.querySelector(
+      //   " .menu-secondary-level__flyout"
+      // ).offsetHeight;
+      // console.log(showHeight, "height");
+      //   let setHeight = document.querySelector(
+      //     ".menu-secondary-level__flyout"
+      //   ).clientHeight;
+      //   console.log(setHeight, "tet");
     },
+
     hideSubmenuSecondLevel(e, subitem) {
       let target = e.target.parentElement;
       target.classList.remove("active");
@@ -559,15 +575,15 @@ export default {
       }
     },
 
-    showMenuMobile() {
-      let showMenuMobile;
-      let hamburger = document.querySelector(".hamburger");
-      let navMenu = document.querySelector(".nav-menu");
+    // showMenuMobile() {
+    //   let showMenuMobile;
+    //   let hamburger = document.querySelector(".hamburger");
+    //   let navMenu = document.querySelector(".nav-menu");
 
-      hamburger.addEventListener("click", showMenuMobile);
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    },
+    //   hamburger.addEventListener("click", showMenuMobile);
+    //   hamburger.classList.toggle("active");
+    //   navMenu.classList.toggle("active");
+    // },
   },
 };
 </script>
