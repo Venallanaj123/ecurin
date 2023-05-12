@@ -11,11 +11,11 @@
     <SkinBanner />
     <AppEucerin />
     <MedicineBanner />
-    <!-- 
+    
     <AppMeasure />
     <AppNewsLetter />
 
-    <AppMap title="The Eucerin pharmacy near you" /> -->
+    <AppMap title="The Eucerin pharmacy near you" />
     <AppFooter />
     <router-view />
   </div>

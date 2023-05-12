@@ -45,9 +45,7 @@ export default {
   height: 440px;
 
   &__element {
-    width: 100%;
-    padding-top: 100px;
-    padding-bottom: 50px;
+    @include left;
 
     &--heading {
       @include heading;
