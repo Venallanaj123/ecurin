@@ -2,7 +2,7 @@
   <section class="intro-section">
     <div class="container">
       <div class="row">
-        <div class="col-8">
+        <div class="col span_1_of_2">
           <div class="intro-section__element">
             <h1 class="intro-section__element--heading">
               Our sunny present for you
@@ -10,12 +10,15 @@
             <p class="intro-section__element--text">
               €3 discount on Eucerin Sun products
             </p>
-            <button class="intro-section__button--primary">
+            <a
+              href="https://www.eucerin.de/#layer=pharmacy-finder.rabattaktion_sonnenschutz"
+              class="intro-section__element--button"
+            >
               Find participating pharmacies
-            </button>
+            </a>
           </div>
         </div>
-        <div class="col-4"></div>
+        <div class="col span_1_of_2"></div>
       </div>
     </div>
   </section>
@@ -29,7 +32,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/grid/grid";
-@import "../assets/scss/abstracts/variables";
 
 .intro-section {
   background-image: url("../assets/images/intro-section-background.jpg");
@@ -40,25 +42,25 @@ export default {
   position: relative;
 
   &__element {
-    width: 100%;
-    padding: 10rem 0;
+    @include left;
 
     &--heading {
       @include heading;
       font-size: 4.4rem;
-      font-weight: inherit;
-      line-height: 4.8rem;
+
+      line-height: 5rem;
+      margin-bottom: 1.5rem;
     }
 
     &--text {
       @include text;
     }
 
-    & button {
+    &--button {
       @include button;
     }
 
-    & button:hover {
+    &--button:hover {
       background-color: $danger-dark;
     }
   }

@@ -3,14 +3,14 @@
         <div class="container">
             <div class="footer">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="span_2_of_2">
                         <div class="footer__logo">
                             <img src="../../assets/images/logo.svg" class="footer_logo--ecurin" alt="brand logo ecurin" />
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="span_2_of_2">
                         <div class="footer__social">
                             <a href="#" class="footer__social-item footer__social-item--facebook">
                                 <img src="../../assets/images/facebook.svg" alt="" width="25px" height="25px" />
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="span_2_of_2">
                         <nav class="footer__nav">
                             <ul class="footer__menu">
                                 <li class="footer__menu-item"><a href="#">Contact</a></li>
@@ -51,12 +51,12 @@
                 <hr class="hr" />
                 <div class="footer__bottom">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="span_1_of_2">
                             <div class="footer__bottom--left">
                                 <img src="../../assets/images/Beiersdorf-Logo.png" alt="" />
                             </div>
                         </div>
-                        <div class="col-8">
+                        <div class="span_1_of_2">
                             <div class="footer__bottom--right">
                                 <nav class="footer__nav">
                                     <ul>
@@ -119,7 +119,7 @@ footer {
         }
 
         & .hr {
-            @include hr;
+           
         }
 
         &__nav {

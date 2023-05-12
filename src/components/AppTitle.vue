@@ -1,30 +1,28 @@
 <template>
-    <div class="center-title">
-        <h2>{{ title }}</h2>
-    </div>
+  <div class="center-title">
+    <h2>{{ title }}</h2>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "AppTitle",
-    props: {
-        title: {
-            type: String,
-            required: true,
-        },
+  name: "AppTitle",
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
+  },
 };
 </script>
 
 <style lang="scss">
 .center-title {
-    @include heading;
-    text-align: center;
+  text-align: center;
 
-    & h2 {
-        font-size: 2.4rem;
-        line-height: 2.9rem;
-
-    }
+  & h2 {
+    @include subheading;
+    margin-top: 3rem;
+  }
 }
 </style>

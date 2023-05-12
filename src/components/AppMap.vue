@@ -2,12 +2,12 @@
     <section class="map">
         <div class="map__container container">
             <div class="row">
-                <div class="col-12">
+                <div class="col span_2_of_2">
                     <h2 class="map__title">{{ title }}</h2>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col span_2_of_2">
 
                     <div class="map__search">
                         <input type="text" class="map__input" placeholder="Search..." />

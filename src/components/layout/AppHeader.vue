@@ -38,7 +38,9 @@
                   v-for="(subitem, subindex) in item.submenu"
                   :key="subindex"
                   :class="{ active: selectedItem === subitem }"
-                  @mouseover="(e) => showSubmenuSecondLevel(e, subitem)"
+                  @mouseover="
+                    (e) => showSubmenuSecondLevel(e, subitem, index, subindex)
+                  "
                   @mouseleave="(e) => hideSubmenuSecondLevel(e, subitem)"
                 >
                   <a :href="subitem.href" class="arrow right"
@@ -550,21 +552,18 @@ export default {
       this.selectedSubmenuItem = subitem;
       //   console.log("subitem", subitem, target, subitem, subindex);
 
-      let showHeight;
-
-      let setHeight = target.closest(
+      let elementSecondary = document.querySelectorAll(
         ".menu-secondary-level__flyout"
-      ).offsetHeight;
-      console.log(setHeight, "setHeight22");
+      )[subindex];
+      if (elementSecondary) {
+        let height = elementSecondary.offsetHeight;
 
-      // showHeight = document.querySelector(
-      //   " .menu-secondary-level__flyout"
-      // ).offsetHeight;
-      // console.log(showHeight, "height");
-      //   let setHeight = document.querySelector(
-      //     ".menu-secondary-level__flyout"
-      //   ).clientHeight;
-      //   console.log(setHeight, "tet");
+        console.info("Length of subindex is" + height);
+
+        document.querySelectorAll(".menu-first-level__flyout")[
+          index
+        ].style.height = height + "px";
+      }
     },
 
     hideSubmenuSecondLevel(e, subitem) {
@@ -575,15 +574,15 @@ export default {
       }
     },
 
-    // showMenuMobile() {
-    //   let showMenuMobile;
-    //   let hamburger = document.querySelector(".hamburger");
-    //   let navMenu = document.querySelector(".nav-menu");
+    showMenuMobile() {
+      let showMenuMobile;
+      let hamburger = document.querySelector(".hamburger");
+      let navMenu = document.querySelector(".nav-menu");
 
-    //   hamburger.addEventListener("click", showMenuMobile);
-    //   hamburger.classList.toggle("active");
-    //   navMenu.classList.toggle("active");
-    // },
+      hamburger.addEventListener("click", showMenuMobile);
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    },
   },
 };
 </script>
@@ -621,7 +620,7 @@ export default {
     list-style: none;
 
     &.active .menu-first-level__flyout {
-      height: 770px;
+      //height: 770px;
       opacity: 1;
       visibility: visible;
     }

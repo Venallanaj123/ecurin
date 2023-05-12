@@ -16,6 +16,9 @@ export default {
       type: String,
       required: true,
     },
+    href: {
+      link: "#",
+    },
   },
 };
 </script>
@@ -24,7 +27,7 @@ export default {
 .btn-center {
   display: flex;
   justify-content: center;
-  margin-top: 1.7rem;
+ 
   &__global {
     @include btngrey;
     &:hover {

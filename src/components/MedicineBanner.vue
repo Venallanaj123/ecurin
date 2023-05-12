@@ -2,7 +2,7 @@
   <section class="medicine-banner">
     <div class="container">
       <div class="row">
-        <div class="col-8">
+        <div class="col span_1_of_2">
           <div class="medicine-banner__element">
             <h2 class="medicine-banner__element--heading">
               Our sustainability approach
@@ -10,10 +10,14 @@
             <p class="medicine-banner__element--text">
               Measures and goals at Eucerin
             </p>
-            <button class="medicine-banner__button--primary">Learn more</button>
+            <a
+              href="https://www.eucerin.de/nachhaltigkeit"
+              class="medicine-banner__element--button"
+              >Learn more</a
+            >
           </div>
         </div>
-        <div class="col-4"></div>
+        <div class="col span_1_of_2"></div>
       </div>
     </div>
   </section>
@@ -47,8 +51,7 @@ export default {
 
     &--heading {
       @include heading;
-      font-size: 2.4rem;
-      line-height: 2.9rem;
+
       color: $white;
     }
 
@@ -57,12 +60,11 @@ export default {
       color: $white;
     }
 
-    & button {
+    &--button {
       @include button;
-      padding: 12px 40px;
     }
 
-    & button:hover {
+    &--button:hover {
       background-color: $danger-dark;
     }
   }

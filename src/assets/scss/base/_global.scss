@@ -14,8 +14,8 @@ body {
 }
 
 p {
-  font-size: 1.3rem;
-  line-height: 1.4rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
   color: $textcolor;
   font-weight: 400;
 }
@@ -23,11 +23,13 @@ p {
 section {
   padding: 7rem 0;
 }
+.row {
+  display: flex;
+}
 
 .container {
   width: 100%;
   padding: 0 2.5rem;
   margin: 0 auto;
-  //max-width: 98rem;
   max-width: 140rem;
 }
