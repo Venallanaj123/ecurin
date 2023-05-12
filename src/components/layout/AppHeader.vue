@@ -528,7 +528,6 @@ export default {
     },
 
     hideSubmenuFirstLevel(e) {
-      //   console.log("remove", e.target.parentElement);
       let target = e.target.parentElement;
 
       let children = Array.from(target.children);
@@ -540,6 +539,7 @@ export default {
     },
 
     showSubmenuSecondLevel(e, subitem, index, subindex) {
+      debugger;
       const activeClasses = document.querySelectorAll(
         ".menu-secondary-level__item.active"
       );
@@ -550,7 +550,6 @@ export default {
       let target = e.target.parentElement;
       target.classList.add("active");
       this.selectedSubmenuItem = subitem;
-      //   console.log("subitem", subitem, target, subitem, subindex);
 
       let elementSecondary = document.querySelectorAll(
         ".menu-secondary-level__flyout"
