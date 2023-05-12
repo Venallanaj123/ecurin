@@ -22,7 +22,6 @@ export default {
 
   & h2 {
     @include subheading;
-    margin-top: 3rem;
   }
 }
 </style>
