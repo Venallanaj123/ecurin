@@ -8,7 +8,11 @@
 
       <hr class="hr" />
       <div class="row">
-        <div class="col span_1_of_4" v-for="card in cards" :key="card.id">
+        <div
+          class="col span_1_of_4 span_1_of_2 col-sm"
+          v-for="card in cards"
+          :key="card.id"
+        >
           <a :href="card.href">
             <div class="product__card card">
               <div class="card__image">
@@ -189,4 +193,14 @@ export default {
         }
     }
 }*/
+
+@media screen and (max-width: 425px) {
+  .span_1_of_2 {
+    width: 49.2%;
+    margin-bottom: 20px;
+  }
+  .col-sm {
+    margin: 0;
+  }
+}
 </style>

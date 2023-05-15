@@ -5,7 +5,11 @@
 
       <hr class="hr" />
       <div class="row">
-        <div class="col span_1_of_4" v-for="card in cards" :key="card.id">
+        <div
+          class="col span_1_of_4 span_1_of_2  test"
+          v-for="card in cards"
+          :key="card.id"
+        >
           <a :href="card.href">
             <div class="product__card card">
               <div class="card__image">
@@ -175,23 +179,12 @@ export default {
   }
 }
 
-/*@media only screen and (max-width: $breakpoint-xsm) {
-    .row {
-        flex-direction: column;
-    }
+@media screen and (max-width: 768px) {
+  .test{
+    width: 49.2%;
+    margin-bottom: 20px;
+  }
+}
 
-    .products {
-        &__subheading {
-            & h2 {
-                font-size: 20px;
-                margin: 15px 0;
-            }
-        }
 
-        .product__card {
-            padding: 0 !important;
-            margin: 10px 0 !important;
-        }
-    }
-}*/
 </style>

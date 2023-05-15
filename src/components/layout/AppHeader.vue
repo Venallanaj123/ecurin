@@ -16,8 +16,17 @@
           <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
         </div>
         <nav class="navbar-mobile">
-          <ul class="nav-menu">
-            <vue-nested-menu :source="menu"> </vue-nested-menu>
+          <ul class="nav-menu level-1">
+            <li>
+              <a href="" class="nested">Categories </a>
+              <ul class="sub-menu level-2">
+                <li>
+                  <a href="" class="nested">Living Room </a>
+                </li>
+                <li><a href="" class="nested">Living Room </a></li>
+                <li><a href="" class="nested">Living Room </a></li>
+              </ul>
+            </li>
           </ul>
         </nav>
 
@@ -28,7 +37,7 @@
               v-for="(item, index) in menuItems"
               :key="index"
               @mouseover="(e) => showSubmenuFirstLevel(e, item)"
-              @mouseleave="(e) => hideSubmenuFirstLevel(e)"
+              @mouseleave="(e) => hideSubmenu(e)"
             >
               <a :href="item.href">{{ item.title }}</a>
 
@@ -38,9 +47,7 @@
                   v-for="(subitem, subindex) in item.submenu"
                   :key="subindex"
                   :class="{ active: selectedItem === subitem }"
-                  @mouseover="
-                    (e) => showSubmenuSecondLevel(e, subitem, index, subindex)
-                  "
+                  @mouseover="(e) => showSubmenuSecondLevel(e, subitem)"
                   @mouseleave="(e) => hideSubmenuSecondLevel(e, subitem)"
                 >
                   <a :href="subitem.href" class="arrow right"
@@ -95,6 +102,35 @@
           </span>
         </div>
       </div>
+
+      <!-- <header class="page-header">
+        <nav>
+          <div class="header-bar">
+            <button class="toggle-menu" type="button">MENU</button>
+            <a href="" class="brand">BRAND</a>
+            <a href="" class="social" target="_blank" title="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="list-wraper">
+            <ul>
+              <li><a href="">test</a></li>
+              <li><a href="">test</a></li>
+              <li><a href="">test</a></li>
+              <li><a href="">test</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header> -->
     </div>
   </header>
 </template>
@@ -198,7 +234,6 @@ export default {
                 },
               ],
             },
-
             {
               title: "skin condition ",
               href: "https://www.eucerin.de/produkte",
@@ -475,59 +510,80 @@ export default {
           ],
         },
       ],
-      //   menu: {
-      //     title: "首頁",
-      //     children: [
-      //       {
-      //         title: `Today's Deals`,
-      //         link: `/today`,
-      //         children: [],
-      //       },
-      //       {
-      //         title: `Shop By Department`,
-      //         children: [
-      //           {
-      //             title: `Amazon Music`,
-      //             link: `/music`,
-      //             children: [],
-      //           },
-      //           {
-      //             title: `CDs and Vinyl`,
-      //             link: `/cds`,
-      //             children: [],
-      //           },
-      //         ],
-      //       },
-      //     ],
-      //   },
+      menu: {
+        title: "首頁",
+        children: [
+          {
+            title: `Today's Deals`,
+            link: `/today`,
+            children: [],
+          },
+          {
+            title: `Shop By Department`,
+            children: [
+              {
+                title: `Amazon Music`,
+                link: `/music`,
+                children: [],
+              },
+              {
+                title: `CDs and Vinyl`,
+                link: `/cds`,
+                children: [],
+              },
+            ],
+          },
+        ],
+      },
       selectedItem: null,
       selectedSubmenuItem: null,
     };
   },
 
   methods: {
+    automaticHeightMenu() {
+      const flyout = document.querySelector(
+        ".active .menu-first-level__flyout"
+      );
+      console.log(flyout, "flyout");
+
+      if (flyout) {
+        let nestedItems = document.querySelectorAll(".menu-thirdy-level__item");
+
+        //If there is nestedItems
+        if (nestedItems.length == 0) {
+          nestedItems = document.querySelectorAll(
+            ".menu-secondary-level__item "
+          );
+        }
+        console.log(nestedItems, "nestedItems");
+
+        // Calculate the total height of the nested items
+        let nestedItemsHeight = 0;
+        console.log(nestedItemsHeight, "nestedItemsHeight");
+
+        nestedItems.forEach((item) => {
+          nestedItemsHeight += item.offsetHeight;
+        });
+
+        // Set the height of the flyout to the total height of the nested items
+        flyout.style.height = `${nestedItemsHeight}px`;
+      }
+    },
     showSubmenuFirstLevel(e, item) {
       let target = e.target.parentElement;
-      //   console.log(e, "just a href");
-      //   console.log(target, "just a target");
-      //   console.log("item", target, "selected item", item);
+      console.log("item", target, "selected item", item);
       target.classList.add("active");
       this.selectedItem = item;
 
       if (this.selectedSubmenuItem == null)
         this.selectedSubmenuItem = item.submenu[0];
-      // Remove active class from sibling submenus
-      //   let siblings = Array.from(target.parentElement.children);
-      //   siblings.forEach((sibling) => {
-      //     if (sibling !== target) {
-      //       sibling.classList.remove("active");
-      //     }
-      //   });
 
-      //   this.selectedSubmenuItem = item.submenu[0];
+      setTimeout(() => this.automaticHeightMenu(), 100);
     },
 
-    hideSubmenuFirstLevel(e) {
+    hideSubmenu(e) {
+      console.log("remove", e.target.parentElement);
       let target = e.target.parentElement;
 
       let children = Array.from(target.children);
@@ -538,33 +594,11 @@ export default {
       this.selectedSubmenuItem = null;
     },
 
-    showSubmenuSecondLevel(e, subitem, index, subindex) {
-      debugger;
-      const activeClasses = document.querySelectorAll(
-        ".menu-secondary-level__item.active"
-      );
-      activeClasses.forEach((element) => {
-        element.classList.remove("active");
-      });
-
+    showSubmenuSecondLevel(e, subitem) {
       let target = e.target.parentElement;
       target.classList.add("active");
       this.selectedSubmenuItem = subitem;
-
-      let elementSecondary = document.querySelectorAll(
-        ".menu-secondary-level__flyout"
-      )[subindex];
-      if (elementSecondary) {
-        let height = elementSecondary.offsetHeight;
-
-        console.info("Length of subindex is" + height);
-
-        document.querySelectorAll(".menu-first-level__flyout")[
-          index
-        ].style.height = height + "px";
-      }
     },
-
     hideSubmenuSecondLevel(e, subitem) {
       let target = e.target.parentElement;
       target.classList.remove("active");
@@ -573,6 +607,7 @@ export default {
       }
     },
 
+    /* Write code for mobile menu*/
     showMenuMobile() {
       let showMenuMobile;
       let hamburger = document.querySelector(".hamburger");
@@ -603,6 +638,7 @@ export default {
   margin-left: 10px;
   right: 0px;
   margin-right: 0px;
+  min-height: 100%;
   max-width: 100%;
   width: calc(75% - 25px);
   padding-bottom: 40px;
@@ -619,7 +655,6 @@ export default {
     list-style: none;
 
     &.active .menu-first-level__flyout {
-      //height: 770px;
       opacity: 1;
       visibility: visible;
     }
