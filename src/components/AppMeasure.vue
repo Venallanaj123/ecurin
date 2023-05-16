@@ -2,11 +2,8 @@
   <section class="measur">
     <div class="measur__container container">
       <AppTitle
-        title="Discover our measures
-
-                                                                                      "
-      />
-
+        title="Discover our measures" />
+                                                                               "
       <div class="row">
         <div class="col span_1_of_4" v-for="card in cards" :key="card.id">
           <a :href="card.href">

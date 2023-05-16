@@ -1,9 +1,12 @@
 @mixin left {
   position: absolute;
-  left: 28%;
+  /* left: 28%;*/
+  /*transform: translate(-50%, -50%);*/
   top: 50%;
-  transform: translate(-50%, -50%);
+  margin-left: 10px;
+  margin-right: 10px;
   color: $black-light;
+  transform: translateY(-50%);
 }
 
 @mixin button {
@@ -67,7 +70,7 @@
 
 /*Start to style about cards*/
 @mixin card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
   transition: 0.3s;
   width: 100%;
   background-color: $white;

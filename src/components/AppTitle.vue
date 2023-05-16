@@ -24,4 +24,14 @@ export default {
     @include subheading;
   }
 }
+@media only screen and (max-width: 768px) {
+  .center-title {
+    text-align: center;
+
+    & h2 {
+      font-size: 2.4rem;
+      line-height: 2.8rem;
+    }
+  }
+}
 </style>

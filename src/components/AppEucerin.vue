@@ -6,7 +6,7 @@
       <hr class="hr" />
       <div class="row">
         <div
-          class="col span_1_of_4 span_1_of_2  test"
+          class="col span_1_of_4 span_1_of_2 col-sm"
           v-for="card in cards"
           :key="card.id"
         >
@@ -173,18 +173,20 @@ export default {
       }
 
       &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);*/
+        outline: 1px solid #cfcfcf;
       }
     }
   }
 }
 
-@media screen and (max-width: 768px) {
-  .test{
+@media screen and (max-width: 425px) {
+  .span_1_of_2 {
     width: 49.2%;
     margin-bottom: 20px;
   }
+  .col-sm {
+    margin: 0;
+  }
 }
-
-
 </style>

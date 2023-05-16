@@ -4,19 +4,19 @@
 
     <!-- <AppHeaderTest /> -->
 
-    <IntroSection />
+    <!-- <IntroSection /> -->
 
     <AppProducts subheading="Discover our sun protection products" />
 
-    <SkinBanner />
+    <!-- <SkinBanner /> -->
     <AppEucerin />
-    <MedicineBanner />
-    
+    <!-- <MedicineBanner /> -->
+
     <AppMeasure />
-    <AppNewsLetter />
+    <!-- <AppNewsLetter />
 
     <AppMap title="The Eucerin pharmacy near you" />
-    <AppFooter />
+    <AppFooter /> -->
     <router-view />
   </div>
 </template>

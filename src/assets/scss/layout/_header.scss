@@ -45,8 +45,34 @@ header {
         line-height: 1.8rem;
       }
     }
+  }
+}
 
-    .bar {
+.menu__burger,
+.menu__logo,
+.menu__list {
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  .menu-visible-mobile {
+    width: 100%;
+    /*position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    margin: 0 auto;*/
+    & .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      padding: 0 20px;
+    }
+    &__burger {
+      display: none;
+    }
+    & .bar {
       display: block;
       width: 25px;
       height: 3px;
@@ -55,14 +81,20 @@ header {
       transition: all 0.3s ease-in-out;
       background-color: #101010;
     }
+    & .menu__list {
+    }
+    & .menu__item--mobile > {
+      a {
+       font-size: 1.5rem;
+       line-height: 1.5rem;
+       color: #7a858d;
+       padding-right: 10px;
+       text-transform: uppercase;
+      }
+    }
   }
 }
 
-.hamburger,
-.header-logo-center,
-.navbar-mobile {
-  display: none;
-}
 @media only screen and (max-width: 768px) {
   .nav-menu {
     position: fixed;
@@ -104,9 +136,6 @@ header {
   ul li {
     margin: 2.5rem 0;
   }
-  .right-block {
-    display: none;
-  }
 
   .hamburger {
     display: block;
@@ -123,5 +152,13 @@ header {
 
   .hamburger.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* I have put here for a next step*/
+ul li {
+  list-style: none;
+  a {
+    text-decoration: none;
   }
 }

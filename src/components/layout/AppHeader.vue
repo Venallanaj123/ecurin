@@ -5,30 +5,50 @@
         <div class="header-logo">
           <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
         </div>
-        <div class="header-left-mobile">
-          <div class="hamburger" @click="showMenuMobile()">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
+        <div class="menu-visible-mobile">
+          <nav class="menu">
+            <div class="menu__burger hamburger" @click="showMenuMobile()">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+            <div class="menu__logo header-logo-center">
+              <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
+            </div>
+            <ul class="menu__list nav-menu navbar-mobile level-1">
+              <li class="menu__item--mobile">
+                <a href="#">Products</a>
+                <ul class="sub-menu level-2">
+                  <li>
+                    <a href="" class="nested">Product line</a>
+
+                    <ul class="sub-menu level-3">
+                      <li><a href="#">Actinic alcolh</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="" class="nested">Skin Condition</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- <nav class="navbar-mobile">
+            <ul class="nav-menu level-1">
+              <li>
+                <a href="" class="nested">Categories </a>
+                <ul class="sub-menu level-2">
+                  <li>
+                    <a href="" class="nested">Living Room </a>
+                  </li>
+                  <li><a href="" class="nested">Living Room </a></li>
+                  <li><a href="" class="nested">Living Room </a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav> -->
         </div>
-        <div class="header-logo-center">
-          <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
-        </div>
-        <nav class="navbar-mobile">
-          <ul class="nav-menu level-1">
-            <li>
-              <a href="" class="nested">Categories </a>
-              <ul class="sub-menu level-2">
-                <li>
-                  <a href="" class="nested">Living Room </a>
-                </li>
-                <li><a href="" class="nested">Living Room </a></li>
-                <li><a href="" class="nested">Living Room </a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
 
         <nav class="navbar-visible-desktop">
           <ul class="menu-first-level">
@@ -541,6 +561,9 @@ export default {
   },
 
   methods: {
+    automaticHeighSubMenu(flyout) {
+      flyout.style.height = `auto`;
+    },
     automaticHeightMenu() {
       const flyout = document.querySelector(
         ".active .menu-first-level__flyout"
@@ -550,24 +573,20 @@ export default {
       if (flyout) {
         let nestedItems = document.querySelectorAll(".menu-thirdy-level__item");
 
-        //If there is nestedItems
+        //If there is no nestedItems
         if (nestedItems.length == 0) {
-          nestedItems = document.querySelectorAll(
-            ".menu-secondary-level__item "
-          );
+          this.automaticHeighSubMenu(flyout);
+        } else {
+          // Calculate the total height of the nested items
+          let nestedItemsHeight = 0;
+
+          nestedItems.forEach((item) => {
+            nestedItemsHeight += item.offsetHeight;
+          });
+
+          // Set the height of the flyout to the total height of the nested items
+          flyout.style.height = `${nestedItemsHeight}px`;
         }
-        console.log(nestedItems, "nestedItems");
-
-        // Calculate the total height of the nested items
-        let nestedItemsHeight = 0;
-        console.log(nestedItemsHeight, "nestedItemsHeight");
-
-        nestedItems.forEach((item) => {
-          nestedItemsHeight += item.offsetHeight;
-        });
-
-        // Set the height of the flyout to the total height of the nested items
-        flyout.style.height = `${nestedItemsHeight}px`;
       }
     },
     showSubmenuFirstLevel(e, item) {

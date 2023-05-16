@@ -2,7 +2,7 @@
   <section class="products">
     <div class="products__container container">
       <AppTitle
-        title="Discover our sun protection products
+        title="
                                                 "
       />
 
@@ -168,7 +168,8 @@ export default {
       }
 
       &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);*/
+        outline: 1px solid #cfcfcf;
       }
     }
   }

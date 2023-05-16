@@ -93,5 +93,16 @@ h1 {
     background-size: cover;
     background-position: center;
   }
+  .intro-section__element {
+    top: 120%;
+    &--heading {
+      font-size: 2.8rem;
+
+      margin-bottom: 0;
+    }
+    &--text {
+      margin-bottom: 1rem;
+    }
+  }
 }
 </style>
