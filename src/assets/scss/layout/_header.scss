@@ -15,19 +15,22 @@ header {
     padding-top: 10px;
     height: 80px;
 
-    & .nav-logo {
-      width: 100%;
-      height: auto;
+    &__logo {
+      & img {
+        width: 100%;
+        height: auto;
+      }
     }
 
-    .right-block {
+    &__right {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       & span {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        cursor: pointer;
       }
       & .pta--deparatment {
         & a {
@@ -35,14 +38,21 @@ header {
           font-size: 1.2rem;
           line-height: 1.8rem;
           color: $grey-light;
-          font-family: "Roboto-Regular";
         }
       }
       & .pta-language {
         color: #7a858d;
-        font-weight: bold;
+        font-weight: 500;
         font-size: 1.4rem;
         line-height: 1.8rem;
+      }
+      & .pta--search {
+        svg {
+          fill: #7a858d;
+          vertical-align: middle;
+          max-width: 100%;
+          height: auto;
+        }
       }
     }
   }
@@ -53,25 +63,22 @@ header {
 .menu__list {
   display: none;
 }
+
 @media only screen and (max-width: 768px) {
   .menu-visible-mobile {
     width: 100%;
-    /*position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 600px;
-    margin: 0 auto;*/
-    & .menu {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 60px;
-      padding: 0 20px;
-    }
+  }
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+
     &__burger {
-      display: none;
+      display: block;
+      cursor: pointer;
     }
+
     & .bar {
       display: block;
       width: 25px;
@@ -81,65 +88,79 @@ header {
       transition: all 0.3s ease-in-out;
       background-color: #101010;
     }
-    & .menu__list {
-    }
-    & .menu__item--mobile > {
-      a {
-       font-size: 1.5rem;
-       line-height: 1.5rem;
-       color: #7a858d;
-       padding-right: 10px;
-       text-transform: uppercase;
+
+    &__logo {
+      display: block;
+      margin: 0 auto;
+      & img {
+        max-height: 55px;
+        max-width: 90px;
       }
+    }
+
+    &__list {
+      position: fixed;
+      left: -100%;
+      top: 8rem;
+      flex-direction: column !important ;
+      background-color: #fafafa;
+      padding: 0 30px 30px;
+      width: 50%;
+      height: 100%;
+      text-align: left;
+      transition: 0.3s;
+      box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+      overflow-y: visible;
+      transition: all 0.4s;
+      display: block;
+    }
+    &__item {
+      > a {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        color: #7a858d;
+        padding-right: 10px;
+        text-transform: uppercase;
+      }
+    }
+
+    &__subitem {
+      & li {
+        .nested {
+          font-size: 2.6rem;
+          color: #4e5c67;
+          line-height: normal;
+          position: relative;
+
+          &::after {
+            content: "";
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            position: absolute;
+            right: -60px;
+            top: calc(40%);
+          }
+        }
+      }
+    }
+    &__subnested {
+      display: none;
     }
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 8rem;
-    flex-direction: column !important ;
-    background-color: #fafafa;
-    /*width: 100%;*/
-    padding: 0 30px 30px;
-    width: 320px;
-    text-align: left;
-    transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    overflow-y: visible;
-    transition: all 0.4s;
-  }
-  .header-logo-center {
-    display: block;
-    margin: 0 auto;
-    & img {
-      width: 100% !important;
-      max-width: 400px !important;
-      height: auto !important;
-    }
-  }
-  .navbar-mobile {
-    display: block;
-  }
-  .right-block,
-  .navbar-visible-desktop,
-  .header-logo {
+  .header__right,
+  .header__menu--desktop,
+  .header__logo {
     display: none !important;
   }
-
   .active {
     left: 0;
-  }
-
-  ul li {
-    margin: 2.5rem 0;
-  }
-
-  .hamburger {
-    display: block;
-    cursor: pointer;
   }
 
   .hamburger.active .bar:nth-child(2) {
@@ -153,12 +174,12 @@ header {
   .hamburger.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
-}
 
-/* I have put here for a next step*/
-ul li {
-  list-style: none;
-  a {
-    text-decoration: none;
+  ul li {
+    list-style: none;
+    margin: 2rem 0;
+    a {
+      text-decoration: none;
+    }
   }
 }

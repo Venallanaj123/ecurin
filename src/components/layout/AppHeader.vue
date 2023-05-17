@@ -2,8 +2,8 @@
   <header>
     <div class="container">
       <div class="header">
-        <div class="header-logo">
-          <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
+        <div class="header__logo">
+          <img src="../../assets/images/logo.svg" alt="Logo" />
         </div>
         <div class="menu-visible-mobile">
           <nav class="menu">
@@ -12,17 +12,24 @@
               <span class="bar"></span>
               <span class="bar"></span>
             </div>
-            <div class="menu__logo header-logo-center">
-              <img src="../../assets/images/logo.svg" alt="" class="nav-logo" />
+            <div class="menu__logo">
+              <img src="../../assets/images/logo.svg" alt="Logo" />
             </div>
-            <ul class="menu__list nav-menu navbar-mobile level-1">
-              <li class="menu__item--mobile">
+            <ul class="menu__list nav-menu level-1">
+              <li class="menu__item">
                 <a href="#">Products</a>
-                <ul class="sub-menu level-2">
-                  <li>
-                    <a href="" class="nested">Product line</a>
+                <ul class="menu__subitem level-2">
+                  <li class="">
+                    <a
+                      href=""
+                      class="nested"
+                      @click.prevent="showSubMenu = !showSubMenu"
+                      >Product line</a
+                    >
 
-                    <ul class="sub-menu level-3">
+                    <ul class="menu__subnested level-3" v-if="showSubMenu">
+                      <li><a href="#">Actinic alcolh</a></li>
+                      <li><a href="#">Actinic alcolh</a></li>
                       <li><a href="#">Actinic alcolh</a></li>
                     </ul>
                   </li>
@@ -33,24 +40,9 @@
               </li>
             </ul>
           </nav>
-
-          <!-- <nav class="navbar-mobile">
-            <ul class="nav-menu level-1">
-              <li>
-                <a href="" class="nested">Categories </a>
-                <ul class="sub-menu level-2">
-                  <li>
-                    <a href="" class="nested">Living Room </a>
-                  </li>
-                  <li><a href="" class="nested">Living Room </a></li>
-                  <li><a href="" class="nested">Living Room </a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav> -->
         </div>
 
-        <nav class="navbar-visible-desktop">
+        <nav class="header__menu--desktop">
           <ul class="menu-first-level">
             <li
               class="menu-first-level__item"
@@ -92,7 +84,7 @@
           </ul>
         </nav>
 
-        <div class="right-block">
+        <div class="header__right">
           <span class="pta--deparatment">
             <a href="https://www.side-by-side.de/"> PTA department</a></span
           >
@@ -122,47 +114,17 @@
           </span>
         </div>
       </div>
-
-      <!-- <header class="page-header">
-        <nav>
-          <div class="header-bar">
-            <button class="toggle-menu" type="button">MENU</button>
-            <a href="" class="brand">BRAND</a>
-            <a href="" class="social" target="_blank" title="">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
-                />
-              </svg>
-            </a>
-          </div>
-          <div class="list-wraper">
-            <ul>
-              <li><a href="">test</a></li>
-              <li><a href="">test</a></li>
-              <li><a href="">test</a></li>
-              <li><a href="">test</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header> -->
     </div>
   </header>
 </template>
 
 <script>
-import VueNestedMenu from "vue-nested-menu";
-
 export default {
   name: "AppHeader",
-  components: { VueNestedMenu },
+
   data() {
     return {
+      showSubMenu: false,
       menuItems: [
         {
           title: "Products",
@@ -557,6 +519,7 @@ export default {
       },
       selectedItem: null,
       selectedSubmenuItem: null,
+      isSubMenuActive: false,
     };
   },
 
@@ -636,12 +599,22 @@ export default {
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
     },
+    toggleSubMenu() {
+      this.isSubMenuActive = !this.isSubMenuActive;
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../assets/scss/layout/header";
+.menu__subnested {
+  display: none;
+}
+
+.menu__subnested.show {
+  display: block;
+}
 
 .menu-secondary-level__item {
   flex-shrink: 0;
@@ -684,6 +657,7 @@ export default {
       text-decoration: none;
       font-size: 1.6rem;
       line-height: 1.9rem;
+      padding-bottom: 30px;
     }
   }
 
@@ -699,6 +673,8 @@ export default {
     visibility: hidden;
     cursor: pointer;
     list-style: none;
+    top: 70px;
+    z-index: -1;
 
     & li {
       padding: 0.5rem 0;

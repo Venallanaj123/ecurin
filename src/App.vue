@@ -3,8 +3,8 @@
     <AppHeader />
 
     <!-- <AppHeaderTest /> -->
-
-    <!-- <IntroSection /> -->
+<!-- 
+    <IntroSection /> -->
 
     <AppProducts subheading="Discover our sun protection products" />
 
