@@ -528,8 +528,6 @@ export default {
         this.selectedSubmenuItem = null;
       }
     },
-
-   
   },
 };
 </script>
@@ -565,7 +563,7 @@ export default {
   align-items: center;
 
   &__item {
-    list-style: none;
+    /*list-style: none;*/
 
     &.active .menu-first-level__flyout {
       opacity: 1;
@@ -588,7 +586,7 @@ export default {
     width: 100%;
     left: 0;
     position: absolute;
-    transition: height 0.5s;
+    transition: height 1s ease;
     height: 0px;
     opacity: 0;
     visibility: hidden;
