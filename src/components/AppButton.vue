@@ -1,6 +1,6 @@
 <template>
   <div class="btn-center">
-    <a class="btn-center__global" :href="link">{{ buttonText }}</a>
+    <a class="btn-center__global buttton" :href="link">{{ buttonText }}</a>
   </div>
 </template>
 

@@ -3,8 +3,8 @@
     <AppHeader />
 
     <!-- <AppHeaderTest /> -->
-<!-- 
-    <IntroSection /> -->
+
+    <!-- <IntroSection /> -->
 
     <AppProducts subheading="Discover our sun protection products" />
 
@@ -13,10 +13,10 @@
     <!-- <MedicineBanner /> -->
 
     <AppMeasure />
-    <!-- <AppNewsLetter />
+    <!-- <AppNewsLetter /> -->
 
     <AppMap title="The Eucerin pharmacy near you" />
-    <AppFooter /> -->
+    <AppFooter />
     <router-view />
   </div>
 </template>
@@ -24,8 +24,7 @@
 <script>
 // // @ is an alias to /src
 import AppHeader from "./components/layout/AppHeader.vue";
-//import AppHeaderTest from "./components/layout/AppHeaderTest.vue";
-// import AppNested from "./components/layout/AppNested.vue";
+
 import IntroSection from "./components/IntroSection.vue";
 import AppProducts from "./components/AppProducts.vue";
 import SkinBanner from "./components/SkinBanner.vue";
@@ -40,6 +39,7 @@ export default {
   name: "App",
   components: {
     AppHeader,
+    IntroSection,
     IntroSection,
     AppProducts,
     SkinBanner,

@@ -1,13 +1,12 @@
 <template>
   <section class="measur">
     <div class="measur__container container">
-      <AppTitle
-        title="Discover our measures" />
-                                                                               "
+      <AppTitle title="Discover our measures" />
+      "
       <div class="row">
         <div class="col span_1_of_4" v-for="card in cards" :key="card.id">
           <a :href="card.href">
-            <div class="product__card card">
+            <div class="card">
               <div class="card__image">
                 <img :src="card.img" alt="card-image" />
               </div>
@@ -21,6 +20,7 @@
           </a>
         </div>
       </div>
+
       <div class="measur__btn">
         <a href="https://www.eucerin.de/produkte/sonnenschutz"
           >Discover our sustainability approach</a
@@ -102,34 +102,37 @@ export default {
   a {
     text-decoration: none;
 
-    & .product__card {
+    & .card {
       @include card;
 
-      & .card__image {
+      &__image {
         & img {
           width: 100%;
           height: auto;
-          object-fit: cover;
         }
       }
 
-      & .card__body {
+      &__body {
         padding: 2.5rem 1.5rem;
 
-        & .card__title {
+        &__title {
           text-transform: uppercase;
           color: $grey-light;
           margin: 0.5rem 0;
+          font-size: 1.2rem;
+          line-height: 1.5rem;
         }
 
-        & .card__subtile {
+        &__subtile {
           color: $grey-light;
           margin: 0.5rem 0;
+          font-size: 1.6rem;
+          line-height: 2.4rem;
         }
 
-        & .card__time {
+        &__time {
           font-size: 1.4rem;
-          margin-top: 2rem;
+          line-height: 2rem;
         }
       }
 
@@ -146,49 +149,20 @@ export default {
 
     & a {
       background-color: #fff;
-      font-size: 1.3rem;
-      line-height: 1.5rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
       font-weight: bold;
-      padding: 1.2rem 3rem;
+      padding: 1.5rem 6rem;
       cursor: pointer;
-      border: none;
-      text-align: center;
       color: $black-light;
       text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-block;
     }
   }
 }
 
-.btn-center {
-  &__global {
-    @include btngrey;
-    background-color: #fff !important;
-
-    &:hover {
-      background-color: $grey-btnhover;
-    }
+@media only screen and (max-width: 768px) {
+  .measur__btn > a {
+    padding: 1.5rem 4rem;
   }
 }
-
-/*@media only screen and (max-width: $breakpoint-xsm) {
-    .row {
-        flex-direction: column;
-    }
-
-    .measur {
-        &__subheading {
-            & h2 {
-                font-size: 20px;
-                margin: 15px 0;
-            }
-        }
-
-        .product__card {
-            padding: 0 !important;
-            margin: 10px 0 !important;
-        }
-    }
-}*/
 </style>

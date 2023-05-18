@@ -1,10 +1,7 @@
 <template>
   <section class="products">
     <div class="products__container container">
-      <AppTitle
-        title="
-                                                "
-      />
+      <AppTitle title=" Discover our sun protection products " />
 
       <hr class="hr" />
       <div class="row">
