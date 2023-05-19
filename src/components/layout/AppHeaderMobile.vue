@@ -64,8 +64,12 @@ export default {
     },
 
     showChildrenMobile() {
+      let showChildrenMobile;
       let menuNested = document.querySelector(".menu__subnested");
       menuNested.style.display = "block";
+      menuNested.style.color = "red";
+      menuNested.addEventListener("click", showChildrenMobile);
+      menuNested.classList.toggle("active");
     },
   },
 };
