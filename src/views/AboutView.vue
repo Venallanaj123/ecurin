@@ -1,6 +1,6 @@
 <template>
   <div>
-    <According
+    <accordion
       title="Lorem Ipsum is simply dummy text of the printing "
       subtitle="Lorem Ipsum is simply dummy text of the printing "
       content="Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -17,12 +17,12 @@
 </template>
 <script>
 // @ is an alias to /src
-import According from "../components/according/According";
+import Accordion from "../components/according/Accordion ";
 
 export default {
   name: "AboutView",
   components: {
-    According,
+    Accordion,
   },
 };
 </script>

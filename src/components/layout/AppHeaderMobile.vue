@@ -63,12 +63,21 @@ export default {
       navMenu.classList.toggle("active");
     },
 
-    showChildrenMobile() {
+    /* showChildrenMobile() {
       let showChildrenMobile;
+      let nested = document.querySelector(".nested");
+      let subnested = document.querySelector(".level-3");
+      nested.addEventListener("click", showChildrenMobile);
+      nested.classList.toggle("active");
+      subnested.classList.toggle("active");
+    },*/
+
+    showChildrenMobile() {
+        let showChildrenMobile;
+         let nested = document.querySelector(".nested");
       let menuNested = document.querySelector(".menu__subnested");
-      menuNested.style.display = "block";
-      menuNested.style.color = "red";
-      menuNested.addEventListener("click", showChildrenMobile);
+
+      nested.addEventListener("click", showChildrenMobile);
       menuNested.classList.toggle("active");
     },
   },
