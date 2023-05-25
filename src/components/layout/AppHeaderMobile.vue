@@ -17,15 +17,20 @@
                 <a href="#">Products</a>
                 <ul class="menu__subitem level-2">
                   <li class="">
-                    <a href="" class="nested" @click="showChildrenMobile()"
+                    <a
+                      href="#"
+                      class="nested"
+                      @click.prevent="showChildrenMobile()"
                       >Product line</a
                     >
 
-                    <ul class="menu__subnested level-3">
-                      <li><a href="#">Actinic alcolh</a></li>
-                      <li><a href="#">Actinic alcolh</a></li>
-                      <li><a href="#">Actinic alcolh</a></li>
-                    </ul>
+                    <transition name="slide-fade">
+                      <ul v-if="showSubmenu" class="menu__subnested level-3">
+                        <li><a href="#">Actinic alcolh</a></li>
+                        <li><a href="#">Actinic alcolh</a></li>
+                        <li><a href="#">Actinic alcolh</a></li>
+                      </ul>
+                    </transition>
                   </li>
                   <li>
                     <a href="" class="nested">Skin Condition</a>
@@ -42,13 +47,26 @@
 
 <style lang="scss">
 @import "../../assets/scss/layout/headerMobile";
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
 </style>
 <script>
 export default {
   name: "AppHeaderMobile",
 
   data() {
-    return {};
+    return {
+      showSubmenu: false,
+    };
   },
 
   /* Write code for mobile menu*/
@@ -62,23 +80,9 @@ export default {
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
     },
-
-    /* showChildrenMobile() {
-      let showChildrenMobile;
-      let nested = document.querySelector(".nested");
-      let subnested = document.querySelector(".level-3");
-      nested.addEventListener("click", showChildrenMobile);
-      nested.classList.toggle("active");
-      subnested.classList.toggle("active");
-    },*/
-
     showChildrenMobile() {
-        let showChildrenMobile;
-         let nested = document.querySelector(".nested");
-      let menuNested = document.querySelector(".menu__subnested");
-
-      nested.addEventListener("click", showChildrenMobile);
-      menuNested.classList.toggle("active");
+     
+      this.showSubmenu = !this.showSubmenu;
     },
   },
 };

@@ -125,6 +125,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../assets/scss/grid/grid";
 .accordion {
   padding: 30px;
 
