@@ -2,11 +2,34 @@
   <section class="product-detail">
     <div class="container">
       <div class="row">
-        <div
-          class="col span_1_of_2"
-          v-for="(image, index) in images"
-          :key="index"
-        ></div>
+        <div class="col span_1_of_2">
+          <div class="product-detail__carousel">
+            <div class="product-detail__image">
+              <img :src="images[activeImage].full" alt="image" />
+            </div>
+            <div class="product-detail__actions">
+              <span @click="prevImage" class="prev">
+                <!-- <i class="fas fa-chevron-left"></i> -->
+              </span>
+              <span @click="nextImage" class="next">
+                <!-- <i class="fas fa-chevron-right"></i> -->
+              </span>
+            </div>
+            <div class="product-detail__thumbnails">
+              <div
+                v-for="(image, index) in images"
+                :key="image.id"
+                :class="[
+                  'thumbnail-image',
+                  activeImage == index ? 'active' : '',
+                ]"
+                @click="activateImage(index)"
+              >
+                <img :src="image.thumb" />
+              </div>
+            </div>
+          </div>
+        </div>
         <div
           class="col span_1_of_2"
           v-for="(product, index) in products"
@@ -19,19 +42,7 @@
             <p class="product-detail__quantity">
               {{ product.quantity }}
             </p>
-            <!-- <div class="product-block">
-              <p class="product-nivea__description--price price">
-                {{ product.price }}
-              </p>
-              <i
-                class="fas fa-info-circle"
-                @mouseenter="showTooltip = true"
-                @mouseleave="showTooltip = false"
-              ></i>
-              <div class="tooltip" v-if="showTooltip">
-                <p>This is more information about the product.</p>
-              </div>
-            </div> -->
+
             <div class="product-detail__price">
               <div class="product-detail__price--wraper">
                 <span class="price"> {{ product.price }}</span>
@@ -59,6 +70,10 @@
             </select>
 
             <p class="availability">{{ product.availability }}</p>
+
+            <button class="button" @click="handleClick">
+              {{ buttonText }}
+            </button>
           </div>
         </div>
       </div>
@@ -72,21 +87,50 @@ export default {
   data() {
     return {
       showTooltip: false,
+      activeImage: 0,
+
+      images: [
+        {
+          id: 1,
+          thumb: require("../../assets/images/nivea/nive-1.jpg"),
+          full: require("../../assets/images/nivea/nive-1.jpg"),
+        },
+        {
+          id: 2,
+          thumb: require("../../assets/images/nivea/nive-2.jpg"),
+          full: require("../../assets/images/nivea/nive-2.jpg"),
+        },
+        {
+          id: 3,
+          thumb: require("../../assets/images/nivea/nive-3.jpg"),
+          full: require("../../assets/images/nivea/nive-3.jpg"),
+        },
+        {
+          id: 4,
+          thumb: require("../../assets/images/nivea/nive-4.jpg"),
+          full: require("../../assets/images/nivea/nive-4.jpg"),
+        },
+        {
+          id: 5,
+          thumb: require("../../assets/images/nivea/nive-5.jpg"),
+          full: require("../../assets/images/nivea/nive-5.jpg"),
+        },
+      ],
 
       products: [
         {
           title: "schutzund pflege sonnenspray ",
-
           quantity: " lichtschutzfaktor 30|200 ml",
-
           price: "10,72 €",
           heading: "Notice",
           content: "Incl. 19.00% VAT plus 3.95 €  shipping costs",
           href: "shipping costs",
           discount: "1| 53,60 €",
           availability: "availability",
+          buttonText: "In den Warenkorb",
         },
       ],
+
       selectedOption: "",
       options: [
         { label: " 2", value: "2" },
@@ -94,6 +138,19 @@ export default {
         { label: " 4", value: "4" },
       ],
     };
+  },
+  methods: {
+    nextImage() {
+      this.activeImage =
+        this.activeImage < this.totalImages - 1 ? this.activeImage + 1 : 0;
+    },
+    prevImage() {
+      this.activeImage =
+        this.activeImage > 0 ? this.activeImage - 1 : this.totalImages - 1;
+    },
+    activateImage(index) {
+      this.activeImage = index;
+    },
   },
 };
 </script>
@@ -212,5 +269,47 @@ $basecolor: #0032a0;
     color: green;
     margin-right: 5px;
   }
+
+  /* Strat to style dynamic image*/
+
+  &__image {
+  }
+  img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+}
+
+.product-detail__carousel {
+  position: relative;
+}
+
+.product-detail__image {
+  height: 400px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.product-detail__thumbnails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-image {
+  margin: 0 5px;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.thumbnail-image img {
+  width: 60px;
+  height: 60px;
+}
+
+.thumbnail-image.active {
+  opacity: 0.5;
+  border-bottom: 3px solid #0032a0;
 }
 </style>
