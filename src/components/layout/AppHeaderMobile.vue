@@ -12,34 +12,40 @@
             <div class="menu__logo">
               <img src="../../assets/images/logo.svg" alt="Logo" />
             </div>
-            <!-- <ul class="menu__list nav-menu level-1">
-              <li class="menu__item"  v-for="menu in menuItems" :key="menu.id>
-            <a :href="menu.href">{{ menu.href }}</a>
-              
-              </li>
-            </ul> -->
+
             <ul class="menu__list nav-menu level-1">
-              <li class="menu__item">
-                <a href="#">Products</a>
+              <li
+                class="menu__item"
+                v-for="(menuItem, index) in menuItems"
+                :key="index"
+              >
+                <a :href="menuItem.href">{{ menuItem.title }}</a>
                 <ul class="menu__subitem level-2">
-                  <li class="">
+                  <li
+                    v-for="(subitemItem, index) in menuItem.subitemItems"
+                    :key="index"
+                  >
                     <a
-                      href="#"
+                      :href="subitemItem.href"
                       class="nested"
                       @click.prevent="showChildrenMobile()"
-                      >Product line</a
+                      >{{ subitemItem.title }}</a
                     >
 
                     <transition name="slide-fade">
                       <ul v-if="showSubmenu" class="menu__subnested level-3">
-                        <li><a href="#">Actinic alcolh</a></li>
-                        <li><a href="#">Actinic alcolh</a></li>
-                        <li><a href="#">Actinic alcolh</a></li>
+                        <li
+                          v-for="(
+                            subnestedItem, index
+                          ) in subitemItem.subnestedItems"
+                          :key="index"
+                        >
+                          <a :href="subnestedItem.href">{{
+                            subnestedItem.title
+                          }}</a>
+                        </li>
                       </ul>
                     </transition>
-                  </li>
-                  <li>
-                    <a href="" class="nested">Skin Condition</a>
                   </li>
                 </ul>
               </li>
@@ -106,20 +112,41 @@ export default {
     return {
       menuItems: [
         {
-          title: " Product  ",
+          title: "Products",
+          href: "https://www.eucerin.de/produkte",
           subitemItems: [
             {
-              title: "test,",
+              title: "Product line",
+              href: "https://www.eucerin.de/produkte",
+              subnestedItems: [
+                {
+                  title: "Actinic Control",
+                  href: "https://www.eucerin.de/produkte/actinic-control",
+                },
+                {
+                  title: "anti pigment",
+                  href: "https://www.eucerin.de/produkte/anti-pigment",
+                },
+              ],
             },
             {
-              title: "test2,",
+              title: "Skin Condition",
+              subnestedItems: [
+                {
+                  title: "anti age",
+                  href: "https://www.eucerin.de/produkte/anti-age",
+                },
+                {
+                  title: "Dry skin",
+                  href: "https://www.eucerin.de/produkte/trockene-haut",
+                },
+                
+              ],
             },
           ],
         },
-        {
-          title: " Skin Condition ",
-        },
       ],
+
       showSubmenu: false,
     };
   },
