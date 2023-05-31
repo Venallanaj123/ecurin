@@ -1,1 +1,1 @@
-declare module 'vue-nested-menu';
+declare module 'hooper';
