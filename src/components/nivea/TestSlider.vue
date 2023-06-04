@@ -25,6 +25,8 @@
             </div>
             <div class="product-detail__thumbnails">
               <Carousel
+                :settings="settings"
+                :breakpoints="breakpoints"
                 id="thumbnail-carousel"
                 :itemsToShow="7"
                 :wrap-around="true"
@@ -49,14 +51,19 @@
           :key="index"
         >
           <div class="product-detail__description">
-            <div class="star-rating">
+          
+            <div
+              class="star-rating"
+              v-for="(review, index) in stars"
+              :key="index"
+            >
               <i
-                v-for="(star, index) in stars"
+                v-for="(star, index) in review.star"
                 :key="index"
                 class="star-rating__star fa fa-star checked"
                 style="color: orange"
               ></i>
-              <span>{{ star.comment }}</span>
+              <span>{{ review.comment }}</span>
             </div>
 
             <h1 class="product-detail__title">
@@ -114,7 +121,8 @@ import "vue3-carousel/dist/carousel.css";
 export default defineComponent({
   props: {
     title: String,
-    rating: Number,
+    text: String,
+    star: Number,
     comment: String,
   },
   name: "TestSlider",
@@ -182,12 +190,34 @@ export default defineComponent({
       { label: " 4", value: "4" },
     ],
 
+    items: [
+      {
+        text: "Enter your comment here",
+      },
+    ],
     stars: [
       {
         star: 5,
-        comment: "Enter your comment here",
+        comment: "(10)",
       },
     ],
+    // settings: {
+    //   itemsToShow: 1,
+    //   snapAlign: "center",
+    // },
+
+    // breakpoints: {
+
+    //   700: {
+    //     itemsToShow: 4,
+    //     snapAlign: "center",
+    //   },
+
+    //   1024: {
+    //     itemsToShow: 7,
+    //     snapAlign: "start",
+    //   },
+    // },
   }),
 
   methods: {
@@ -197,7 +227,6 @@ export default defineComponent({
 
     onSlideChange() {},
   },
-  
 });
 </script>
 
