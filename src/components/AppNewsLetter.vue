@@ -104,6 +104,7 @@ export default {
         line-height: 4.4rem;
         color: $headingcolor;
         margin-bottom: 1.5rem;
+        font-weight: 500;
       }
 
       & .card__list {
@@ -132,6 +133,10 @@ export default {
   .newsletter {
     &__card {
       flex-direction: column;
+    }
+    &__title {
+      font-size: 2.6rem;
+      line-height: 3.4rem;
     }
   }
 }

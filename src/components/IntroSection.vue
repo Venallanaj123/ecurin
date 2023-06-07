@@ -1,5 +1,5 @@
 <template>
-  <section class="intro-section">
+  <section class="intro-section intro-section-mobile">
     <div class="container">
       <div class="row">
         <div class="col span_1_of_2">
@@ -66,11 +66,8 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .intro-section-mobile {
+  .intro-section {
     background-image: url("../assets/images/intro-section-backgroundmobile.jpg");
-    height: 600px;
-    background-size: cover;
-    background-position: center;
   }
   .intro-section__element {
     &--heading {
