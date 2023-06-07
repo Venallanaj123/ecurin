@@ -10,7 +10,7 @@
     <MedicineBanner />
 
     <AppMeasure />
-    <!-- <AppNewsLetter /> -->
+    <AppNewsLetter />
 
     <AppMap title="The Eucerin pharmacy near you" />
     <AppFooter />
@@ -24,11 +24,11 @@ import AppHeader from "../components/layout/AppHeader";
 
 import IntroSection from "../components/IntroSection.vue";
 import AppProducts from "../components/AppProducts.vue";
-// import SkinBanner from "./components/SkinBanner.vue";
+import SkinBanner from "../components/SkinBanner.vue";
 import AppEucerin from "../components/AppEucerin.vue";
 import MedicineBanner from "../components/MedicineBanner.vue";
 import AppMeasure from "../components/AppMeasure.vue";
-// import AppNewsLetter from "./components/AppNewsLetter.vue";
+import AppNewsLetter from "../components/AppNewsLetter.vue";
  import AppMap from "../components/AppMap.vue";
 import AppFooter from "../components/layout/AppFooter";
 
@@ -39,11 +39,11 @@ export default {
     IntroSection,
 
     AppProducts,
-    // SkinBanner,
+    SkinBanner,
     AppEucerin,
-    // MedicineBanner,
+    MedicineBanner,
     AppMeasure,
-    // AppNewsLetter,
+    AppNewsLetter,
     AppMap,
     AppFooter,
   },

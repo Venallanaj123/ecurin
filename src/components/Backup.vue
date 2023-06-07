@@ -19,48 +19,36 @@
                 v-for="(menuItem, index) in menuItems"
                 :key="index"
               >
-                <a v-if="!showSubmenu" :href="menuItem.href">{{
-                  menuItem.title
-                }}</a>
-                <a v-if="showSubmenu" :href="menuItem.href">{{
-                  subItemsShown.title
-                }}</a>
-
+                <a :href="menuItem.href">{{ menuItem.title }}</a>
                 <ul class="menu__subitem level-2">
-                  <li
-                    v-for="(subitemItem, index) in menuItem.subitemItems"
-                    :key="index"
-                  >
+                  <li v-for="(subitemItem, index) in menuItem.subitemItems"    :key="index" >               
                     <a
-                      v-if="!showSubmenu"
                       :href="subitemItem.href"
                       class="nested"
-                      @click.prevent="
-                        showChildrenMobile(
-                          subitemItem.title,
-                          menuItem.subitemItems
-                        )
-                      "
+                      @click.prevent="showChildrenMobile()"
                       >{{ subitemItem.title }}</a
                     >
+
+                    <transition name="slide-fade">
+                      <ul v-if="showSubmenu" class="menu__subnested level-3">
+                        <li
+                          v-for="(
+                            subnestedItem, index
+                          ) in subitemItem.subnestedItems"
+                          :key="index"
+                        >
+                          <a :href="subnestedItem.href">{{
+                            subnestedItem.title
+                          }}</a>
+                        </li>
+                      </ul>
+                    </transition>
                   </li>
                 </ul>
-                <transition name="slide-fade">
-                  <ul v-if="showSubmenu" class="menu__subitem level-2">
-                    <li
-                      v-for="(
-                        subnestedItem, index
-                      ) in subItemsShown.subnestedItems"
-                      :key="index"
-                    >
-                      <a class="nested" :href="subnestedItem.href">{{
-                        subnestedItem.title
-                      }}</a>
-                    </li>
-                  </ul>
-                </transition>
               </li>
             </ul>
+
+    
           </nav>
         </div>
       </div>
@@ -118,6 +106,7 @@ export default {
                   title: "Dry skin",
                   href: "https://www.eucerin.de/produkte/trockene-haut",
                 },
+                
               ],
             },
           ],
@@ -125,7 +114,6 @@ export default {
       ],
 
       showSubmenu: false,
-      subItemsShown: null,
     };
   },
 
@@ -139,12 +127,9 @@ export default {
       hamburger.addEventListener("click", showMenuMobile);
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
-      if (this.showSubmenu) this.showSubmenu = false;
     },
-    showChildrenMobile(titleMenu, subItems) {
-      this.subItemsShown = subItems.filter((x) => x.title == titleMenu)[0];
-
-      this.showSubmenu = true;
+    showChildrenMobile() {
+      this.showSubmenu = !this.showSubmenu;
     },
   },
 };

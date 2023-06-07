@@ -27,11 +27,20 @@ export default {
 .btn-center {
   display: flex;
   justify-content: center;
- 
+
   &__global {
     @include btngrey;
     &:hover {
       background-color: $grey-btnhover;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-center {
+    &__global {
+      width: 100%;
+      padding: 1.6rem 3.5rem;
     }
   }
 }

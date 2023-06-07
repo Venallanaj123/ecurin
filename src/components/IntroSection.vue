@@ -1,5 +1,5 @@
 <template>
-  <section class="intro-section intro-section-mobile">
+  <section class="intro-section">
     <div class="container">
       <div class="row">
         <div class="col span_1_of_2">
@@ -10,6 +10,7 @@
             <p class="intro-section__element--text">
               €3 discount on Eucerin Sun products
             </p>
+
             <a
               href="https://www.eucerin.de/#layer=pharmacy-finder.rabattaktion_sonnenschutz"
               class="intro-section__element--button"
@@ -18,26 +19,7 @@
             </a>
           </div>
         </div>
-        <div class="col span_1_of_2"></div>
       </div>
-      <!-- <div class="row">
-        <div class="col span_2_of_2">
-          <div class="intro-section__elementmobile">
-            <h1 class="intro-section__element--heading">
-              Our sunny present for you
-            </h1>
-            <p class="intro-section__element--text">
-              €3 discount on Eucerin Sun products
-            </p>
-            <a
-              href="https://www.eucerin.de/#layer=pharmacy-finder.rabattaktion_sonnenschutz"
-              class="intro-section__element--button"
-            >
-              Find participating pharmacies
-            </a>
-          </div>
-        </div>
-      </div> -->
     </div>
   </section>
 </template>
@@ -50,12 +32,10 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/grid/grid";
-h1 {
-  color: black;
-}
+
 .intro-section {
   background-image: url("../assets/images/intro-section-background.jpg");
-  height: 500px;
+  height: 600px;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -66,7 +46,6 @@ h1 {
     &--heading {
       @include heading;
       font-size: 4.4rem;
-
       line-height: 5rem;
       margin-bottom: 1.5rem;
     }
@@ -77,6 +56,7 @@ h1 {
 
     &--button {
       @include button;
+      padding: 12px 50px;
     }
 
     &--button:hover {
@@ -88,13 +68,11 @@ h1 {
 @media only screen and (max-width: 768px) {
   .intro-section-mobile {
     background-image: url("../assets/images/intro-section-backgroundmobile.jpg");
-    height: auto;
-    min-height: 100vh;
+    height: 600px;
     background-size: cover;
     background-position: center;
   }
   .intro-section__element {
-    top: 120%;
     &--heading {
       font-size: 2.8rem;
 

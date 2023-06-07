@@ -38,7 +38,6 @@ export default {
 
 .medicine-banner {
   background-image: url("../assets/images/banner-3.jpg");
-  /*height: 50%;*/
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
@@ -49,7 +48,6 @@ export default {
 
     &--heading {
       @include heading;
-
       color: $white;
     }
 
@@ -70,10 +68,10 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .medicine-banner {
-    height: 100%;
+    /*  height: 100%;
     width: 100%;
     background-size: cover;
-    /* background-size: contain;*/
+    background-size: contain;*/
 
     &__element {
       width: 100%;

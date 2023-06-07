@@ -3,22 +3,33 @@
     <div class="container">
       <div class="row">
         <div class="col span_2_of_2" v-for="card in cards" :key="card.id">
-          <div class="newsletter__card card">
-            <div class="card__image">
-              <img :src="card.img" alt="card-image" />
-            </div>
+          <div class="newsletter__wrap">
+            <div class="newsletter__cards">
+              <div class="newsletter__card">
+                <div class="card__image">
+                  <img :src="card.img" alt="card-image" />
+                </div>
 
-            <div class="card__body">
-              <p class="card__title">{{ card.title }}</p>
-              <p class="card__list">{{ card.list1 }}</p>
-              <p class="card__list">{{ card.list2 }}</p>
-              <p class="card__list">{{ card.list3 }}</p>
+                <div class="card__body">
+                  <h2 class="card__title">
+                    Subscribe to Eucerin news <br />
+                    and secure benefits
+                  </h2>
+                  <p
+                    class="card__list"
+                    v-for="(item, index) in items"
+                    :key="index"
+                  >
+                    {{ item.name }}
+                  </p>
 
-              <div class="card__button btn">
-                <a
-                  href="https://www.eucerin.de/meta-pages/eucerin-newsletter-anmeldung"
-                  >Subscribe to Newsletter</a
-                >
+                  <div class="card__button btn">
+                    <a
+                      href="https://www.eucerin.de/meta-pages/eucerin-newsletter-anmeldung"
+                      >Subscribe to Newsletter</a
+                    >
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -44,11 +55,12 @@ export default {
           id: 1,
 
           img: require("../assets/images/newsletter/newsletter.jpg"),
-          title: "Eucerin Neuigkeiten abonnieren und Vorteile sichern  ",
-          list1: "• Neue Produkte testen und bewerten",
-          list2: "• Neue Produkte testen und bewerten",
-          list3: "• Neue Produkte testen und bewerten",
         },
+      ],
+      items: [
+        { name: "• Test and evaluate new products", id: 1 },
+        { name: "• Participate in attractive competitions ", id: 2 },
+        { name: "• Receive up-to-date information and advice", id: 3 },
       ],
     };
   },
@@ -60,36 +72,50 @@ export default {
 @import "../assets/scss/grid/grid";
 
 .newsletter {
+  &__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__cards {
+    display: flex;
+  }
   &__card {
     @include card;
     display: flex;
+    justify-content: center;
+    border: 1px solid #d2d5d8;
+    border-radius: 5px;
 
     &__image {
-      & img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
+    }
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
     }
 
     & .card__body {
-      padding: 1rem;
+      padding: 2rem;
 
       & .card__title {
         font-size: 3.6rem;
         line-height: 4.4rem;
         color: $headingcolor;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
       }
 
       & .card__list {
-        margin: 1rem 0;
+        margin: 1.2rem 0;
         font-size: 1.6rem;
         line-height: 1.9rem;
       }
 
       & .card__button {
         @include button;
+        padding: 12px 35px;
+        width: 100%;
 
         & a {
           color: #fff;

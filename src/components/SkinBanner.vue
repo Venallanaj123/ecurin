@@ -18,7 +18,6 @@
             >
           </div>
         </div>
-        <div class="col span_1_of_2"></div>
       </div>
     </div>
   </section>
@@ -39,18 +38,14 @@ export default {
   height: 500px;
   background-position: center;
   background-repeat: no-repeat;
-
   position: relative;
 
   &__content {
-    width: 100%;
-    padding-top: 100px;
-    padding-bottom: 50px;
+    @include left;
 
     &--heading {
       @include heading;
     }
-
     &--text {
       @include text;
     }
@@ -68,10 +63,10 @@ export default {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .skin-banner {
-    background-size: cover;
+    /*background-size: cover;
     height: 100%;
     width: 100%;
-    max-height: 100%;
+    max-height: 100%;*/
   }
 }
 </style>

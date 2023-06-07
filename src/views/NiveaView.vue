@@ -1,21 +1,14 @@
 <template>
   <div>
-    <!-- <AppNivea /> -->
-    <TestSlider />
-    <!-- <SliderHooper /> -->
+    <AppNivea />
   </div>
 </template>
 <script>
-// @ is an alias to /src
-// import AppNivea from "../components/nivea/AppNivea.vue";
-import TestSlider from "../components/nivea/TestSlider.vue";
-// import SliderHooper from "@/components/nivea/SliderHooper.vue";
-
+import AppNivea from "../components/nivea/AppNivea.vue";
 export default {
   name: "NiveaView",
   components: {
-    TestSlider,
-    // SliderHooper,
+    AppNivea,
   },
 };
 </script>
