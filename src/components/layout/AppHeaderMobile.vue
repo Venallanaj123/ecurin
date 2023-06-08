@@ -53,7 +53,7 @@
                       ) in subItemsShown.subnestedItems"
                       :key="index"
                     >
-                      <a class="" :href="subnestedItem.href">{{
+                      <a class="nested" :href="subnestedItem.href">{{
                         subnestedItem.title
                       }}</a>
                     </li>

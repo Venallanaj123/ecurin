@@ -34,7 +34,7 @@ export default {
 @import "../assets/scss/grid/grid";
 
 .intro-section {
-  background-image: url("../assets/images/intro-section-background.jpg");
+  background-image: url("../assets/images/backgrounddesktop.jpg");
   height: 600px;
   background-size: cover;
   background-position: center;
@@ -67,7 +67,7 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .intro-section {
-    background-image: url("../assets/images/intro-section-backgroundmobile.jpg");
+    /*background-image: url("../assets/images/intro-section-backgroundmobile.jpg");*/
   }
   .intro-section__element {
     &--heading {
