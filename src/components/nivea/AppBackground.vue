@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      isActive: true,
+      isActive: false,
     };
   },
 };
