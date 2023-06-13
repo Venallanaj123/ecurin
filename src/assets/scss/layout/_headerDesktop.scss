@@ -27,14 +27,13 @@ header {
       justify-content: center;
       align-items: center;
     }
-     .menu-first-level {
+    .menu-first-level {
       display: flex;
       justify-content: center;
       align-items: center;
       list-style: none;
     }
     &__item {
-   
       padding: 20px;
 
       &.active .menu-first-level__flyout {
@@ -115,6 +114,14 @@ header {
           vertical-align: middle;
           max-width: 100%;
           height: auto;
+        }
+      }
+      & .pta-shop {
+        svg {
+          fill: #7a858d;
+          width: auto;
+          height: auto;
+          vertical-align: initial;
         }
       }
     }

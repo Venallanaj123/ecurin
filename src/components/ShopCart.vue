@@ -1,0 +1,47 @@
+<template>
+  <div class="product__button" v-on:click="showMessage = !showMessage">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8.72723 10.1818H23.2727L25.4545 28H6.54541L8.72723 10.1818Z"
+        stroke="white"
+      ></path>
+      <path
+        d="M20.3636 10.1818C20.3636 10.1818 20.3636 8.51 20.3636 7.99999C20.3636 5.59002 18.41 3.63635 16 3.63635C13.59 3.63635 11.6364 5.59002 11.6364 7.99999C11.6364 8.51 11.6364 10.1818 11.6364 10.1818"
+        stroke="white"
+      ></path>
+      <path d="M11.6364 19.6364H20.3636" stroke="white"></path>
+      <path d="M16 15.2727V24" stroke="white"></path>
+    </svg>
+
+    <div class="card-sidebar" v-if="showMessage">
+      <p>test</p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "ShopCart",
+  data() {
+    return {
+      showMessage: false,
+    };
+  },
+};
+</script>
+<style scoped lang="scss">
+/*.product__button {
+  svg {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: calc(50% - 1px);
+  }
+}*/
+</style>

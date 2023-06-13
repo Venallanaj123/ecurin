@@ -52,7 +52,20 @@
           <span class="pta--deparatment">
             <a href="https://www.side-by-side.de/"> PTA department</a></span
           >
-
+          
+          <span class="pta-shop" >
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="30"
+              viewBox="0 0 32 32"
+            >
+              <path
+                d="M16 2.182c3.213 0 5.818 2.605 5.818 5.818v1.455h2.909l2.182 19.636h-21.818l2.182-19.636h2.909v-1.455c0-3.213 2.605-5.818 5.818-5.818zM23.425 10.909h-14.852l-1.858 16.727h18.568l-1.858-16.727zM16 3.636c-2.355 0-4.275 1.866-4.361 4.2l-0.003 0.164v1.455h8.727v-1.455c0-2.41-1.953-4.364-4.364-4.364z"
+              ></path>
+            </svg>
+          </span>
           <span class="pta--flag"
             ><img
               src="../../assets/images/selector-de.png"

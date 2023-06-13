@@ -1,6 +1,6 @@
 <template>
   <section class="products">
-    <div class="products__container container">
+    <div class="container">
       <AppTitle title=" Discover our sun protection products " />
 
       <hr class="hr" />
@@ -10,65 +10,69 @@
           v-for="product in products"
           :key="product.id"
         >
-          <a :href="product.href">
-            <div class="product">
-              <div class="product__image">
-                <img :src="product.img" alt="product-image" />
+          <!-- <a class="products__link" :href="product.href"> </a> -->
+          <div class="product">
+            <div class="product__image">
+              <img :src="product.img" alt="product-image" />
+            </div>
+
+            <div class="product__info">
+              <div
+                class="product__rating"
+                v-for="(review, index) in stars"
+                :key="index"
+              >
+                <i
+                  v-for="(star, index) in review.star"
+                  :key="index"
+                  class="product__star fa fa-star checked"
+                ></i>
+                <span class="product__comment">{{ review.comment }}</span>
               </div>
 
-              <div class="product__info">
+              <p class="product__title">{{ product.title }}</p>
+              <p class="product__subtile">{{ product.subtitle }}</p>
+
+              <div class="product__cart">
+                <div class="product__price">
+                  <p class="product__price-regular">
+                    {{ product.price }}
+                  </p>
+                  <p class="product__price-volume">
+                    {{ product.volume }}
+                  </p>
+                </div>
                 <div
-                  class="product__rating"
-                  v-for="(review, index) in stars"
-                  :key="index"
+                  class="product__button"
+                  v-on:click="showMessage = !showMessage"
                 >
-                  <i
-                    v-for="(star, index) in review.star"
-                    :key="index"
-                    class="product__star fa fa-star checked"
-                  ></i>
-                  <span class="product__comment">{{ review.comment }}</span>
-                </div>
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.72723 10.1818H23.2727L25.4545 28H6.54541L8.72723 10.1818Z"
+                      stroke="white"
+                    ></path>
+                    <path
+                      d="M20.3636 10.1818C20.3636 10.1818 20.3636 8.51 20.3636 7.99999C20.3636 5.59002 18.41 3.63635 16 3.63635C13.59 3.63635 11.6364 5.59002 11.6364 7.99999C11.6364 8.51 11.6364 10.1818 11.6364 10.1818"
+                      stroke="white"
+                    ></path>
+                    <path d="M11.6364 19.6364H20.3636" stroke="white"></path>
+                    <path d="M16 15.2727V24" stroke="white"></path>
+                  </svg>
 
-                <p class="product__title">{{ product.title }}</p>
-                <p class="product__subtile">{{ product.subtitle }}</p>
-
-                <div class="product__cart">
-                  <div class="priduct__button">
-                    <svg
-                      width="28"
-                      height="28"
-                      viewBox="0 0 32 32"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8.72723 10.1818H23.2727L25.4545 28H6.54541L8.72723 10.1818Z"
-                        stroke="white"
-                      ></path>
-                      <path
-                        d="M20.3636 10.1818C20.3636 10.1818 20.3636 8.51 20.3636 7.99999C20.3636 5.59002 18.41 3.63635 16 3.63635C13.59 3.63635 11.6364 5.59002 11.6364 7.99999C11.6364 8.51 11.6364 10.1818 11.6364 10.1818"
-                        stroke="white"
-                      ></path>
-                      <path d="M11.6364 19.6364H20.3636" stroke="white"></path>
-                      <path d="M16 15.2727V24" stroke="white"></path>
-                    </svg>
+                  <div class="card-sidebar" v-if="showMessage">
+                    <p>test</p>
                   </div>
-
-                  <div class="product__price">
-                    <p class="product__price-regular">
-                      {{ product.price }}
-                    </p>
-                    <p class="product__price-volume">
-                      {{ product.volume }}
-                    </p>
-                  </div>
-
-                  <!-- <span class="product__price">$19.99</span> -->
                 </div>
+            
               </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
       <AppButton
@@ -83,6 +87,7 @@
 import AppTitle from "./AppTitle.vue";
 import AppButton from "./AppButton.vue";
 
+
 export default {
   name: "AppProducts",
   props: {
@@ -94,6 +99,7 @@ export default {
   components: {
     AppTitle,
     AppButton,
+   
   },
   data: function () {
     return {
@@ -141,6 +147,7 @@ export default {
           comment: "5.0",
         },
       ],
+      showMessage: false,
     };
   },
 };
@@ -151,75 +158,99 @@ export default {
 @import "../assets/scss/grid/grid";
 
 .products {
-  & a {
+  &__link {
     text-decoration: none;
   }
-  & .product {
-    @include card;
-    &__image {
-    }
-    & img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    &__info {
-      flex: 1;
-      padding: 2.5rem 1.5rem;
-    }
-    &__rating {
-      display: flex;
-      align-items: center;
-    }
-    &__star {
-      color: black;
-    }
-    &__comment {
-      color: #223341;
-      font-size: 1rem;
-      line-height: 1.2rem;
-      padding-left: 1rem;
+}
+
+.product {
+  @include card;
+  &__image {
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__info {
+    flex: 1;
+    padding: 2.5rem 1.5rem;
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+  }
+  &__star {
+    color: black;
+  }
+  &__comment {
+    color: #223341;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    padding-left: 1rem;
+    font-weight: bold;
+  }
+  &__title {
+    @include card-title;
+  }
+  &__subtile {
+    @include card-subtitle;
+  }
+  &:hover {
+    outline: 1px solid #cfcfcf;
+  }
+  &__cart {
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    flex-direction: row-reverse;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  &__button {
+    background-color: #a70532;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-box-flex: 0;
+    flex: 0 0 40px;
+    border: none;
+    position: relative;
+  }
+  svg {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: calc(50% - 1px);
+  }
+  &__price {
+    display: block;
+
+    &-regular {
       font-weight: bold;
     }
-    &__title {
-      @include card-title;
+    &-volume {
+      color: #223341;
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      margin-top: 2px;
+      width: 100%;
+      display: inline-block;
     }
-    &__subtile {
-      @include card-subtitle;
-    }
-    &:hover {
-      outline: 1px solid #cfcfcf;
-    }
-    &__cart {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    &__button {
-    }
-    & svg {
-      background-color: #a70532;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-    &__price {
-      display: block;
+  }
+}
 
-      &-regular {
-        font-weight: bold;
-      }
-      &-volume {
-        color: #223341;
-        font-size: 1.4rem;
-        line-height: 1.8rem;
-        margin-top: 2px;
-        width: 100%;
-        display: inline-block;
-      }
-    }
+.product__button {
+  svg {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: calc(50% - 1px);
   }
 }
 
