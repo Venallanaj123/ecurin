@@ -2,7 +2,8 @@
   <div class="home">
     <AppHeader />
     <IntroSection />
-
+    <!-- <AddCart /> -->
+    <ShopCart />
     <AppProducts subheading="Discover our sun protection products" />
 
     <SkinBanner />
@@ -23,13 +24,16 @@
 import AppHeader from "../components/layout/AppHeader";
 
 import IntroSection from "../components/IntroSection.vue";
+// import AddCart from "@/components/AddCart.vue";
+import ShopCart from "../components/ShopCart.vue";
+
 import AppProducts from "../components/AppProducts.vue";
 import SkinBanner from "../components/SkinBanner.vue";
 import AppEucerin from "../components/AppEucerin.vue";
 import MedicineBanner from "../components/MedicineBanner.vue";
 import AppMeasure from "../components/AppMeasure.vue";
 import AppNewsLetter from "../components/AppNewsLetter.vue";
- import AppMap from "../components/AppMap.vue";
+import AppMap from "../components/AppMap.vue";
 import AppFooter from "../components/layout/AppFooter";
 
 export default {
@@ -37,7 +41,8 @@ export default {
   components: {
     AppHeader,
     IntroSection,
-
+    // AddCart,
+    ShopCart,
     AppProducts,
     SkinBanner,
     AppEucerin,

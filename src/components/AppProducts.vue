@@ -42,10 +42,7 @@
                     {{ product.volume }}
                   </p>
                 </div>
-                <div
-                  class="product__button"
-                  v-on:click="showMessage = !showMessage"
-                >
+                <div class="product__button">
                   <svg
                     width="28"
                     height="28"
@@ -64,12 +61,7 @@
                     <path d="M11.6364 19.6364H20.3636" stroke="white"></path>
                     <path d="M16 15.2727V24" stroke="white"></path>
                   </svg>
-
-                  <div class="card-sidebar" v-if="showMessage">
-                    <p>test</p>
-                  </div>
                 </div>
-            
               </div>
             </div>
           </div>
@@ -87,7 +79,6 @@
 import AppTitle from "./AppTitle.vue";
 import AppButton from "./AppButton.vue";
 
-
 export default {
   name: "AppProducts",
   props: {
@@ -99,7 +90,6 @@ export default {
   components: {
     AppTitle,
     AppButton,
-   
   },
   data: function () {
     return {
@@ -147,7 +137,6 @@ export default {
           comment: "5.0",
         },
       ],
-      showMessage: false,
     };
   },
 };
