@@ -2,7 +2,7 @@
   <div class="home">
     <AppHeader />
     <IntroSection />
-    <!-- <AddCart /> -->
+    <PreviewShopCart />
     <ShopCart />
     <AppProducts subheading="Discover our sun protection products" />
 
@@ -24,7 +24,7 @@
 import AppHeader from "../components/layout/AppHeader";
 
 import IntroSection from "../components/IntroSection.vue";
-// import AddCart from "@/components/AddCart.vue";
+import PreviewShopCart from "@/components/PreviewShopCart.vue";
 import ShopCart from "../components/ShopCart.vue";
 
 import AppProducts from "../components/AppProducts.vue";
@@ -41,7 +41,7 @@ export default {
   components: {
     AppHeader,
     IntroSection,
-    // AddCart,
+    PreviewShopCart,
     ShopCart,
     AppProducts,
     SkinBanner,
