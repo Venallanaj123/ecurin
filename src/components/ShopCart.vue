@@ -29,6 +29,10 @@
             <span class="shop-cart__amount-count"> (<span>0</span> items)</span>
           </div>
         </div>
+
+        <div class="shop-cart__full-products">
+           <!-- full with products from component Products int arrary-->
+        </div>
         <div class="shop-cart__empty">
           <h2 class="shop-cart__empty-title">
             Your shopping<br />
@@ -50,25 +54,14 @@
 
 <script>
 export default {
-  name: "AddCart",
+  name: "ShopCart",
+
   data() {
     return {
       isCartOpen: false,
     };
   },
 
-  /* methods: {
-    addCard() {
-
-      let addCard;
-      let addcard = document.querySelector(".addcard");
-      let cardlist = document.querySelector(".cardlist");
-
-      addcard.addEventListener("click", addCard);
-      addcard.classList.toggle("active");
-      cardlist.classList.toggle("active");
-    },
-  },*/
 };
 </script>
 
