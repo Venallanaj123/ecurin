@@ -1,5 +1,5 @@
 <template>
-  <section class="shop-cart">
+  <div class="shop-cart">
     <div class="shop-cart__toggle">
       <button @click="isCartOpen = !isCartOpen" class="shop-cart__toggle-btn">
         <svg
@@ -26,14 +26,88 @@
           </button>
           <div class="shop-cart__amount">
             <h3 class="shop-cart__amount-title">Your shopping cart</h3>
-            <span class="shop-cart__amount-count"> (<span>0</span> items)</span>
+            <span class="shop-cart__amount-count">
+              (<span>{{ products.length }}</span> items)</span
+            >
           </div>
         </div>
+    
+        <div v-if="hasProducts">
+          <div class="shop-cart__note">
+            <p class="shop-cart__text">
+              Good choice! <b>Hyaluron-Filler Skin Refining Anti-Age</b>
+              <b>Serum</b> has been added to your shopping cart
+            </p>
+          </div>
+          <ul class="shop-cart__full" v-if="hasProducts">
+            <li  class="shop-cart__item"  v-for="(product, index) in products" :key="index">
+              <img
+                :src="product.img"
+                class="shop__cart-image"
+                style="width: 76px; height: 76px"
+              />
+              <div class="shop-cart__details">
+                <span
+                  class="shop-cart__remove"
+                  v-on:click="removeitemToCart(product)"
+                >
+                  <i class="fa-solid fa-xmark fa-xl"></i>
+                </span>
+                <p class="shop-cart__name">{{ product.subtitle }}</p>
 
-        <div class="shop-cart__full-products">
-           <!-- full with products from component Products int arrary-->
+                <div class="shop-cart__info">
+                  <div class="shop-cart__volume">
+                    <p class="shop-cart__volume-text">{{ product.volume }}</p>
+                  </div>
+                  <div class="shop-cart__quntity">
+                    <span>1 pc</span>
+                    <select v-model="selectedOption" class="shop-cart__seclect">
+                      <option value="">1</option>
+                      <option
+                        v-for="(option, index) in options"
+                        :key="index"
+                        :value="option.value"
+                      >
+                        {{ option.label }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="shop-cart__price">
+                  <p class="shop-cart__price-label">Price per piece</p>
+                  <div class="shop-cart__price-regular">
+                    {{ product.price }}
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+       <ul class="shop-cart__total-price">
+         <li class="shop-cart__subtotal">
+          <span class="shop-cart__label-name"> Subtotal</span>
+          <span  class="shop-cart__calculate-price"> €53.98</span>
+         </li>
+         <!-- <li class="shop-cart__subtotal">
+          <span class="shop-cart__label-name"> Subtotal</span>
+          <span  class="shop-cart__calculate-price"> €53.98</span>
+         </li>
+         <li class="shop-cart__subtotal">
+          <span class="shop-cart__label-name"> Subtotal</span>
+          <span  class="shop-cart__calculate-price"> €53.98</span>
+         </li>
+         <li class="shop-cart__subtotal">
+          <span class="shop-cart__label-name"> Subtotal</span>
+          <span  class="shop-cart__calculate-price"> €53.98</span>
+         </li> -->
+       </ul>
+        
         </div>
-        <div class="shop-cart__empty">
+ 
+        <div
+          class="shop-cart__empty"
+          v-bind:style="{ display: !hasProducts ? 'block' : 'none' }"
+        >
           <h2 class="shop-cart__empty-title">
             Your shopping<br />
             cart is empty
@@ -49,19 +123,37 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
-
 <script>
 export default {
   name: "ShopCart",
+  props: ["products", "isCartOpen"],
+
+  methods: {
+    removeitemToCart(product) {
+      console.log(product);
+      this.$emit("removeitemToCart", product);
+    },
+  },
+  computed: {
+    hasProducts() {
+      return this.products.length > 0;
+    },
+   
+  },
 
   data() {
     return {
-      isCartOpen: false,
+      // isCartOpen: false,
+      selectedOption: "",
+      options: [
+        { label: " 2", value: "2" },
+        { label: " 3", value: "3" },
+        { label: " 4", value: "4" },
+      ],
     };
   },
-
 };
 </script>
 
@@ -152,9 +244,6 @@ export default {
     text-align: center;
   }
   &__empty-bag {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 295px;
   }
   img {
     margin-left: auto;
@@ -179,6 +268,151 @@ export default {
     width: 100%;
     margin-top: 25px;
     font-weight: 600;
+  }
+  &__full {
+    position: relative;
+  }
+
+  &__item {
+    box-shadow: 0 0 4px 2px #f3f4f5;
+    border: 2px solid #f3f4f5;
+    border-radius: 7px;
+    display: -webkit-box;
+    display: flex;
+    margin-bottom: 10px;
+    padding: 17px 0 17px 5px;
+  }
+  &__details {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    width: 100%;
+  }
+  &__remove {
+    right: 15px;
+    position: absolute;
+    left: auto;
+    top: 1px;
+    font-size: 1.3rem;
+  }
+  &__name {
+    font-size: 1.8rem;
+    line-height: 2rem;
+    color: #223341;
+    max-height: 46px;
+    min-height: 46px;
+    margin-bottom: 5px;
+    padding-right: 20px;
+    overflow: hidden;
+  }
+  &__info {
+  }
+  &__volume {
+    margin-bottom: 5px;
+  }
+  &__volume-text {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-style: italic;
+  }
+
+  &__price {
+    position: absolute;
+    bottom: 1px;
+    right: 15px;
+    text-align: right;
+  }
+  &__quntity {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+  &__seclect {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    margin: 0 10px;
+    background: white;
+    border: 1px solid #ddd;
+
+    padding: 2px 5px;
+  }
+
+  &__price {
+  }
+  &__price-label {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    margin-bottom: 5px;
+  }
+
+  &__price-regular {
+    color: #213242;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    font-weight: bold;
+    font-family: " EucerinaWgl-Demibold";
+  }
+  &__note {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  &__note::before {
+    content: "";
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #50c245;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  &__note::after {
+    content: "";
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    height: 15px;
+    position: absolute;
+    width: 7px;
+    transform: rotate(45deg);
+    top: 50%;
+    transform: rotate(45deg) translate(-50%, -50%);
+    z-index: 9;
+  }
+  &__text {
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    padding: 10px 0 10px 40px;
+  }
+
+  span {
+    cursor: pointer;
+  }
+
+  &__subtotal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    color: #4e5c67;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+
+  &__subtotal::before{
+    content: "";
+    background-color: #d2d5d8;
+    height: 1px;
+    top: 0;
+    position: absolute;
+    width: 100%;
   }
 }
 </style>
