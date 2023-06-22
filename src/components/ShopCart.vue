@@ -86,7 +86,7 @@
        <ul class="shop-cart__total-price">
          <li class="shop-cart__subtotal">
           <span class="shop-cart__label-name"> Subtotal</span>
-          <span  class="shop-cart__calculate-price"> €53.98</span>
+          <span  class="shop-cart__calculate-price"> €42.49</span>
          </li>
          <!-- <li class="shop-cart__subtotal">
           <span class="shop-cart__label-name"> Subtotal</span>
