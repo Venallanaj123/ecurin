@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     updateProductInfo(newProduct) {
-      debugger;
+
       this.cartOpen = true;
       this.productInfo.push(newProduct);
     },

@@ -91,3 +91,29 @@
   line-height: 2.2rem;
   font-weight: bold;
 }
+
+/* Global styles for    Shop Cart*/
+ul  {
+  list-style-type: none;
+}
+
+@mixin list-products{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  color: #4e5c67;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.6rem;
+  line-height: 2rem;
+
+}
+@mixin before{
+  content: "";
+  background-color: #d2d5d8;
+  height: 1px;
+  top: 0;
+  position: absolute;
+  width: 100%;
+}

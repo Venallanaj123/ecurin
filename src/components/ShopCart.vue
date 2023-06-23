@@ -31,79 +31,138 @@
             >
           </div>
         </div>
-    
-        <div v-if="hasProducts">
-          <div class="shop-cart__note">
-            <p class="shop-cart__text">
-              Good choice! <b>Hyaluron-Filler Skin Refining Anti-Age</b>
-              <b>Serum</b> has been added to your shopping cart
-            </p>
-          </div>
-          <ul class="shop-cart__full" v-if="hasProducts">
-            <li  class="shop-cart__item"  v-for="(product, index) in products" :key="index">
-              <img
-                :src="product.img"
-                class="shop__cart-image"
-                style="width: 76px; height: 76px"
-              />
-              <div class="shop-cart__details">
-                <span
-                  class="shop-cart__remove"
-                  v-on:click="removeitemToCart(product)"
-                >
-                  <i class="fa-solid fa-xmark fa-xl"></i>
-                </span>
-                <p class="shop-cart__name">{{ product.subtitle }}</p>
 
-                <div class="shop-cart__info">
-                  <div class="shop-cart__volume">
-                    <p class="shop-cart__volume-text">{{ product.volume }}</p>
-                  </div>
-                  <div class="shop-cart__quntity">
-                    <span>1 pc</span>
-                    <select v-model="selectedOption" class="shop-cart__seclect">
-                      <option value="">1</option>
-                      <option
-                        v-for="(option, index) in options"
-                        :key="index"
-                        :value="option.value"
+        <div v-if="hasProducts" class="shop-cart__wraper">
+          <div>
+            <div class="shop-cart__note">
+              <p class="shop-cart__text">
+                Good choice! <b>Hyaluron-Filler Skin Refining Anti-Age</b>
+                <b>Serum</b> has been added to your shopping cart
+              </p>
+            </div>
+            <ul class="shop-cart__items">
+              <li
+                class="shop-cart__item"
+                v-for="(product, index) in products"
+                :key="index"
+              >
+                <img
+                  :src="product.img"
+                  class="shop-cart__item-image"
+                  style="width: 76px; height: 76px"
+                />
+                <div class="shop-cart__item-details">
+                  <span
+                    class="shop-cart__item-remove"
+                    v-on:click="removeitemToCart(product)"
+                  >
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                  </span>
+                  <p class="shop-cart__item-title">{{ product.subtitle }}</p>
+
+                  <div class="shop-cart__item-info">
+                    <div class="shop-cart__item-volum">
+                      <p class="shop-cart__volume-text">{{ product.volume }}</p>
+                    </div>
+                    <div class="shop-cart__item-quntity">
+                      <span>1 pc</span>
+                      <select
+                        v-model="product.selectedOption"
+                        class="shop-cart__item-select"
                       >
-                        {{ option.label }}
-                      </option>
-                    </select>
+                        <option value="1">1</option>
+                        <option
+                          v-for="(option, index) in options"
+                          :key="index"
+                          :value="option.value"
+                        >
+                          {{ option.label }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="shop-cart__item-price">
+                    <p class="shop-cart__item-label">Price per piece</p>
+                    <div class="shop-cart__item-price-regular">
+                      {{ product.price }}
+                    </div>
                   </div>
                 </div>
-                <div class="shop-cart__price">
-                  <p class="shop-cart__price-label">Price per piece</p>
-                  <div class="shop-cart__price-regular">
-                    {{ product.price }}
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul class="shop-cart__total-price">
+              <li class="shop-cart__subtotal">
+                <span class="shop-cart__label-name"> Subtotal</span>
+                <span class="shop-cart__calculate-price">
+                  {{ calculateSubtotal }}</span
+                >
+              </li>
+              <li class="shop-cart__shipping">
+                <span class="shop-cart__shipping-name">
+                  Shipping (3-5 days)</span
+                >
+                <span class="shop-cart__shipping-free"> FREE</span>
+              </li>
+              <li class="shop-cart__promotion">
+                <span class="shop-cart__promotion-name">
+                  Promotion: NL_EUC_Free_Shipping_EveryOrder
+                </span>
+              </li>
+              <li class="shop-cart__promotional">
+                <span class="shop-cart__promotional-code">
+                  Enter a promotional code</span
+                >
+              </li>
+            </ul>
 
-       <ul class="shop-cart__total-price">
-         <li class="shop-cart__subtotal">
-          <span class="shop-cart__label-name"> Subtotal</span>
-          <span  class="shop-cart__calculate-price"> €42.49</span>
-         </li>
-         <!-- <li class="shop-cart__subtotal">
-          <span class="shop-cart__label-name"> Subtotal</span>
-          <span  class="shop-cart__calculate-price"> €53.98</span>
-         </li>
-         <li class="shop-cart__subtotal">
-          <span class="shop-cart__label-name"> Subtotal</span>
-          <span  class="shop-cart__calculate-price"> €53.98</span>
-         </li>
-         <li class="shop-cart__subtotal">
-          <span class="shop-cart__label-name"> Subtotal</span>
-          <span  class="shop-cart__calculate-price"> €53.98</span>
-         </li> -->
-       </ul>
-        
+            <div class="shop-cart__checkout-amount">
+              <ul class="shop-cart__items-amounts">
+                <li class="shop-cart__item-amount">
+                  <p>
+                    <span class="shop-cart__item-pay"> Amount payable</span>
+                    <span class="shop-cart__item-incl">incl. VAT </span>
+                  </p>
+
+                  <span class="shop-cart__item-calculateSubtotal">
+                    {{ calculateSubtotal }}</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="shop-cart__checkout-button">
+              <a href="" class="shop-cart__checkout-buy">
+                Secure checkout
+
+                <svg
+                  class="shop-cart__checkout-svg"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                >
+                  <path
+                    d="M31.232 8.768l-15.232 12.608-15.232-12.608-0.768 0.928 15.776 13.536h0.448l15.776-13.536-0.768-0.928z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+            <div class="shop-cart__options-payment">
+              <div
+                class="shop-cart__payemnts"
+                v-for="(image, index) in images"
+                :key="index"    
+
+              >
+              <img :src="image.imgsrc" alt="product-image"  class="shop-cart__payemnts-logo"/>
+              </div>
+             
+            </div>
+          </div>
         </div>
- 
+
         <div
           class="shop-cart__empty"
           v-bind:style="{ display: !hasProducts ? 'block' : 'none' }"
@@ -136,27 +195,57 @@ export default {
       this.$emit("removeitemToCart", product);
     },
   },
+
   computed: {
     hasProducts() {
       return this.products.length > 0;
     },
-   
+
+    calculateSubtotal() {
+      let subtotal = 0;
+      let price = 0;
+      let quntity = 1;
+      for (let i = 0; i < this.products.length; i++) {
+        price = this.products[i].price.substring(1);
+
+        if (this.products[i].selectedOption != undefined) {
+          quntity = this.products[i].selectedOption;
+        }
+        subtotal += quntity * price;
+      }
+      return `€${subtotal.toFixed(2)}`;
+    },
   },
 
   data() {
     return {
-      // isCartOpen: false,
-      selectedOption: "",
       options: [
         { label: " 2", value: "2" },
         { label: " 3", value: "3" },
         { label: " 4", value: "4" },
       ],
+
+      images: [
+        {
+          imgsrc: require("../assets//images/shop/ideallogo10243x.jpg"),
+        },
+        {
+          imgsrc: require("../assets//images/shop/mastercard.png"),
+        },
+        {
+          imgsrc: require("../assets//images/shop/paypal.png"),
+        },
+        {
+          imgsrc: require("../assets//images/shop/visa.png"),
+        },
+        {
+          imgsrc: require("../assets//images/shop/logo-eshop.jpg"),
+        },
+      ],
     };
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .shop-cart {
   display: flex;
@@ -176,7 +265,6 @@ export default {
   &__content {
     position: fixed;
     top: 0;
-    right: 0;
     background-color: #fff;
     height: 100vh;
     max-height: 100%;
@@ -207,152 +295,11 @@ export default {
     align-items: center;
     justify-content: space-between;
   }
-  &__amount {
+  &__wraper {
     display: flex;
-    align-items: center;
-  }
-  &__amount-title {
-    color: #223341;
-    -webkit-box-flex: 1;
-    flex: auto;
-    font-size: 2.4rem;
-    line-height: 3.2rem;
-    font-family: "EucerinaWgl-Demibold";
-    font-weight: 600;
-    padding: 0 30px;
-  }
-
-  &__amount-count {
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    color: #4e5c67;
-  }
-  &__close-btn {
-    border: none;
-    background: white;
-    cursor: pointer;
-  }
-  &__empty {
-  }
-  &__empty-title {
-    font-size: 3.6rem;
-    line-height: 4rem;
-    color: #223341;
-    margin-top: 25px;
-    font-family: "EucerinaWgl-Demibold";
-    font-weight: 600;
-    text-align: center;
-  }
-  &__empty-bag {
-  }
-  img {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 295px;
-  }
-  &__empty-text {
-    margin-top: 10px;
-    text-align: center;
-    color: #223341;
-  }
-  &__button {
-    background-color: #96042d;
-    color: white;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    width: 100%;
-    margin-top: 25px;
-    font-weight: 600;
-  }
-  &__full {
-    position: relative;
-  }
-
-  &__item {
-    box-shadow: 0 0 4px 2px #f3f4f5;
-    border: 2px solid #f3f4f5;
-    border-radius: 7px;
-    display: -webkit-box;
-    display: flex;
-    margin-bottom: 10px;
-    padding: 17px 0 17px 5px;
-  }
-  &__details {
-    padding-left: 15px;
-    padding-right: 15px;
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
-    width: 100%;
-  }
-  &__remove {
-    right: 15px;
-    position: absolute;
-    left: auto;
-    top: 1px;
-    font-size: 1.3rem;
-  }
-  &__name {
-    font-size: 1.8rem;
-    line-height: 2rem;
-    color: #223341;
-    max-height: 46px;
-    min-height: 46px;
-    margin-bottom: 5px;
-    padding-right: 20px;
-    overflow: hidden;
-  }
-  &__info {
-  }
-  &__volume {
-    margin-bottom: 5px;
-  }
-  &__volume-text {
-    font-size: 1.2rem;
-    line-height: 2rem;
-    font-style: italic;
-  }
-
-  &__price {
-    position: absolute;
-    bottom: 1px;
-    right: 15px;
-    text-align: right;
-  }
-  &__quntity {
-    font-size: 1.2rem;
-    line-height: 2rem;
-  }
-  &__seclect {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff;
-    margin: 0 10px;
-    background: white;
-    border: 1px solid #ddd;
-
-    padding: 2px 5px;
-  }
-
-  &__price {
-  }
-  &__price-label {
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    margin-bottom: 5px;
-  }
-
-  &__price-regular {
-    color: #213242;
-    font-size: 1.8rem;
-    line-height: 2.7rem;
-    font-weight: bold;
-    font-family: " EucerinaWgl-Demibold";
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
   }
   &__note {
     position: relative;
@@ -390,29 +337,240 @@ export default {
     padding: 10px 0 10px 40px;
   }
 
-  span {
+  &__amount {
+    display: flex;
+    align-items: center;
+  }
+  &__amount-title {
+    color: #223341;
+    -webkit-box-flex: 1;
+    flex: auto;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-family: "EucerinaWgl-Demibold";
+    font-weight: 600;
+    padding: 0 30px;
+  }
+
+  &__amount-count {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    color: #4e5c67;
+  }
+  &__close-btn {
+    border: none;
+    background: white;
     cursor: pointer;
   }
 
-  &__subtotal{
+  &__empty-title {
+    font-size: 3.6rem;
+    line-height: 4rem;
+    color: #223341;
+    margin-top: 25px;
+    font-family: "EucerinaWgl-Demibold";
+    font-weight: 600;
+    text-align: center;
+  }
+
+  img {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 295px;
+  }
+  &__empty-text {
+    margin-top: 10px;
+    text-align: center;
+    color: #223341;
+  }
+  &__button {
+    background-color: #96042d;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    width: 100%;
+    margin-top: 25px;
+    font-weight: 600;
+  }
+  &__items {
+    position: relative;
+    max-height: 480px;
+    height: 100%;
+    overflow: auto;
+  }
+
+  &__item {
+    box-shadow: 0 0 4px 2px #f3f4f5;
+    border: 2px solid #f3f4f5;
+    border-radius: 7px;
+    display: -webkit-box;
+    display: flex;
+    margin-bottom: 10px;
+    padding: 17px 0 17px 5px;
+  }
+  &__item-details {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    width: 100%;
+  }
+  &__item-remove {
+    right: 15px;
+    position: absolute;
+    left: auto;
+    top: 1px;
+    font-size: 1.3rem;
+  }
+  &__item-title {
+    font-size: 1.8rem;
+    line-height: 2rem;
+    color: #223341;
+    max-height: 46px;
+    min-height: 46px;
+    margin-bottom: 5px;
+    padding-right: 20px;
+    overflow: hidden;
+  }
+  &__item-info {
+  }
+
+  &__item-volum {
+    margin-bottom: 5px;
+  }
+  &__volume-text {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-style: italic;
+  }
+
+  &__item-quntity {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+  &__item-select {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    margin: 0 10px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 2px 5px;
+  }
+
+  &__item-price {
+    position: absolute;
+    bottom: 1px;
+    right: 15px;
+    text-align: right;
+  }
+  &__item-label {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    margin-bottom: 3px;
+  }
+
+  &__item-price-regular {
+    color: #213242;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    font-weight: bold;
+    font-family: " EucerinaWgl-Demibold";
+  }
+
+  &__total-price {
+  }
+
+  &__subtotal {
+    @include list-products;
+  }
+  &__subtotal::before {
+    @include before;
+  }
+
+  &__shipping {
+    @include list-products;
+  }
+
+  &__shipping::before {
+    @include before;
+  }
+  &__promotion {
+    @include list-products;
+  }
+  &__promotion::before {
+    @include before;
+  }
+
+  &__promotional {
+    @include list-products;
+  }
+  &__promotional::before {
+    @include before;
+  }
+
+  &__item-amount {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
-    color: #4e5c67;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 1.6rem;
-    line-height: 2rem;
+    padding-top: 20px;
+    font-family: "EucerinaWgl-Demibold";
+    font-size: 2.5rem;
+    line-height: 3rem;
+    color: #223341;
+  }
+  &__item-amount::before {
+    @include before;
   }
 
-  &__subtotal::before{
-    content: "";
-    background-color: #d2d5d8;
-    height: 1px;
-    top: 0;
-    position: absolute;
+  &__item-pay {
+    font-family: "EucerinaWgl-Demibold";
+    font-size: 2.5rem;
+    line-height: 3rem;
+    color: #223341;
+  }
+  &__item-incl {
+    margin-left: 5px;
+  }
+  &__checkout-button {
+    margin: 20px 0;
+  }
+  &__checkout-buy {
+    background-color: #96042d;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     width: 100%;
+    font-weight: bold;
+  }
+  &__checkout-svg {
+    fill: #fff !important;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-90deg);
+    height: 10px;
+    width: 20px;
+    stroke-width: 3px;
+    stroke: #fff;
+    vertical-align: middle;
+  }
+  &__options-payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__payemnts{
+    margin: 10px;
   }
 }
 </style>
