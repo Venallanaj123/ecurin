@@ -53,7 +53,8 @@
             <a href="https://www.side-by-side.de/"> PTA department</a></span
           >
           
-          <span class="pta-shop" >
+          <span class="pta-shop"  @click="additemToCart()">
+            <span class="pta-bag"> {{ lengthCart }}</span>
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +99,7 @@
 <script>
 export default {
   name: "AppHeader",
-
+  props: ["lengthCart"],
   data() {
     return {
       showSubMenu: false,
@@ -477,6 +478,7 @@ export default {
   },
 
   methods: {
+    
     automaticHeighSubMenu(flyout) {
       flyout.style.height = `auto`;
     },
@@ -540,6 +542,12 @@ export default {
       if (this.selectedSubmenuItem === subitem) {
         this.selectedSubmenuItem = null;
       }
+    },
+
+    methods: {
+      additemToCart() {
+        this.$emit("addproduct");
+      },
     },
   },
 };

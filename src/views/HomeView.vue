@@ -1,20 +1,19 @@
 <template>
   <div class="home">
-    <AppHeader />
+    <AppHeader :products="computedproduct" @addproduct="addProductToCart" />
     <IntroSection />
 
     <ShopCart
-      :products="computedProductInfo"
+      :products="computedproduct"
       :isCartOpen="computedisCartOpen"
-      v-on:removeitemToCart="removeitemToCart"
+      @removeitemToCart="removeitemToCart"
+      @update:cartOpen="updateCartOPen"
       class="shop-cart"
     ></ShopCart>
 
     <AppProducts
       subheading="Discover our sun protection products"
-      :productInfo="productInfo"
-      :cartOpen="cartOpen"
-      @update:productInfo="updateProductInfo"
+      @addproduct="addProductToCart"
     />
 
     <SkinBanner />
@@ -23,15 +22,13 @@
 
     <AppMeasure />
     <AppNewsLetter />
-
+    <ParentComponent />
     <AppMap title="The Eucerin pharmacy near you" />
     <AppFooter />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 import AppHeader from "../components/layout/AppHeader";
 
 import IntroSection from "../components/IntroSection.vue";
@@ -44,6 +41,7 @@ import AppEucerin from "../components/AppEucerin.vue";
 import MedicineBanner from "../components/MedicineBanner.vue";
 import AppMeasure from "../components/AppMeasure.vue";
 import AppNewsLetter from "../components/AppNewsLetter.vue";
+import ParentComponent from "../components/emit/ParentComponent.vue";
 import AppMap from "../components/AppMap.vue";
 import AppFooter from "../components/layout/AppFooter";
 
@@ -60,29 +58,31 @@ export default {
     MedicineBanner,
     AppMeasure,
     AppNewsLetter,
+    ParentComponent,
     AppMap,
     AppFooter,
   },
   data() {
     return {
-      productInfo: [],
+      product: [],
       cartOpen: false,
     };
   },
   methods: {
-    updateProductInfo(newProduct) {
-
+    addProductToCart(newProduct) {
       this.cartOpen = true;
-      this.productInfo.push(newProduct);
+      this.product.push(newProduct);
     },
-
     removeitemToCart(product) {
-      this.productInfo.splice(this.productInfo.indexOf(product));
+      this.product.splice(this.product.indexOf(product));
+    },
+    updateCartOPen(close) {
+      this.cartOpen = close;
     },
   },
   computed: {
-    computedProductInfo() {
-      return this.productInfo;
+    computedproduct() {
+      return this.product;
     },
     computedisCartOpen() {
       return this.cartOpen;

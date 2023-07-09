@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeaderDesktop class="header-desktop" />
+    <AppHeaderDesktop :lengthCart="products.length" class="header-desktop" />
     <AppHeaderMobile class="header-mobile" />
   </div>
 </template>
@@ -12,6 +12,7 @@ import AppHeaderMobile from "./AppHeaderMobile.vue";
 export default {
   name: "AppHeader",
   components: { AppHeaderDesktop, AppHeaderMobile },
+  props: ["products"],
 };
 </script>
 <style scoped lang="scss">

@@ -22,9 +22,10 @@
                 <a v-if="!showSubmenu" :href="menuItem.href">{{
                   menuItem.title
                 }}</a>
-                <a v-if="showSubmenu" :href="menuItem.href">{{
-                  subItemsShown.title
-                }}</a>
+                <a v-if="showSubmenu" :href="menuItem.href"
+                  >{{ subItemsShown.title }}
+                  <li><button @click="back()">back</button></li>
+                </a>
 
                 <ul class="menu__subitem level-2">
                   <li
@@ -45,6 +46,7 @@
                     >
                   </li>
                 </ul>
+
                 <transition name="slide-fade">
                   <ul v-if="showSubmenu" class="menu__subitem level-2">
                     <li
@@ -53,7 +55,7 @@
                       ) in subItemsShown.subnestedItems"
                       :key="index"
                     >
-                      <a class="nested" :href="subnestedItem.href">{{
+                      <a class="" :href="subnestedItem.href">{{
                         subnestedItem.title
                       }}</a>
                     </li>
@@ -145,6 +147,9 @@ export default {
       this.subItemsShown = subItems.filter((x) => x.title == titleMenu)[0];
 
       this.showSubmenu = true;
+    },
+    back() {
+      this.showSubmenu = false;
     },
   },
 };

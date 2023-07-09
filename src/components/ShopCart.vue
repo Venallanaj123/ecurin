@@ -21,7 +21,7 @@
         :class="{ 'shop-cart__content--open': isCartOpen }"
       >
         <div class="shop-cart__header">
-          <button class="shop-cart__close-btn" @click="isCartOpen = false">
+          <button class="shop-cart__close-btn" @click="closeCart()">
             <i class="fa-solid fa-xmark fa-xl"></i>
           </button>
           <div class="shop-cart__amount">
@@ -70,7 +70,6 @@
                         v-model="product.selectedOption"
                         class="shop-cart__item-select"
                       >
-                        <option value="1">1</option>
                         <option
                           v-for="(option, index) in options"
                           :key="index"
@@ -194,6 +193,10 @@ export default {
       console.log(product);
       this.$emit("removeitemToCart", product);
     },
+    closeCart() { 
+        this.$emit("update:cartOpen", false);
+      }
+   
   },
 
   computed: {
@@ -204,26 +207,34 @@ export default {
     calculateSubtotal() {
       let subtotal = 0;
       let price = 0;
-      let quntity = 1;
+      let quantity = 1;
+
       for (let i = 0; i < this.products.length; i++) {
         price = this.products[i].price.substring(1);
 
-        if (this.products[i].selectedOption != undefined) {
-          quntity = this.products[i].selectedOption;
+        if (this.products[i].selectedOption) {
+          quantity = this.products[i].selectedOption;
+        } else {
+          this.products[i].selectedOption = "1"; //set byDefault 1
         }
-        subtotal += quntity * price;
+
+        subtotal += quantity * price;
       }
       return `€${subtotal.toFixed(2)}`;
     },
+  
   },
 
   data() {
     return {
       options: [
+        { label: " 1", value: "1" },
         { label: " 2", value: "2" },
         { label: " 3", value: "3" },
         { label: " 4", value: "4" },
       ],
+      selectedOption: "1", 
+
 
       images: [
         {
@@ -244,6 +255,7 @@ export default {
       ],
     };
   },
+  
 };
 </script>
 <style lang="scss" scoped>
@@ -427,6 +439,7 @@ export default {
     left: auto;
     top: 1px;
     font-size: 1.3rem;
+    cursor: pointer;
   }
   &__item-title {
     font-size: 1.8rem;
@@ -484,8 +497,6 @@ export default {
     font-family: " EucerinaWgl-Demibold";
   }
 
-  &__total-price {
-  }
 
   &__subtotal {
     @include list-products;

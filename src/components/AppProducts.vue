@@ -30,6 +30,8 @@
                   <span class="product__comment">{{ review.comment }}</span>
                 </div>
   
+
+
                 <p class="product__title">{{ product.title }}</p>
                 <p class="product__subtile">{{ product.subtitle }}</p>
   
@@ -44,7 +46,7 @@
                   </div>
   
                   <button @click="additemToCart(product)" class="product__button">
-                    <svg
+                    <svg 
                       width="28"
                       height="28"
                       viewBox="0 0 32 32"
@@ -142,7 +144,7 @@
     },
     methods: {
       additemToCart(product) {
-        this.$emit("update:productInfo", product);
+        this.$emit("addproduct", product);
       },
     },
   };
@@ -220,7 +222,7 @@
   
     &__button {
       background-color: #a70532;
-      cursor: pointer;
+  
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -228,6 +230,7 @@
       flex: 0 0 40px;
       border: none;
       position: relative;
+      cursor: pointer;
     }
   
     svg {
