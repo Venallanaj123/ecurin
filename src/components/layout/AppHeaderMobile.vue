@@ -24,7 +24,7 @@
                 }}</a>
                 <a v-if="showSubmenu" :href="menuItem.href"
                   >{{ subItemsShown.title }}
-                  <li><button @click="back()">back</button></li>
+                  <li><button @click="back()">backtest</button></li>
                 </a>
 
                 <ul class="menu__subitem level-2">
