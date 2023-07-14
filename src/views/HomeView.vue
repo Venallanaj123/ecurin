@@ -22,7 +22,7 @@
 
     <AppMeasure />
     <AppNewsLetter />
-    <ParentComponent />
+    <!-- <ParentComponent /> -->
     <AppMap title="The Eucerin pharmacy near you" />
     <AppFooter />
   </div>
@@ -41,7 +41,7 @@ import AppEucerin from "../components/AppEucerin.vue";
 import MedicineBanner from "../components/MedicineBanner.vue";
 import AppMeasure from "../components/AppMeasure.vue";
 import AppNewsLetter from "../components/AppNewsLetter.vue";
-import ParentComponent from "../components/emit/ParentComponent.vue";
+// import ParentComponent from "../components/emit/ParentComponent.vue";
 import AppMap from "../components/AppMap.vue";
 import AppFooter from "../components/layout/AppFooter";
 
@@ -58,7 +58,7 @@ export default {
     MedicineBanner,
     AppMeasure,
     AppNewsLetter,
-    ParentComponent,
+    // ParentComponent,
     AppMap,
     AppFooter,
   },
