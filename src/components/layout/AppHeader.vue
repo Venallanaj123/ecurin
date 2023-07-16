@@ -1,17 +1,17 @@
 <template>
   <div>
-    <AppHeaderDesktop :lengthCart="products.length" class="header-desktop" />
-    <AppHeaderMobile class="header-mobile" />
+    <HeaderDesktop :lengthCart="products.length" class="header-desktop" />
+    <HeaderMobile class="header-mobile" />
   </div>
 </template>
 
 <script>
-import AppHeaderDesktop from "./AppHeaderDesktop.vue";
-import AppHeaderMobile from "./AppHeaderMobile.vue";
+import HeaderDesktop from "./HeaderDesktop.vue";
+import HeaderMobile from "./HeaderMobile.vue";
 
 export default {
   name: "AppHeader",
-  components: { AppHeaderDesktop, AppHeaderMobile },
+  components: { HeaderDesktop, HeaderMobile },
   props: ["products"],
 };
 </script>

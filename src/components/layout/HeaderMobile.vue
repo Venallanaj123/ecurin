@@ -87,7 +87,7 @@
 </style>
 <script>
 export default {
-  name: "AppHeaderMobile",
+  name: "HeaderMobile",
 
   data() {
     return {
