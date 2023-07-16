@@ -90,32 +90,30 @@
               </li>
             </ul>
           </div>
-          <div>
-            <ul class="shop-cart__total-price">
-              <li class="shop-cart__subtotal">
-                <span class="shop-cart__label-name"> Subtotal</span>
-                <span class="shop-cart__calculate-price">
-                  {{ calculateSubtotal }}</span
-                >
-              </li>
-              <li class="shop-cart__shipping">
-                <span class="shop-cart__shipping-name">
-                  Shipping (3-5 days)</span
-                >
-                <span class="shop-cart__shipping-free"> FREE</span>
-              </li>
-              <li class="shop-cart__promotion">
-                <span class="shop-cart__promotion-name">
-                  Promotion: NL_EUC_Free_Shipping_EveryOrder
-                </span>
-              </li>
-              <li class="shop-cart__promotional">
-                <span class="shop-cart__promotional-code">
-                  Enter a promotional code</span
-                >
-              </li>
-            </ul>
 
+          <ul class="shop-cart__total-price">
+            <li class="shop-cart__subtotal">
+              <span class="shop-cart__label-name"> Subtotal</span>
+              <span class="shop-cart__calculate-price">
+                {{ calculateSubtotal }}</span
+              >
+            </li>
+            <li class="shop-cart__shipping">
+              <span class="shop-cart__shipping-name"> Shipping (3-5 days)</span>
+              <span class="shop-cart__shipping-free"> FREE</span>
+            </li>
+            <li class="shop-cart__promotion">
+              <span class="shop-cart__promotion-name">
+                Promotion: NL_EUC_Free_Shipping_EveryOrder
+              </span>
+            </li>
+            <li class="shop-cart__promotional">
+              <span class="shop-cart__promotional-code">
+                Enter a promotional code</span
+              >
+            </li>
+          </ul>
+          <div class="test">
             <div class="shop-cart__checkout-amount">
               <ul class="shop-cart__items-amounts">
                 <li class="shop-cart__item-amount">
@@ -152,12 +150,14 @@
               <div
                 class="shop-cart__payemnts"
                 v-for="(image, index) in images"
-                :key="index"    
-
+                :key="index"
               >
-              <img :src="image.imgsrc" alt="product-image"  class="shop-cart__payemnts-logo"/>
+                <img
+                  :src="image.imgsrc"
+                  alt="product-image"
+                  class="shop-cart__payemnts-logo"
+                />
               </div>
-             
             </div>
           </div>
         </div>
@@ -193,10 +193,9 @@ export default {
       console.log(product);
       this.$emit("removeitemToCart", product);
     },
-    closeCart() { 
-        this.$emit("update:cartOpen", false);
-      }
-   
+    closeCart() {
+      this.$emit("update:cartOpen", false);
+    },
   },
 
   computed: {
@@ -222,7 +221,6 @@ export default {
       }
       return `€${subtotal.toFixed(2)}`;
     },
-  
   },
 
   data() {
@@ -233,8 +231,7 @@ export default {
         { label: " 3", value: "3" },
         { label: " 4", value: "4" },
       ],
-      selectedOption: "1", 
-
+      selectedOption: "1",
 
       images: [
         {
@@ -255,7 +252,6 @@ export default {
       ],
     };
   },
-  
 };
 </script>
 <style lang="scss" scoped>
@@ -497,7 +493,6 @@ export default {
     font-family: " EucerinaWgl-Demibold";
   }
 
-
   &__subtotal {
     @include list-products;
   }
@@ -580,7 +575,7 @@ export default {
     align-items: center;
     justify-content: center;
   }
-  &__payemnts{
+  &__payemnts {
     margin: 10px;
   }
 }
