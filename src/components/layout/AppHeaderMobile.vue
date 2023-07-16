@@ -25,6 +25,7 @@
                 <a v-if="showSubmenu" :href="menuItem.href"
                   >{{ subItemsShown.title }}
                   <li><button @click="back()">GIT TOOLS</button></li>
+                  <li><button @click="back()">It IS just a test </button></li>
                 </a>
 
                 <ul class="menu__subitem level-2">
